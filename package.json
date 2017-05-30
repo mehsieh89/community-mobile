@@ -1,5 +1,5 @@
 {
-	"name": "community",
+	"name": "Community",
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
@@ -8,7 +8,11 @@
 	},
 	"dependencies": {
 		"react": "16.0.0-alpha.6",
-		"react-native": "0.44.2"
+		"react-native": "0.44.2",
+		"react-native-maps": "^0.15.2",
+		"react-native-maps-google": "^1.1.4",
+		"react-redux": "^5.0.5",
+		"redux": "^3.6.0"
 	},
 	"devDependencies": {
 		"babel-jest": "20.0.3",
