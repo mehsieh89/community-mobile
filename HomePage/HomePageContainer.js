@@ -20,8 +20,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    greetUser: (username) => {
-      dispatch(setUserName(username));
+    greetUser: () => {
+      dispatch(setUserName());
     }
   };
 };

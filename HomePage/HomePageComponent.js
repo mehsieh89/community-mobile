@@ -18,8 +18,8 @@ class HomePage extends Component {
     this.greetUser = this.greetUser.bind(this);
   }
 
-  greetUser() {
-    this.props.greetUser(this.state.text);
+  greetUser(username) {
+    return this.props.greetUser(username);
   }
 
   render() {

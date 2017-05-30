@@ -2956,6 +2956,14 @@ react-devtools-core@^2.0.8:
     shell-quote "^1.6.1"
     ws "^2.0.3"
 
+react-native-maps-google@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-maps-google/-/react-native-maps-google-1.1.4.tgz#0a7ca7329d2b3131618494382dad4c42a091d933"
+
+react-native-maps@^0.15.2:
+  version "0.15.2"
+  resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.15.2.tgz#4f63b9501b25d124f0ef1839529e54a6461c2c49"
+
 react-native@0.44.2:
   version "0.44.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.44.2.tgz#c8dfb747b88e6276a991980c57c50b860a98cf0e"
