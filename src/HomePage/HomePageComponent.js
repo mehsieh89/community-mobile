@@ -6,13 +6,16 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import MapView from 'react-native-maps';
 
 class HomePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: ''
+      mapRegion: null,
+      lastLat: null,
+      lastLong: null,
     };
 
     this.greetUser = this.greetUser.bind(this);
