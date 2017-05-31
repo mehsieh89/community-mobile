@@ -6,6 +6,9 @@ import Main from './Main/MainContainer';
 import Login from './Login/LoginContainer';
 import { StackNavigator } from 'react-navigation';
 
+// uncomment this to hide simulator warnings
+// console.disableYellowBox = true;
+
 class Root extends Component {
   render() {
     const RootNav = StackNavigator({
