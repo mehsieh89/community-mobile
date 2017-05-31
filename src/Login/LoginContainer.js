@@ -7,7 +7,6 @@ import FBLogin from './FBLogin';
 class LoginContainer extends Component {
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
     this.handleSkip = this.handleSkip.bind(this);
   }
 
