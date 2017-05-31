@@ -12,7 +12,7 @@ class LoginContainer extends Component {
 
   handleSkip(e) {
     const { navigate } = this.props.navigation;
-    navigate('HomePage');
+    navigate('Main');
   }
 
   render() {
