@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import MapView from 'react-native-maps';
 
-class HomePage extends Component {
+class Main extends Component {
   constructor(props) {
     super(props);
 
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default Main;

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import setUserName from './homePageActions';
+import setUserName from './mainActions';
 import { connect } from 'react-redux';
 
-import HomePage from './HomePageComponent';
+import Main from './MainComponent';
 
-const HomePageContainer = (props) => {
+const MainContainer = (props) => {
   return (
-    <HomePage {...props} />
+    <Main {...props} />
   );
 };
 
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);
