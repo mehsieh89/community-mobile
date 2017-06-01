@@ -36,9 +36,10 @@
 		2FDBB769C4B540A198E12930 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93DD42FC007B4EB8863116AE /* libRCTFBSDK.a */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		E0710732E9FC44C7ABF3CA18 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EFD8C1488094F4CB12102F4 /* FBSDKCoreKit.framework */; };
-		2B3B9FD1C5D34896A8A30E9D /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E54CB4DD2864850B21ED3AA /* FBSDKShareKit.framework */; };
-		CA5B3F9D154E4A849539932A /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B686993D2A465B9345A858 /* FBSDKLoginKit.framework */; };
+		CBC0B2701AF3403F940A7D84 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F73A6A92394B9782651675 /* libRCTFBSDK.a */; };
+		20529FF8A92C448A8CB9978F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682D6E1D7B3F4C6292E0F9E5 /* FBSDKCoreKit.framework */; };
+		8B4EA5409F22400F9E58AD9E /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D07198D3C2A45B1A2406D14 /* FBSDKShareKit.framework */; };
+		1C98B687935E473C9A05ECC8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4636AC0223D549A5945C841B /* FBSDKLoginKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -203,9 +204,9 @@
 			remoteGlobalIDString = 3D3CD9181DE5FBD800167DC4;
 			remoteInfo = "jschelpers-tvOS";
 		};
-		444059861EDF7A8200625C01 /* PBXContainerItemProxy */ = {
+		44405A1E1EDF88AA00625C01 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6DA6E52F8D084972AA0AC1FC /* RCTFBSDK.xcodeproj */;
+			containerPortal = 23A6CD2A8FDE437D841A2D37 /* RCTFBSDK.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9350E0F11CE3B0920041D815;
 			remoteInfo = RCTFBSDK;
@@ -260,16 +261,17 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Community/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Community/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		23A6CD2A8FDE437D841A2D37 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
+		23F73A6A92394B9782651675 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Community-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Community-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Community-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Community-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		6DA6E52F8D084972AA0AC1FC /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
-		93DD42FC007B4EB8863116AE /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
-		3EFD8C1488094F4CB12102F4 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "./ios/Frameworks/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		3E54CB4DD2864850B21ED3AA /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "./ios/Frameworks/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
-		09B686993D2A465B9345A858 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "./ios/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		682D6E1D7B3F4C6292E0F9E5 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; name = "FBSDKCoreKit.framework"; path = "./ios/Frameworks/FBSDKCoreKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		2D07198D3C2A45B1A2406D14 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; name = "FBSDKShareKit.framework"; path = "./ios/Frameworks/FBSDKShareKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		4636AC0223D549A5945C841B /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; name = "FBSDKLoginKit.framework"; path = "./ios/Frameworks/FBSDKLoginKit.framework"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -296,10 +298,10 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				2FDBB769C4B540A198E12930 /* libRCTFBSDK.a in Frameworks */,
-				E0710732E9FC44C7ABF3CA18 /* FBSDKCoreKit.framework in Frameworks */,
-				2B3B9FD1C5D34896A8A30E9D /* FBSDKShareKit.framework in Frameworks */,
-				CA5B3F9D154E4A849539932A /* FBSDKLoginKit.framework in Frameworks */,
+				CBC0B2701AF3403F940A7D84 /* libRCTFBSDK.a in Frameworks */,
+				20529FF8A92C448A8CB9978F /* FBSDKCoreKit.framework in Frameworks */,
+				8B4EA5409F22400F9E58AD9E /* FBSDKShareKit.framework in Frameworks */,
+				1C98B687935E473C9A05ECC8 /* FBSDKLoginKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,10 +436,10 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		444059801EDF7A8100625C01 /* Products */ = {
+		44405A181EDF88A900625C01 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				444059871EDF7A8200625C01 /* libRCTFBSDK.a */,
+				44405A1F1EDF88AA00625C01 /* libRCTFBSDK.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -474,7 +476,7 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				6DA6E52F8D084972AA0AC1FC /* RCTFBSDK.xcodeproj */,
+				23A6CD2A8FDE437D841A2D37 /* RCTFBSDK.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -511,12 +513,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1285F23F48D54560A9B9F4E6 /* Frameworks */ = {
+		1E5A262AB88C490A89FBD333 /* Frameworks */ = {
 			isa = "PBXGroup";
 			children = (
-				3EFD8C1488094F4CB12102F4 /* FBSDKCoreKit.framework */,
-				3E54CB4DD2864850B21ED3AA /* FBSDKShareKit.framework */,
-				09B686993D2A465B9345A858 /* FBSDKLoginKit.framework */,
+				682D6E1D7B3F4C6292E0F9E5 /* FBSDKCoreKit.framework */,
+				2D07198D3C2A45B1A2406D14 /* FBSDKShareKit.framework */,
+				4636AC0223D549A5945C841B /* FBSDKLoginKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -645,8 +647,8 @@
 					ProjectRef = 5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */;
 				},
 				{
-					ProductGroup = 444059801EDF7A8100625C01 /* Products */;
-					ProjectRef = 6DA6E52F8D084972AA0AC1FC /* RCTFBSDK.xcodeproj */;
+					ProductGroup = 44405A181EDF88A900625C01 /* Products */;
+					ProjectRef = 23A6CD2A8FDE437D841A2D37 /* RCTFBSDK.xcodeproj */;
 				},
 				{
 					ProductGroup = 00C302B61ABCB90400DB3ED1 /* Products */;
@@ -843,11 +845,11 @@
 			remoteRef = 3DAD3EAE1DF850E9000B6D8A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		444059871EDF7A8200625C01 /* libRCTFBSDK.a */ = {
+		44405A1F1EDF88AA00625C01 /* libRCTFBSDK.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libRCTFBSDK.a;
-			remoteRef = 444059861EDF7A8200625C01 /* PBXContainerItemProxy */;
+			remoteRef = 44405A1E1EDF88AA00625C01 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */ = {
