@@ -524,6 +524,14 @@
 			sourceTree = "<group>";
 			path = ./ios/Frameworks;
 		};
+		C7F987A7EF4A4A7DBF3E8230 /* Frameworks */ = {
+			isa = "PBXGroup";
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+			path = ./ios/Frameworks;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
