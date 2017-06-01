@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import FBSDK from 'react-native-fbsdk';
+import { AccessToken, GraphRequest, GraphRequestManager, LoginButton, LoginManager } from 'react-native-fbsdk';
 import { Button, StyleSheet, Text, View} from 'react-native';
-
 
 class FBLogin extends Component {
 
@@ -11,22 +10,40 @@ class FBLogin extends Component {
   }
 
   handleLogin(error, result) {
-    if (error) { alert("Login failed with error: " + result.error); }
-    else if (result.isCancelled) { alert("Login was cancelled"); }
+    if (error) { console.log("Login failed with error: ", result.error); }
+    else if (result.isCancelled) { console.log("Login was cancelled"); }
     else {
-      console.log(result);
-      alert("Login was successful with permissions: " + result.grantedPermissions);
+      console.log("Login was successful with permissions: ", result.grantedPermissions);
+      AccessToken.getCurrentAccessToken().then((data) => {
+        const { accessToken } = data;
+        const infoRequest = new GraphRequest(
+          '/me',
+          null,
+          this._responseInfoCallback,
+        );
+        const anotherInfoRequest = new GraphRequest(
+          '/me?fields=email',
+          { accessToken: accessToken },
+          this._responseInfoCallback,
+        );
+        new GraphRequestManager().addRequest(anotherInfoRequest).start();
+      })
     }
   }
 
+  _responseInfoCallback(error: ?Object, result: ?Object) {
+    if (error) { console.log('Error fetching data: ', error); }
+    else { console.log('Success fetching data: ', result); }
+  }
+
   render() {
-    const { LoginButton } = FBSDK;
     return (
       <View>
         <LoginButton
-          publishPermissions={["publish_actions"]}
+          //publishPermissions={["publish_actions"]}
+          readPermissions={["email", "public_profile"]}
           onLoginFinished={this.handleLogin}
-          onLogoutFinished={() => alert("User logged out")}/>
+          onLogoutFinished={() => console.log("User logged out")}/>
       </View>
     );
   }

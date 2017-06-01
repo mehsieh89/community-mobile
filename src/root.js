@@ -7,7 +7,7 @@ import Login from './Login/LoginContainer';
 import { StackNavigator } from 'react-navigation';
 
 // uncomment this to hide simulator warnings
-// console.disableYellowBox = true;
+console.disableYellowBox = true;
 
 class Root extends Component {
   render() {
