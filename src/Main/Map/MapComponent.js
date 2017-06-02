@@ -15,7 +15,8 @@ class MapComponent extends Component {
       mapRegion: null,
       lastLat: null,
       lastLong: null,
-      initialPosition: null
+      initialPosition: null,
+      lastPosition: null
     };
   }
 
@@ -28,6 +29,10 @@ class MapComponent extends Component {
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
+    this.watchID = navigator.geolocation.watchPosition((position) => {
+    const lastPosition = JSON.stringify(position);
+    this.setState({lastPosition});
+  });
   }
 
   render() {
