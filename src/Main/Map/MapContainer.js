@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
+import Map from './MapComponent';
 
 class MapContainer extends Component{
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -16,7 +17,7 @@ class MapContainer extends Component{
 
   render() {
     return (
-      <View><Text>MAP</Text></View>
+      <Map />
     );
   }
 }
