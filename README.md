@@ -53,6 +53,8 @@ yarn install
 node ios_setup.js 1043975815746787 community
 ```
 
+- Note: if you are getting 'SomeGoogleModule not found' errors, manually download the React-Native Facebook SDK from https://developers.facebook.com/docs/react-native, unzip it, then move the unzipped contents into community-mobile/ios/Frameworks (create Frameworks if it doesn’t already exist)
+
 Inside iOS/ directory:
 
 ```
@@ -104,4 +106,4 @@ To run your redis server for the session store `redis-server`
 - Inside Xcode, click on File -> New -> File, then select Property List
 - In 'Targets', make sure 'Community' is checked, then name the plist 'Keys'
 - Open the plist, add key 'GOOGLE_MAPS_API', then the API key in the value
-- Run the app
+- Build the app
