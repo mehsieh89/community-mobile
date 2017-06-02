@@ -1,72 +1,34 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
-import MapView from 'react-native-maps';
+import setUserName from './mainActions';
+import { connect } from 'react-redux';
+import { StackNavigator } from 'react-navigation';
+import Map from './Map/MapContainer';
+import EventList from './EventList/EventListContainer';
+// import axios from 'axios';
 
-class Main extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      mapRegion: null,
-      lastLat: null,
-      lastLong: null,
-    };
-
-    this.greetUser = this.greetUser.bind(this);
+class MainComponent extends Component {
+  static navigationOptions = {
+    header: null,
   }
 
-  greetUser(username) {
-    return this.props.greetUser(username);
-  }
+  // componentDidMount() {
+  //   axios.get('SERVER_URL' + '/retrieveEvents')
+  //   .then(({data}) => {
+  //     console.log(data);
+  //   })
+  // }
 
   render() {
+    const MainNav = StackNavigator({
+      Map: { screen: Map },
+      EventList: { screen: EventList }
+    });
+
     return (
-      <View style={styles.container}>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          onChangeText={(text) => this.setState({text})}
-          value={this.state.text}
-        />
-        <Button
-          onPress={this.greetUser}
-          title="submit name"
-          color="#841584"
-        />
-        <Text style={styles.instructions}>
-          Welcome to the Community, {this.props.username}!
-        </Text>
-        <Text style={styles.instructions}>
-          Create or find your ideal event,{'\n'}
-          where you can meet new friends and make memories of a lifetime!
-        </Text>
-      </View>
+      <MainNav />
     );
   }
-};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+}
 
-export default Main;
+export default MainComponent;

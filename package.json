@@ -14,6 +14,7 @@
 		"react-native-fbsdk": "^0.6.0",
 		"react-native-maps": "^0.15.2",
 		"react-native-maps-google": "^1.1.4",
+		"react-native-transition": "^1.1.7",
 		"react-navigation": "^1.0.0-beta.11",
 		"react-redux": "^5.0.5",
 		"redux": "^3.6.0",

@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
-import setUserName from './mainActions';
+import Main from './MainComponent';
 import { connect } from 'react-redux';
-import { StackNavigator } from 'react-navigation';
-//import Main from './MainComponent';
-import Map from './Map/MapContainer';
-import EventList from './EventList/EventListContainer';
+
+// const MainContainer = (props) => {
+//   return (
+//     <Main {...props}/>
+//   );
+// }
 
 class MainContainer extends Component {
   static navigationOptions = {
     header: null,
   }
-  
-  render() {
-    const MainNav = StackNavigator({
-      Map: { screen: Map },
-      EventList: { screen: EventList }
-    });
 
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     return (
-      <MainNav />
+      <Main {...this.props}/>
     );
   }
 }
