@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-// import setUserName from './homePageActions';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import updateCurrentUser from './loginActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import FBLogin from './FBLogin';
 
@@ -8,9 +9,16 @@ class LoginContainer extends Component {
   constructor(props) {
     super(props);
     this.handleSkip = this.handleSkip.bind(this);
+    this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
   }
 
   handleSkip(e) {
+    const { navigate } = this.props.navigation;
+    navigate('Main');
+  }
+
+  handleLoginSuccess(data) {
+    this.props.updateCurrentUser(data);
     const { navigate } = this.props.navigation;
     navigate('Main');
   }
@@ -20,25 +28,23 @@ class LoginContainer extends Component {
       <View>
         <Text>Login</Text>
         <Button title="Skip Login" onPress={this.handleSkip} />
-        <FBLogin />
+        <FBLogin handleLoginSuccess={this.handleLoginSuccess}/>
       </View>
     );
   }
 }
 
 const mapStateToProps = (state) => {
-  const { username } = state;
+  const { loginReducer } = state;
   return {
-    //username: username
+    loginReducer: loginReducer
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {
-    // greetUser: () => {
-    //   dispatch(setUserName());
-    // }
-  };
+  return bindActionCreators({
+    updateCurrentUser: updateCurrentUser
+  }, dispatch);
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginContainer);

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import { AccessToken, GraphRequest, GraphRequestManager, LoginButton, LoginManager } from 'react-native-fbsdk';
 import { Button, StyleSheet, Text, View} from 'react-native';
+import axios from 'axios';
 
 class FBLogin extends Component {
 
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
+    this._responseInfoCallback = this._responseInfoCallback.bind(this);
   }
 
   handleLogin(error, result) {
@@ -18,23 +20,28 @@ class FBLogin extends Component {
       .then((data) => {
         const { accessToken } = data;
         const infoRequest = new GraphRequest(
-          '/me',
-          null,
-          this._responseInfoCallback,
-        );
-        const anotherInfoRequest = new GraphRequest(
-          '/me?fields=email',
+          '/me?fields=email,name',
           { accessToken: accessToken },
           this._responseInfoCallback,
         );
-        new GraphRequestManager().addRequest(anotherInfoRequest).start();
+        new GraphRequestManager().addRequest(infoRequest).start();
       });
     }
   }
 
   _responseInfoCallback(error: ?Object, result: ?Object) {
-    if (error) { console.log('Error fetching data: ', error); }
-    else { console.log('Success fetching data: ', result); }
+    if (error) { console.log('Error fetching data: ', error);
+    } else { console.log('Success fetching data: ', result);
+      const context = this;
+      axios.post('http://localhost:3000/mobileFBLogin', result)
+      .then(function (response) {
+        console.log(response.data);
+        context.props.handleLoginSuccess(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
   }
 
   render() {
@@ -51,26 +58,3 @@ class FBLogin extends Component {
 }
 
 export default FBLogin;
-
-// const FBSDK = require('react-native-fbsdk');
-// const {
-//   LoginManager,
-// } = FBSDK;
-//
-// // ...
-//
-// // Attempt a login using the Facebook login dialog,
-// // asking for default permissions.
-// LoginManager.logInWithReadPermissions(['public_profile']).then(
-//   function(result) {
-//     if (result.isCancelled) {
-//       alert('Login was cancelled');
-//     } else {
-//       alert('Login was successful with permissions: '
-//         + result.grantedPermissions.toString());
-//     }
-//   },
-//   function(error) {
-//     alert('Login failed with error: ' + error);
-//   }
-// );

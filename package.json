@@ -8,6 +8,7 @@
 	},
 	"dependencies": {
 		"adm-zip": "^0.4.7",
+		"axios": "^0.16.1",
 		"plist": "^2.1.0",
 		"react": "16.0.0-alpha.6",
 		"react-native": "0.44.2",
