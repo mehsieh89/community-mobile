@@ -29,10 +29,6 @@ class MapComponent extends Component {
       (error) => alert(JSON.stringify(error)),
       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
     );
-    this.watchID = navigator.geolocation.watchPosition((position) => {
-    const lastPosition = JSON.stringify(position);
-    this.setState({lastPosition});
-  });
   }
 
   render() {
@@ -78,7 +74,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   map: {
-     ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFillObject,
   }
 });
 
