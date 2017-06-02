@@ -22,6 +22,7 @@ DerivedData
 *.xcuserstate
 project.xcworkspace
 ios/node_modules
+ios/Keys.plist
 
 # Cocoapods
 #

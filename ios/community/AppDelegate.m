@@ -20,7 +20,13 @@
 {
   NSURL *jsCodeLocation;
   
-  [GMSServices provideAPIKey:@"AIzaSyDpbaZ7IZI8jQAW1t08VMz8vQl1rN7T5sI"];
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"];
+  NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+  NSString *APIKey = [dict objectForKey:@"GOOGLE_MAPS_API"];
+//  NSLog(@"the value of api key is: %@", APIKey);
+  
+  
+  [GMSServices provideAPIKey:APIKey];
   
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
