@@ -3012,6 +3012,10 @@ react-native-tab-view@^0.0.65:
   dependencies:
     prop-types "^15.5.8"
 
+react-native-transition@^1.1.7:
+  version "1.1.7"
+  resolved "https://registry.yarnpkg.com/react-native-transition/-/react-native-transition-1.1.7.tgz#6aa7019cf8fd81853576b50d7223b4eebfb921d7"
+
 react-native@0.44.2:
   version "0.44.2"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.44.2.tgz#c8dfb747b88e6276a991980c57c50b860a98cf0e"

@@ -14,7 +14,8 @@ class FBLogin extends Component {
     else if (result.isCancelled) { console.log("Login was cancelled"); }
     else {
       console.log("Login was successful with permissions: ", result.grantedPermissions);
-      AccessToken.getCurrentAccessToken().then((data) => {
+      AccessToken.getCurrentAccessToken()
+      .then((data) => {
         const { accessToken } = data;
         const infoRequest = new GraphRequest(
           '/me',
@@ -27,7 +28,7 @@ class FBLogin extends Component {
           this._responseInfoCallback,
         );
         new GraphRequestManager().addRequest(anotherInfoRequest).start();
-      })
+      });
     }
   }
 

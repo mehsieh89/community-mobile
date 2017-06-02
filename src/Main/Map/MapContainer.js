@@ -13,6 +13,7 @@ class MapContainer extends Component{
     };
   }
 
+
   render() {
     return (
       <View><Text>MAP</Text></View>
