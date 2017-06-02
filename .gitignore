@@ -23,6 +23,8 @@ DerivedData
 project.xcworkspace
 ios/node_modules
 ios/Keys.plist
+ios/community.xcodeproj/
+
 
 # Cocoapods
 #
