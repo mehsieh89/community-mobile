@@ -1,11 +1,5 @@
 import React, { Component } from 'react';
-import {
-  Button,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
 const LATITUDE = 37.78825;
@@ -21,7 +15,19 @@ class MapComponent extends Component {
       mapRegion: null,
       lastLat: null,
       lastLong: null,
+      initialPosition: null
     };
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const initialPosition = JSON.stringify(position);
+        this.setState({initialPosition});
+      },
+      (error) => alert(JSON.stringify(error)),
+      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+    );
   }
 
   render() {
@@ -32,6 +38,7 @@ class MapComponent extends Component {
         </View>
         <View style={styles.container}>
           <MapView
+            showsUserLocation={true}
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             initialRegion={{
