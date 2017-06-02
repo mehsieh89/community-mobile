@@ -12,14 +12,21 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
+@import GoogleMaps;
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  
+  NSString *path = [[NSBundle mainBundle] pathForResource:@"Keys" ofType:@"plist"];
+  NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile:path];
+  NSString *APIKey = [dict objectForKey:@"GOOGLE_MAPS_API"];
+//  NSLog(@"the value of api key is: %@", APIKey);
+  
+  
+  [GMSServices provideAPIKey:APIKey];
   
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
   
