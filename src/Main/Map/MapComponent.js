@@ -32,6 +32,7 @@ class MapComponent extends Component {
   }
 
   render() {
+    console.log('props inside map component === ', this.props)
     return (
       <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: 'green', height: 100, justifyContent: 'center', alignItems: 'center'}}>
@@ -48,7 +49,20 @@ class MapComponent extends Component {
               latitudeDelta: LATITUDE_DELTA,
               longitudeDelta: LONGITUDE_DELTA,
             }}
-          />
+          >
+          {this.props.allEvents.map((marker, index) => (
+            <MapView.Marker
+              key={index}
+              coordinate={{
+                latitude: Number(marker.lat),
+                longitude:  Number(marker.lng)
+              }}
+              title={marker.event_name}
+              description={marker.description}
+            >
+            </MapView.Marker>
+          ))}
+        </MapView>
         </View>
       </View>
     );

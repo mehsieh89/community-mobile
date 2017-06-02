@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { bindActionCreators } from 'redux';
+import { bindActionCreators } from 'redux';
 import Main from './MainComponent';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -18,8 +18,6 @@ class MainContainer extends Component {
     axios.get('http://localhost:3000/api/retrieveEvents')
     .then(data => {
       this.props.addEvents(data.data);
-      console.log('props === ', this.props)
-      console.log('all events prop === ', this.props.allEvents)
       console.log('Events retrieved.', data.data);
     })
     .catch(error => {
@@ -29,7 +27,7 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <Main {...this.props}/>
+      <Main allEvents={this.props.allEvents} />
     );
   }
 }
@@ -40,24 +38,12 @@ const mapDispatchToProps = (dispatch) => {
   }, dispatch);
 }
 
-// const mapStateToProps = (state) => {
-//   const { username, allEvents } = state;
-//
-//   console.log('state ', state)
-//   return {
-//     username: username,
-//     allEvents: allEvents
-//   };
-// };
+const mapStateToProps = (state) => {
+  const { allEvents } = state;
 
-const mapDispatchToProps = (dispatch) => {
+  console.log('all events inside main container === ', state.allEvents)
   return {
-    greetUser: () => {
-      dispatch(setUserName());
-    },
-    addEvents: () => {
-      dispatch(addEvents());
-    }
+    allEvents: allEvents
   };
 };
 

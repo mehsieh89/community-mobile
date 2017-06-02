@@ -25,10 +25,9 @@ class MainComponent extends Component {
     });
 
     return (
-      <MainNav />
+      <MainNav allEvents={this.props.allEvents} />
     );
   }
-
 }
 
 export default MainComponent;
