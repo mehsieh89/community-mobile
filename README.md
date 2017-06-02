@@ -96,3 +96,12 @@ To run your redis server for the session store `redis-server`
 ## Deployment
 - Provision heroku-postgres and heroku-redis add-ons for your app.
 - Set all config variables and keys in Heroku app settings -->
+
+## Running the App
+
+- Navigate to ios/ directory, then open 'community.xcodeproj' in Xcode
+
+- Inside Xcode, click on File -> New -> File, then select Property List
+- In 'Targets', make sure 'Community' is checked, then name the plist 'Keys'
+- Open the plist, add key 'GOOGLE_MAPS_API', then the API key in the value
+- Run the app

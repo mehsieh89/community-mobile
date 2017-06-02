@@ -76,7 +76,6 @@
 		9FB962431EE0D9EB00DC5A28 /* SMCalloutView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB962311EE0D9EB00DC5A28 /* SMCalloutView.m */; };
 		9FB962441EE0D9EB00DC5A28 /* RCTConvert+AirMap.m in Sources */ = {isa = PBXBuildFile; fileRef = 9FB962331EE0D9EB00DC5A28 /* RCTConvert+AirMap.m */; };
 		9FB962781EE1052E00DC5A28 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9FB962771EE1052E00DC5A28 /* Keys.plist */; };
-		9FB9627B1EE1064700DC5A28 /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB9627A1EE1064700DC5A28 /* Keys.swift */; };
 		CBC0B2701AF3403F940A7D84 /* libRCTFBSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 23F73A6A92394B9782651675 /* libRCTFBSDK.a */; };
 /* End PBXBuildFile section */
 
@@ -386,7 +385,6 @@
 		9FB962331EE0D9EB00DC5A28 /* RCTConvert+AirMap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+AirMap.m"; sourceTree = "<group>"; };
 		9FB962771EE1052E00DC5A28 /* Keys.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		9FB962791EE1064600DC5A28 /* Community-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Community-Bridging-Header.h"; sourceTree = "<group>"; };
-		9FB9627A1EE1064700DC5A28 /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -616,7 +614,6 @@
 			isa = PBXGroup;
 			children = (
 				9FB962771EE1052E00DC5A28 /* Keys.plist */,
-				9FB9627A1EE1064700DC5A28 /* Keys.swift */,
 				9FB961BB1EE0D9C900DC5A28 /* AirGoogleMaps */,
 				9FB9620F1EE0D9EB00DC5A28 /* AirMaps */,
 				13B07FAE1A68108700A75B9A /* Community */,
@@ -1244,7 +1241,6 @@
 				9FB962411EE0D9EB00DC5A28 /* AIRMapUrlTile.m in Sources */,
 				9FB961F41EE0D9C900DC5A28 /* RCTConvert+GMSMapViewType.m in Sources */,
 				9FB962361EE0D9EB00DC5A28 /* AIRMapCalloutManager.m in Sources */,
-				9FB9627B1EE1064700DC5A28 /* Keys.swift in Sources */,
 				9FB9623B1EE0D9EB00DC5A28 /* AIRMapMarker.m in Sources */,
 				9FB961EA1EE0D9C900DC5A28 /* AIRGoogleMapManager.m in Sources */,
 				9FB9623F1EE0D9EB00DC5A28 /* AIRMapPolyline.m in Sources */,
@@ -1330,7 +1326,6 @@
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 6PE5YH9FHS;
@@ -1364,7 +1359,6 @@
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
