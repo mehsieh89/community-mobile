@@ -14,7 +14,8 @@ export default function updateCurrrentUser(state=initialState, action) {
   // action = {type: 'setLocation', location: 'HR'}
   // {username: undefined, location: 'world'}
   if (action.type === 'UPDATE_CURRENT_USER') {
-    return action.payload;
+    let newState = Object.assign({}, action.payload);
+    return newState;
   }
   return state;
 }

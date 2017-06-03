@@ -17,9 +17,9 @@ class MainContainer extends Component {
 
   componentDidMount() {
     axios.get('http://localhost:3000/api/retrieveEvents')
-    .then(data => {
-      this.props.addEvents(data.data);
-      console.log('Events retrieved.', data.data);
+    .then(res => {
+      console.log('Events retrieved.', res.data);
+      this.props.addEvents(res.data);
     })
     .catch(error => {
       console.log('Error occurred.', error);
