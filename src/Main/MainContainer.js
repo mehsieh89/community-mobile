@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import Main from './MainComponent';
 import { connect } from 'react-redux';
-
-// const MainContainer = (props) => {
-//   return (
-//     <Main {...props}/>
-//   );
-// }
+import axios from 'axios';
+import { addEvents } from './mainActions';
 
 class MainContainer extends Component {
   static navigationOptions = {
@@ -17,26 +14,35 @@ class MainContainer extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    axios.get('http://localhost:3000/api/retrieveEvents')
+    .then(data => {
+      this.props.addEvents(data.data);
+      console.log('Events retrieved.', data.data);
+    })
+    .catch(error => {
+      console.log('Error occurred.', error);
+    });
+  }
+
   render() {
     return (
-      <Main {...this.props}/>
+      <Main allEvents={this.props.allEvents} />
     );
   }
 }
 
-const mapStateToProps = (state) => {
-  const { username } = state;
-
-  return {
-    username: username
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    addEvents: addEvents
+  }, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  const { allEvents } = state;
+
   return {
-    greetUser: () => {
-      dispatch(setUserName());
-    }
+    allEvents: allEvents
   };
 };
 

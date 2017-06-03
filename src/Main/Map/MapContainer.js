@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { bindActionCreators } from 'redux';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import Map from './MapComponent';
+import { connect } from 'react-redux';
+import { centerLocation } from './mapActions';
+import { allEvents } from './../mainActions';
 
-class MapContainer extends Component{
+class MapContainer extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const onPressEventList = () => {
       const { navigate } = navigation;
@@ -10,16 +14,34 @@ class MapContainer extends Component{
     }
 
     return {
-      headerLeft: (<Button title="EventList" onPress={onPressEventList}></Button>)
+      headerLeft:
+      (<Button
+          title="EventList"
+          onPress={onPressEventList}>
+      </Button>)
     };
   }
 
-
   render() {
     return (
-      <Map />
+      <Map {...this.props} />
     );
   }
 }
 
-export default MapContainer;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    centerLocation: centerLocation
+  }, dispatch);
+}
+
+const mapStateToProps = (state) => {
+  const { mainReducer, mapReducer } = state;
+
+  return {
+    allEvents: mainReducer.allEvents,
+    coords: mapReducer.coords
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
