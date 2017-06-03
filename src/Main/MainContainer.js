@@ -41,7 +41,6 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   const { allEvents } = state;
 
-  console.log('all events inside main container === ', state.allEvents)
   return {
     allEvents: allEvents
   };

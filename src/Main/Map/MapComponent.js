@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 
-const LATITUDE = 37.78825;
-const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = 0.0421;
+// const LATITUDE = 37.78825;
+// const LONGITUDE = -122.4324;
+// const LATITUDE_DELTA = 0.0922;
+// const LONGITUDE_DELTA = 0.0421;
 
 class MapComponent extends Component {
   constructor(props) {
@@ -20,19 +20,21 @@ class MapComponent extends Component {
     };
   }
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const initialPosition = JSON.stringify(position);
-        this.setState({initialPosition});
-      },
-      (error) => alert(JSON.stringify(error)),
-      {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
-    );
+  componentWillMount() {
+    console.log('props inside map component === ', this.props);
+    const context = this;
+    navigator.geolocation.getCurrentPosition((position) => {
+      context.props.centerLocation({
+        coords: {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        }
+      });
+    });
   }
 
   render() {
-    console.log('props inside map component === ', this.props)
+    // console.log('props inside map component === ', this.props)
     return (
       <View style={{ flex: 1 }}>
         <View style={{ backgroundColor: 'green', height: 100, justifyContent: 'center', alignItems: 'center'}}>
@@ -44,10 +46,10 @@ class MapComponent extends Component {
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             initialRegion={{
-              latitude: LATITUDE,
-              longitude: LONGITUDE,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
+              latitude: this.props.coords.lat,
+              longitude: this.props.coords.lng
+              // latitudeDelta: LATITUDE_DELTA,
+              // longitudeDelta: LONGITUDE_DELTA,
             }}
           >
           {this.props.allEvents.map((marker, index) => (
@@ -58,7 +60,14 @@ class MapComponent extends Component {
                 longitude:  Number(marker.lng)
               }}
               title={marker.event_name}
-              description={marker.description}
+              // description={
+              //   // marker.time,
+              //   // marker.location,
+              //   // marker.description,
+              //   // marker.category
+              // }
+              description={marker.location}
+              pinColor='green'
             >
             </MapView.Marker>
           ))}
