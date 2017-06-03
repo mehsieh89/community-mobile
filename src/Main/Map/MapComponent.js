@@ -37,7 +37,7 @@ class MapComponent extends Component {
           })
         )})
         .then(() => {
-          console.log('Data retreived from geolcation ', this.props);
+          console.log('Data retrieved from geolocation ', this.props);
         })
         .catch(error => {
           console.log('Error occurred ', error);

@@ -8,7 +8,7 @@ import createEventReducer from './src/Main/CreateEvent/createEventReducer';
 const allReducers = combineReducers({
   mainReducer: mainReducer,
   loginReducer: loginReducer,
-  mapReducer: mapReducer
+  mapReducer: mapReducer,
   createEventReducer: createEventReducer
 });
 

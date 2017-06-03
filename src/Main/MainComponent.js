@@ -25,7 +25,7 @@ class MainComponent extends Component {
     });
 
     return (
-      <MainNav allEvents={this.props.allEvents} screenProps={this.props}/>
+      <MainNav screenProps={this.props}/>
     );
   }
 }

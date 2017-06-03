@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import CreateEventComponent from './CreateEventComponent';
-import toggleCreateEvent from './createEventActions';
+import { toggleCreateEvent } from './createEventActions';
 
 class CreateEventContainer extends Component {
   constructor(props) {

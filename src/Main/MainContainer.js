@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
+import Main from './MainComponent';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import Main from './MainComponent';
 import { addEvents } from './mainActions';
-import toggleCreateEvent from './CreateEvent/createEventActions';
+import { toggleCreateEvent } from './CreateEvent/createEventActions';
 
 class MainContainer extends Component {
   static navigationOptions = {
-    header: null,
+    header: null
   }
 
   constructor(props) {
@@ -28,7 +28,7 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <Main allEvents={this.props.allEvents} />
+      <Main {...this.props} />
     );
   }
 }
@@ -47,5 +47,6 @@ const mapStateToProps = (state) => {
     allEvents: allEvents,
     createEventReducer: createEventReducer
   };
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} f
 import Map from './MapComponent';
 import { connect } from 'react-redux';
 import { centerLocation } from './mapActions';
-import { allEvents } from './../mainActions';
+import { addEvents } from './../mainActions';
 //import toggleCreateEvent from '../CreateEvent/createEventActions';
 
 class MapContainer extends Component {
@@ -15,15 +15,14 @@ class MapContainer extends Component {
     }
 
     const onCreateEvent = () => {
-      console.log(screenProps.toggleCreateEvent);
       screenProps.toggleCreateEvent();
     };
 
     return {
       headerLeft:
         (<Button
-            title="EventList"
-            onPress={onPressEventList}>
+          title="EventList"
+          onPress={onPressEventList}>
         </Button>),
       headerRight:
         (<Button
@@ -42,7 +41,8 @@ class MapContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    centerLocation: centerLocation
+    centerLocation: centerLocation,
+    addEvents: addEvents
   }, dispatch);
 }
 
