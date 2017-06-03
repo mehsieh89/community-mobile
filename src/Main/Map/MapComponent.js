@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Modal } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
+import SearchContainer from './Search/SearchContainer';
 import Promise from 'bluebird';
 
 class MapComponent extends Component {
@@ -95,6 +96,7 @@ class MapComponent extends Component {
           ))}
           </MapView>
           <CreateEventContainer />
+          <SearchContainer />
         </View>
       </View>
     );
