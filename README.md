@@ -11,7 +11,7 @@ What if I told you there's an app that scans your surrounding and lets you know 
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://trello.com/b/GaKJcbyi/community)
 
 ## Contributing
 
