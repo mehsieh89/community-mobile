@@ -6,6 +6,9 @@ import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} f
 import FBLogin from './FBLogin';
 
 class LoginContainer extends Component {
+
+  static navigationOptions = { header: null };
+
   constructor(props) {
     super(props);
     this.handleSkip = this.handleSkip.bind(this);
@@ -18,6 +21,8 @@ class LoginContainer extends Component {
   }
 
   handleLoginSuccess(data) {
+
+    console.log('handleLoginSuccess ~~~~~~~~~~~~~~~~~')
     this.props.updateCurrentUser(data);
     const { navigate } = this.props.navigation;
     navigate('Main');
@@ -25,14 +30,36 @@ class LoginContainer extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Login</Text>
-        <Button title="Skip Login" onPress={this.handleSkip} />
+      <View style={styles.container}>
+        <Image
+          source={require('../../assets/community-login.png')}
+          style={{height: 150}}
+         />
+        <Text style={styles.welcome}>Welcome to Community</Text>
         <FBLogin handleLoginSuccess={this.handleLoginSuccess}/>
+        <Button title="Skip Login" onPress={this.handleSkip} />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+    marginBottom: 30
+  },
+  skip: {
+    fontSize: 5,
+  }
+});
 
 const mapStateToProps = (state) => {
   const { loginReducer } = state;
