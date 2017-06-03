@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
@@ -19,30 +19,46 @@ class MapComponent extends Component {
       longitude: 67.0099,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
+      modalVisible: false,
     };
+    // this.handleMarkerPress = this.handleMarkerPress.bind(this);
   }
 
   componentDidMount() {
     const context = this;
-      navigator.geolocation.getCurrentPosition(position => {
-        return new Promise ((resolve, reject) => {
-          resolve(context.map.animateToRegion({
-              latitude: position.coords.latitude,
-              longitude: position.coords.longitude,
-              latitudeDelta: this.state.latitudeDelta,
-              longitudeDelta: this.state.longitudeDelta
-            }))
-        })
-        .catch(error => {
-          console.log('Error occurred ', error);
-        });
+    navigator.geolocation.getCurrentPosition(position => {
+      return new Promise ((resolve, reject) => {
+        resolve(context.map.animateToRegion({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: this.state.latitudeDelta,
+            longitudeDelta: this.state.longitudeDelta
+        }))
       })
+      .catch(error => {
+        console.log('Error occurred ', error);
+      });
+    })
   }
+
+  // handleMarkerPress(i) {
+  //
+  // }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
+          {/* <Modal
+            animationType={"slide"}
+            transparent={false}
+            visible={this.state.modalVisible}>
+            <View>
+              <Text>
+                Hello
+              </Text>
+            </View>
+          </Modal> */}
           <MapView
             ref={map => { this.map = map }}
             showsUserLocation={true}
@@ -66,6 +82,7 @@ class MapComponent extends Component {
               title={marker.event_name}
               description={marker.description}
               pinColor='green'
+              // onPress={this.handleMarkerPress}
             >
             </MapView.Marker>
           ))}
