@@ -16,7 +16,11 @@ class SearchContainer extends Component {
   render() {
     return (
       <View>
-        <SearchComponent toggleSearchBar={this.props.toggleSearchBar} visible={this.props.searchReducer}/>
+        <SearchComponent
+          toggleSearchBar={this.props.toggleSearchBar}
+          visible={this.props.searchReducer}
+          onLocationChange={this.props.onLocationChange}
+         />
       </View>
     );
   }
