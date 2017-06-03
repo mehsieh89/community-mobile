@@ -34,6 +34,15 @@ class MapComponent extends Component {
             latitudeDelta: this.state.latitudeDelta,
             longitudeDelta: this.state.longitudeDelta
         }))
+        context.props.centerLocation({
+          coords: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        })
+      })
+      .then(() => {
+        console.log('store coords after mount', this.props.coords)
       })
       .catch(error => {
         console.log('Error occurred ', error);
