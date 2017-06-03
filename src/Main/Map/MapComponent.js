@@ -15,8 +15,6 @@ class MapComponent extends Component {
       // lastLong: null,
       initialPosition: null,
       lastPosition: null,
-      latitude: 24.8615,
-      longitude: 67.0099,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
       modalVisible: false,
