@@ -1,10 +1,41 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Modal} from 'react-native';
 import { Button } from 'react-native-material-design';
+import axios from 'axios';
 
 class SearchComponent extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      location: '',
+      autocomplete: [],
+    }
+    this.handleSearch = this.handleSearch.bind(this);
+    this.onChange = this.onChange.bind(this);
+  }
+
+  handleSearch() {
+    console.log(this.props)
+    const location = this.state.location
+    const string = location.split(' ').join('+');
+    axios.post('http://localhost:3000/api/locationInput', {location: string})
+    .then((data) => {
+      const lat = data.data[0].geometry.location.lat;
+      const lng = data.data[0].geometry.location.lng;
+      this.props.onLocationChange({
+        latitude: lat,
+        longitude: lng,
+      });
+    })
+    .catch((err) => {
+      console.log('Error ', err);
+    })
+  }
+
+  onChange(value) {
+    this.setState({
+      location: value
+    })
   }
 
   render() {
@@ -22,9 +53,19 @@ class SearchComponent extends Component {
           <View style={{
             alignItems: 'center',
             marginTop: 70}}>
-              <Text>
-                Hello!!!!!!!
-              </Text>
+            <TextInput
+              style={{height: 40,
+                borderColor: 'gray',
+                borderWidth: 1,
+                borderRadius: 25,
+                backgroundColor: 'white',
+                textAlign: 'center',}}
+              value={this.state.location}
+              placeholder={'...Location'}
+              onChangeText={this.onChange}
+              >
+            </TextInput>
+            <Button value="SEARCH" raised={true} onPress={this.handleSearch}/>
             <Button value="CANCEL" raised={true} onPress={this.props.toggleSearchBar} />
           </View>
           </Modal>

@@ -20,6 +20,7 @@ class MapComponent extends Component {
       longitudeDelta: 0.0421,
     };
     // this.handleMarkerPress = this.handleMarkerPress.bind(this);
+    this.onLocationChange = this.onLocationChange.bind(this);
   }
 
   componentDidMount() {
@@ -47,10 +48,15 @@ class MapComponent extends Component {
       });
     })
   }
-
-  // handleMarkerPress(i) {
-  //
-  // }
+  
+  onLocationChange(coordsObj) {
+    this.map.animateToRegion({
+      latitude: coordsObj.latitude,
+      longitude: coordsObj.longitude,
+      latitudeDelta: this.state.latitudeDelta,
+      longitudeDelta: this.state.longitudeDelta
+    })
+  }
 
   render() {
     return (
@@ -84,7 +90,10 @@ class MapComponent extends Component {
             </MapView.Marker>
           ))}
           </MapView>
-          <SearchContainer />
+          <SearchContainer
+            {...this.props}
+            onLocationChange={this.onLocationChange}
+          />
           <CreateEventContainer />
         </View>
       </View>
