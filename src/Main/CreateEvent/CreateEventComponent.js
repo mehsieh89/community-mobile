@@ -26,12 +26,23 @@ class CreateEventComponent extends Component {
   };
 
   submitEvent() {
-    const context = this;
+    let context = this;
+    const eventInfo = Object.assign({}, this.state, { userId: this.props.userId });
 
-    axios.post('http://localhost:3000/api/createEvent', context.state)
+    axios.post('http://localhost:3000/api/createEvent', eventInfo)
       .then(function (response) {
         console.log(response.data);
-        context.props.toggleCreateEvent();
+        return axios.get('http://localhost:3000/api/retrieveEvents')
+        .then(res => {
+          console.log('Events retrieved.', res.data);
+          context.props.addEvents(res.data);
+        })
+        .then(() => {
+          context.props.toggleCreateEvent();
+        })
+        .catch(error => {
+          console.log('Error occurred.', error);
+        });
       })
       .catch(function (error) {
         console.log(error);

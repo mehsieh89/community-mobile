@@ -21,8 +21,6 @@ class LoginContainer extends Component {
   }
 
   handleLoginSuccess(data) {
-
-    console.log('handleLoginSuccess ~~~~~~~~~~~~~~~~~')
     this.props.updateCurrentUser(data);
     const { navigate } = this.props.navigation;
     navigate('Main');
