@@ -4,6 +4,7 @@ import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} f
 import Map from './MapComponent';
 import { connect } from 'react-redux';
 import { centerLocation } from './mapActions';
+import { allEvents } from './../mainActions';
 
 class MapContainer extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -35,12 +36,11 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  const { allEvents, coords } = state;
+  const { mainReducer, mapReducer } = state;
 
-  console.log('coords inside container === ', state.coords);
   return {
-    allEvents: allEvents,
-    coords: coords
+    allEvents: mainReducer.allEvents,
+    coords: mapReducer.coords
   };
 };
 
