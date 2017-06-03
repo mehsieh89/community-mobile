@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
+import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Modal} from 'react-native';
+import { Button } from 'react-native-material-design';
 
 class SearchComponent extends Component {
   constructor(props) {
@@ -8,10 +9,25 @@ class SearchComponent extends Component {
 
   render() {
     return (
-      <View>
-        <Text>
-          Hello
-        </Text>
+      <View style={{marginTop: 30}}>
+        <Button
+          value="Search Bar"
+          raised={true}
+          onPress={this.props.toggleSearchBar}
+        />
+        <Modal
+          visible={this.props.visible}
+          transparent={true}
+          >
+          <View style={{
+            alignItems: 'center',
+            marginTop: 70}}>
+              <Text>
+                Hello!!!!!!!
+              </Text>
+            <Button value="CANCEL" raised={true} onPress={this.props.toggleSearchBar} />
+          </View>
+          </Modal>
       </View>
     );
   }
