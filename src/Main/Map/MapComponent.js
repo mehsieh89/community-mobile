@@ -1,65 +1,83 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, Modal } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import Promise from 'bluebird';
 
-// const LATITUDE = 37.78825;
-// const LONGITUDE = -122.4324;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = 0.0421;
-
 class MapComponent extends Component {
   constructor(props) {
     super(props);
-
+    this.map = null;
     this.state = {
       mapRegion: null,
       // lastLat: null,
       // lastLong: null,
       initialPosition: null,
-      lastPosition: null
+      lastPosition: null,
+      latitudeDelta: 0.0922,
+      longitudeDelta: 0.0421,
+      modalVisible: false,
     };
+    // this.handleMarkerPress = this.handleMarkerPress.bind(this);
   }
 
-  componentWillMount() {
-    console.log('props inside map component === ', this.props.coords);
+  componentDidMount() {
     const context = this;
-      navigator.geolocation.getCurrentPosition(position => {
-        console.log('Position === ', position)
-        return new Promise ((resolve, reject) => {
-          resolve(context.props.centerLocation({
-            coords: {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            }
-          })
-        )})
-        .then(() => {
-          console.log('Data retrieved from geolocation ', this.props);
+    navigator.geolocation.getCurrentPosition(position => {
+      return new Promise ((resolve, reject) => {
+        resolve(context.map.animateToRegion({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            latitudeDelta: this.state.latitudeDelta,
+            longitudeDelta: this.state.longitudeDelta
+        }))
+        context.props.centerLocation({
+          coords: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
         })
-        .catch(error => {
-          console.log('Error occurred ', error);
-        });
       })
+      .then(() => {
+        console.log('store coords after mount', this.props.coords)
+      })
+      .catch(error => {
+        console.log('Error occurred ', error);
+      });
+    })
   }
 
+  // handleMarkerPress(i) {
+  //
+  // }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
+          {/* <Modal
+            animationType={"slide"}
+            transparent={false}
+            visible={this.state.modalVisible}>
+            <View>
+              <Text>
+                Hello
+              </Text>
+            </View>
+          </Modal> */}
           <MapView
+            ref={map => { this.map = map }}
             showsUserLocation={true}
             provider={PROVIDER_GOOGLE}
             style={styles.map}
             initialRegion={{
               latitude: this.props.coords.lat,
               longitude: this.props.coords.lng,
-              latitudeDelta: LATITUDE_DELTA,
-              longitudeDelta: LONGITUDE_DELTA,
+              latitudeDelta: this.state.latitudeDelta,
+              longitudeDelta: this.state.longitudeDelta,
             }}
+            onPress={this.handleMapPress}
           >
           {this.props.allEvents.map((marker, index) => (
             <MapView.Marker
@@ -69,14 +87,9 @@ class MapComponent extends Component {
                 longitude:  Number(marker.lng)
               }}
               title={marker.event_name}
-              // description={
-              //   // marker.time,
-              //   // marker.location,
-              //   // marker.description,
-              //   // marker.category
-              // }
-              description={marker.location}
+              description={marker.description}
               pinColor='green'
+              // onPress={this.handleMarkerPress}
             >
             </MapView.Marker>
           ))}
