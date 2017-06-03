@@ -4,12 +4,14 @@ import mainReducer from './src/Main/mainReducer.js';
 import loginReducer from './src/Login/loginReducer';
 import mapReducer from './src/Main/Map/mapReducer';
 import createEventReducer from './src/Main/CreateEvent/createEventReducer';
+import searchReducer from './src/Main/Map/Search/searchReducer';
 
 const allReducers = combineReducers({
   mainReducer: mainReducer,
   loginReducer: loginReducer,
   mapReducer: mapReducer,
-  createEventReducer: createEventReducer
+  createEventReducer: createEventReducer,
+  searchReducer: searchReducer
 });
 
 const store = createStore(allReducers);

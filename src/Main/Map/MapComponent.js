@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, Modal } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
+import SearchContainer from './Search/SearchContainer';
 import Promise from 'bluebird';
 
 class MapComponent extends Component {
@@ -17,7 +18,6 @@ class MapComponent extends Component {
       lastPosition: null,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
-      modalVisible: false,
     };
     // this.handleMarkerPress = this.handleMarkerPress.bind(this);
   }
@@ -56,16 +56,6 @@ class MapComponent extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
-          {/* <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.modalVisible}>
-            <View>
-              <Text>
-                Hello
-              </Text>
-            </View>
-          </Modal> */}
           <MapView
             ref={map => { this.map = map }}
             showsUserLocation={true}
@@ -94,6 +84,7 @@ class MapComponent extends Component {
             </MapView.Marker>
           ))}
           </MapView>
+          <SearchContainer />
           <CreateEventContainer />
         </View>
       </View>
