@@ -4,10 +4,11 @@ import Main from './MainComponent';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { addEvents } from './mainActions';
+import { toggleCreateEvent } from './CreateEvent/createEventActions';
 
 class MainContainer extends Component {
   static navigationOptions = {
-    header: null,
+    header: null
   }
 
   constructor(props) {
@@ -27,23 +28,25 @@ class MainContainer extends Component {
 
   render() {
     return (
-      <Main allEvents={this.props.allEvents} />
+      <Main {...this.props} />
     );
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    addEvents: addEvents
+    addEvents: addEvents,
+    toggleCreateEvent: toggleCreateEvent
   }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const { allEvents } = state;
+  const { allEvents, createEventReducer } = state;
 
   return {
-    allEvents: allEvents
+    allEvents: allEvents,
+    createEventReducer: createEventReducer
   };
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainContainer);

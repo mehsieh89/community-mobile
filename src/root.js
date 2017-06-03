@@ -13,7 +13,7 @@ class Root extends Component {
   render() {
     const RootNav = StackNavigator({
       Login: { screen: Login },
-      Main: { screen: Main },
+      Main: { screen: Main }
     });
 
     return (

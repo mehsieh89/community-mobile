@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
+import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import Promise from 'bluebird';
 
 // const LATITUDE = 37.78825;
@@ -36,7 +37,7 @@ class MapComponent extends Component {
           })
         )})
         .then(() => {
-          console.log('Data retreived from geolcation ', this.props);
+          console.log('Data retrieved from geolocation ', this.props);
         })
         .catch(error => {
           console.log('Error occurred ', error);
@@ -48,8 +49,6 @@ class MapComponent extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <View style={{ backgroundColor: 'green', height: 100, justifyContent: 'center', alignItems: 'center'}}>
-        </View>
         <View style={styles.container}>
           <MapView
             showsUserLocation={true}
@@ -81,7 +80,8 @@ class MapComponent extends Component {
             >
             </MapView.Marker>
           ))}
-        </MapView>
+          </MapView>
+          <CreateEventContainer />
         </View>
       </View>
     );
