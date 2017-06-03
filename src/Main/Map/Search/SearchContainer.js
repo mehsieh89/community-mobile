@@ -8,6 +8,9 @@ import { toggleSearchBar} from './searchActions';
 class SearchContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      modalVisible: false,
+    }
   }
 
   render() {

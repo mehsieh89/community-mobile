@@ -18,7 +18,6 @@ class MapComponent extends Component {
       lastPosition: null,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
-      modalVisible: false,
     };
     // this.handleMarkerPress = this.handleMarkerPress.bind(this);
   }
@@ -57,16 +56,6 @@ class MapComponent extends Component {
     return (
       <View style={{ flex: 1 }}>
         <View style={styles.container}>
-          {/* <Modal
-            animationType={"slide"}
-            transparent={false}
-            visible={this.state.modalVisible}>
-            <View>
-              <Text>
-                Hello
-              </Text>
-            </View>
-          </Modal> */}
           <MapView
             ref={map => { this.map = map }}
             showsUserLocation={true}
@@ -95,8 +84,8 @@ class MapComponent extends Component {
             </MapView.Marker>
           ))}
           </MapView>
-          <CreateEventContainer />
           <SearchContainer />
+          <CreateEventContainer />
         </View>
       </View>
     );

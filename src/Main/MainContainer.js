@@ -36,7 +36,7 @@ class MainContainer extends Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addEvents: addEvents,
-    toggleCreateEvent: toggleCreateEvent
+    toggleCreateEvent: toggleCreateEvent,
   }, dispatch);
 }
 
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
 
   return {
     allEvents: allEvents,
-    createEventReducer: createEventReducer
+    createEventReducer: createEventReducer,
   };
 }
 
