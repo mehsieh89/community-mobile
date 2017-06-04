@@ -15,7 +15,6 @@ class SearchComponent extends Component {
   }
 
   handleSearch() {
-    console.log(this.props)
     const location = this.state.location
     const string = location.split(' ').join('+');
     axios.post('http://localhost:3000/api/locationInput', {location: string})
@@ -26,6 +25,7 @@ class SearchComponent extends Component {
         latitude: lat,
         longitude: lng,
       });
+      this.props.toggleSearchBar();
     })
     .catch((err) => {
       console.log('Error ', err);
@@ -49,6 +49,7 @@ class SearchComponent extends Component {
         <Modal
           visible={this.props.visible}
           transparent={true}
+          animationType={'fade'}
           >
           <View style={{
             alignItems: 'center',
@@ -63,6 +64,7 @@ class SearchComponent extends Component {
               value={this.state.location}
               placeholder={'...Location'}
               onChangeText={this.onChange}
+              autoCorrect={false}
               >
             </TextInput>
             <Button value="SEARCH" raised={true} onPress={this.handleSearch}/>
