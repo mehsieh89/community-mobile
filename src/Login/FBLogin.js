@@ -33,7 +33,7 @@ class FBLogin extends Component {
     if (error) { console.log('Error fetching data: ', error);
     } else { console.log('Success fetching data: ', result);
       const context = this;
-      axios.post('http://localhost:3000/mobileFBLogin', result)
+      axios.post('https://warriors-community.herokuapp.com/mobileFBLogin', result)
       .then(function (response) {
         console.log(response.data);
         context.props.handleLoginSuccess(response.data);

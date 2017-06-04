@@ -11,7 +11,7 @@ What if I told you there's an app that scans your surrounding and lets you know 
 
 ## Roadmap
 
-View the project roadmap [here](LINK_TO_DOC)
+View the project roadmap [here](https://trello.com/b/GaKJcbyi/community)
 
 ## Contributing
 
@@ -53,7 +53,7 @@ yarn install
 node ios_setup.js 1043975815746787 community
 ```
 
-- Note: if you are getting 'SomeGoogleModule not found' errors, manually download the React-Native Facebook SDK from https://developers.facebook.com/docs/react-native, unzip it, then move the unzipped contents into community-mobile/ios/Frameworks (create Frameworks if it doesn’t already exist)
+- Note: if you are having issues with extracting the FBSDK file as a result of the above command, manually download the React-Native Facebook SDK from https://developers.facebook.com/docs/react-native, unzip it, then move the unzipped contents into community-mobile/ios/Frameworks directory (create Frameworks if it doesn’t already exist)
 
 Inside iOS/ directory:
 
@@ -107,3 +107,5 @@ To run your redis server for the session store `redis-server`
 - In 'Targets', make sure 'Community' is checked, then name the plist 'Keys'
 - Open the plist, add key 'GOOGLE_MAPS_API', then the API key in the value
 - Build the app
+
+Note: if you are getting 'SomeGoogleModule module not found' errors in Xcode while building the app, go to the Project Navigator in Xcode, expand the 'community' project, expand the 'Frameworks' folder, and delete any file that appears within that folder.
