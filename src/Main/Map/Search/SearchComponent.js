@@ -17,7 +17,7 @@ class SearchComponent extends Component {
   handleSearch() {
     const location = this.state.location
     const string = location.split(' ').join('+');
-    axios.post('http://localhost:3000/api/locationInput', {location: string})
+    axios.post('https://warriors-community.herokuapp.com/api/locationInput', {location: string})
     .then((data) => {
       const lat = data.data[0].geometry.location.lat;
       const lng = data.data[0].geometry.location.lng;
