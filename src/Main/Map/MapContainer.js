@@ -8,29 +8,30 @@ import { addEvents } from './../mainActions';
 //import toggleCreateEvent from '../CreateEvent/createEventActions';
 
 class MapContainer extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
-    const onPressEventList = () => {
-      const { navigate } = navigation;
-      navigate('EventList');
-    }
-
-    const onCreateEvent = () => {
-      screenProps.toggleCreateEvent();
-    };
-
-    return {
-      headerLeft:
-        (<Button
-          title="EventList"
-          onPress={onPressEventList}>
-        </Button>),
-      headerRight:
-        (<Button
-          title="New"
-          onPress={onCreateEvent}>
-        </Button>)
-    };
-  }
+  // static navigationOptions = ({ navigation, screenProps }) => {
+  //   const onPressEventList = () => {
+  //     const { navigate } = navigation;
+  //     navigate('EventList');
+  //   }
+  //
+  //   const onCreateEvent = () => {
+  //     screenProps.toggleCreateEvent();
+  //   };
+  //
+  //   return {
+  //     headerLeft:
+  //       (<Button
+  //         title="EventList"
+  //         onPress={onPressEventList}>
+  //       </Button>),
+  //     headerRight:
+  //       (<Button
+  //         title="New"
+  //         onPress={onCreateEvent}>
+  //       </Button>)
+  //   };
+  // }
+  static navigationOptions = { header: null };
 
   render() {
     return (

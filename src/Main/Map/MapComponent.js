@@ -5,9 +5,11 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import SearchContainer from './Search/SearchContainer';
+import MapHeader from './MapHeaderComponent';
 import Promise from 'bluebird';
 
 class MapComponent extends Component {
+
   constructor(props) {
     super(props);
     this.map = null;
@@ -52,11 +54,6 @@ class MapComponent extends Component {
     })
   }
 
-  handleMarkerPress(marker, index) {
-    console.log('marker', marker)
-    console.log('index', index)
-  }
-
   onLocationChange(coordsObj) {
     this.map.animateToRegion({
       latitude: coordsObj.latitude,
@@ -99,10 +96,7 @@ class MapComponent extends Component {
           ))}
           </MapView>
           <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
-          <SearchContainer
-            {...this.props}
-            onLocationChange={this.onLocationChange}
-          />
+          <MapHeader />
           <CreateEventContainer />
         </View>
       </View>
