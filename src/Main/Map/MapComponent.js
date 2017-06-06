@@ -19,7 +19,7 @@ class MapComponent extends Component {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     };
-    // this.handleMarkerPress = this.handleMarkerPress.bind(this);
+    this.handleMarkerPress = this.handleMarkerPress.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
   }
 
@@ -48,7 +48,12 @@ class MapComponent extends Component {
       });
     })
   }
-  
+
+  handleMarkerPress(marker, index) {
+    console.log('marker', marker)
+    console.log('index', index)
+  }
+
   onLocationChange(coordsObj) {
     this.map.animateToRegion({
       latitude: coordsObj.latitude,
@@ -73,7 +78,7 @@ class MapComponent extends Component {
               latitudeDelta: this.state.latitudeDelta,
               longitudeDelta: this.state.longitudeDelta,
             }}
-            onPress={this.handleMapPress}
+            // onPress={this.handleMapPress}
           >
           {this.props.allEvents.map((marker, index) => (
             <MapView.Marker
@@ -85,7 +90,7 @@ class MapComponent extends Component {
               title={marker.event_name}
               description={marker.description}
               pinColor='green'
-              // onPress={this.handleMarkerPress}
+              onPress={() => this.handleMarkerPress(marker, index)}
             >
             </MapView.Marker>
           ))}
