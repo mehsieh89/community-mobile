@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Modal } from 'react-native';
+import { Button } from 'react-native-material-design';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
@@ -21,9 +22,14 @@ class MapComponent extends Component {
     };
     this.handleMarkerPress = this.handleMarkerPress.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
+    this.onLocateUser = this.onLocateUser.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
+    this.onLocateUser();
+  }
+
+  onLocateUser() {
     const context = this;
     navigator.geolocation.getCurrentPosition(position => {
       return new Promise ((resolve, reject) => {
@@ -33,15 +39,12 @@ class MapComponent extends Component {
             latitudeDelta: this.state.latitudeDelta,
             longitudeDelta: this.state.longitudeDelta
         }))
-        context.props.centerLocation({
+        context.props.userLocation({
           coords: {
             lat: position.coords.latitude,
             lng: position.coords.longitude
           }
         })
-      })
-      .then(() => {
-        console.log('store coords after mount', this.props.coords)
       })
       .catch(error => {
         console.log('Error occurred ', error);
@@ -95,6 +98,7 @@ class MapComponent extends Component {
             </MapView.Marker>
           ))}
           </MapView>
+          <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
           <SearchContainer
             {...this.props}
             onLocationChange={this.onLocationChange}

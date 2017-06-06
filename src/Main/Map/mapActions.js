@@ -4,3 +4,10 @@ export const centerLocation = (coordinates) => {
     centerLocation: coordinates
   };
 };
+
+export const userLocation = (userCoordinates) => {
+  return {
+    type: 'UPDATE_USER_LOCATION',
+    userLocation: userCoordinates
+  }
+}
