@@ -5,33 +5,12 @@ import Map from './MapComponent';
 import { connect } from 'react-redux';
 import { centerLocation, userLocation } from './mapActions';
 import { addEvents } from './../mainActions';
-//import toggleCreateEvent from '../CreateEvent/createEventActions';
+import { DrawerNavigator } from 'react-navigation';
 
 class MapContainer extends Component {
-  // static navigationOptions = ({ navigation, screenProps }) => {
-  //   const onPressEventList = () => {
-  //     const { navigate } = navigation;
-  //     navigate('EventList');
-  //   }
-  //
-  //   const onCreateEvent = () => {
-  //     screenProps.toggleCreateEvent();
-  //   };
-  //
-  //   return {
-  //     headerLeft:
-  //       (<Button
-  //         title="EventList"
-  //         onPress={onPressEventList}>
-  //       </Button>),
-  //     headerRight:
-  //       (<Button
-  //         title="New"
-  //         onPress={onCreateEvent}>
-  //       </Button>)
-  //   };
-  // }
   static navigationOptions = { header: null };
+
+
 
   render() {
     return (

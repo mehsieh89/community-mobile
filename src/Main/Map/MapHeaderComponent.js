@@ -47,7 +47,7 @@ class MapHeader extends Component {
 
   render() {
     return(
-      <View style={{marginBottom: 580, alignItems: 'center'}}>
+      <View style={{marginBottom: 480, alignItems: 'center'}}>
         <Toolbar
           leftElement="menu"
           onLeftElementPress={this.handleMenuClick}
