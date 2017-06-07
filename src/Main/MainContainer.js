@@ -18,7 +18,6 @@ class MainContainer extends Component {
   componentDidMount() {
     axios.get('https://warriors-community.herokuapp.com/api/retrieveEvents')
     .then(res => {
-      console.log('Events retrieved.', res.data);
       this.props.addEvents(res.data);
     })
     .catch(error => {

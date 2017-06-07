@@ -32,14 +32,21 @@ const styles = StyleSheet.create({
 });
 
 class Row extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
 
-  _onClick() {
-    console.log('clicked');
+  handleClick() {
+    this.props.onEventClick(this.props.index);
+    // console.log('props.currentEventIndex', this.props.currentEventIndex);
+    // this.props.setCurrentEvent(this.props.index)
+    // this.props.toggleEventDetails();
   };
 
   render() {
     return (
-     <TouchableWithoutFeedback onPress={this._onClick.bind(this)} >
+     <TouchableWithoutFeedback onPress={this.handleClick}>
         <View style={styles.row}>
           <Image
             style={styles.image}
@@ -63,18 +70,24 @@ class EventListComponent extends Component {
       isRefreshing: false,
       loaded: 0
     };
-    this._onClick = this._onClick.bind(this);
+    // this._onClick = this._onClick.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
   }
 
-   _onClick(row) {
-    row.clicks++;
-    this.setState({
-      rowData: this.state.rowData,
-    });
-  };
+  //  _onClick(row) {
+  //   row.clicks++;
+  //   this.setState({
+  //     rowData: this.state.rowData,
+  //   });
+  // };
+  // _onClick(row, index) {
+  //   console.log('row', row);
+  //   console.log('index', index);
+  // }
+
 
   render() {
+    // console.log('in EL comp', this.props.onEventClick)
 
     return (
       <ScrollView
@@ -94,7 +107,11 @@ class EventListComponent extends Component {
           />
         }>
         {this.props.allEvents.map((row, index) => {
-          return <Row key={index} data={row}/>;
+          return <Row key={index} data={row} index={index}
+                      toggleEventDetails={this.props.toggleEventDetails}
+                      setCurrentEvent={this.props.setCurrentEvent}
+                      onEventClick={this.props.onEventClick}
+                      />;
         })}
       </ScrollView>
     );

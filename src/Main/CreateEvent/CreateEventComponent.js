@@ -31,10 +31,8 @@ class CreateEventComponent extends Component {
 
     axios.post('http://localhost:3000/api/createEvent', eventInfo)
       .then(function (response) {
-        console.log(response.data);
         return axios.get('http://localhost:3000/api/retrieveEvents')
         .then(res => {
-          console.log('Events retrieved.', res.data);
           context.props.addEvents(res.data);
         })
         .then(() => {

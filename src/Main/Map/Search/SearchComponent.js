@@ -40,25 +40,24 @@ class SearchComponent extends Component {
 
   render() {
     return (
-      <View style={{marginTop: 30}}>
-        <Button
+      <View>
+        {/* <Button
           value="Search Bar"
           raised={true}
           onPress={this.props.toggleSearchBar}
-        />
-        <Modal
+        /> */}
+        {/* <Modal
           visible={this.props.visible}
           transparent={true}
           animationType={'fade'}
-          >
+          > */}
           <View style={{
-            alignItems: 'center',
-            marginTop: 70}}>
+            alignItems: 'center'}}>
             <TextInput
               style={{height: 40,
+                width: 350,
                 borderColor: 'gray',
                 borderWidth: 1,
-                borderRadius: 25,
                 backgroundColor: 'white',
                 textAlign: 'center',}}
               value={this.state.location}
@@ -68,9 +67,9 @@ class SearchComponent extends Component {
               >
             </TextInput>
             <Button value="SEARCH" raised={true} onPress={this.handleSearch}/>
-            <Button value="CANCEL" raised={true} onPress={this.props.toggleSearchBar} />
+            {/* <Button value="CANCEL" raised={true} onPress={this.props.toggleSearchBar} /> */}
           </View>
-          </Modal>
+          {/* </Modal> */}
       </View>
     );
   }

@@ -6,11 +6,10 @@ import { connect } from 'react-redux';
 import { centerLocation, userLocation } from './mapActions';
 import { addEvents } from './../mainActions';
 import { DrawerNavigator } from 'react-navigation';
+import { setCurrentEvent, toggleEventDetails } from './../EventDetails/eventDetailsActions'
 
 class MapContainer extends Component {
   static navigationOptions = { header: null };
-
-
 
   render() {
     return (
@@ -23,17 +22,21 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     centerLocation: centerLocation,
     addEvents: addEvents,
-    userLocation: userLocation
+    userLocation: userLocation,
+    setCurrentEvent: setCurrentEvent,
+    toggleEventDetails: toggleEventDetails
   }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const { mainReducer, mapReducer } = state;
+  const { mainReducer, mapReducer, eventDetailsReducer } = state;
 
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
-    userCoords: mapReducer.userCoords
+    userCoords: mapReducer.userCoords,
+    showEventDetails: eventDetailsReducer.showEventDetails,
+    currentEventIndex: eventDetailsReducer.currentEventIndex
   };
 };
 
