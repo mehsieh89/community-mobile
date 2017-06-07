@@ -5,7 +5,6 @@ import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import MapHeader from './MapHeaderComponent';
-import SearchContainer from './Search/SearchContainer';
 import Promise from 'bluebird';
 
 class MapComponent extends Component {
@@ -125,7 +124,9 @@ class MapComponent extends Component {
             </MapView.Marker>
           ))}
           </MapView>
-          <MapHeader />
+          <MapHeader {...this.props}
+            onLocationChange={this.onLocationChange}
+          />
           <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
           <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
           <CreateEventContainer />
