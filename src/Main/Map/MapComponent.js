@@ -4,7 +4,6 @@ import { Button } from 'react-native-material-design';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
-import SearchContainer from './Search/SearchContainer';
 import MapHeader from './MapHeaderComponent';
 import Promise from 'bluebird';
 
@@ -96,7 +95,10 @@ class MapComponent extends Component {
           ))}
           </MapView>
           <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
-          <MapHeader />
+          <MapHeader
+            {...this.props}
+            onLocationChange={this.onLocationChange}
+          />
           <CreateEventContainer />
         </View>
       </View>
@@ -107,7 +109,7 @@ class MapComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
