@@ -6,6 +6,7 @@ import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import MapHeader from './MapHeaderComponent';
 import Promise from 'bluebird';
+import axios from 'axios';
 
 class MapComponent extends Component {
 
@@ -25,6 +26,8 @@ class MapComponent extends Component {
     this.onLocationChange = this.onLocationChange.bind(this);
     this.onLocateUser = this.onLocateUser.bind(this);
     this.handleCalloutPress = this.handleCalloutPress.bind(this);
+    this.onRefresh = this.onRefresh.bind(this);
+
   }
 
   componentWillMount() {
@@ -58,6 +61,16 @@ class MapComponent extends Component {
         console.log('Error occurred ', error);
       });
     })
+  }
+
+  onRefresh() {
+    axios.get('https://warriors-community.herokuapp.com/api/retrieveEvents')
+    .then(res => {
+      this.props.addEvents(res.data);
+    })
+    .catch(error => {
+      console.log('Error occurred.', error);
+    });
   }
 
   onCreateEvent() {
@@ -129,6 +142,7 @@ class MapComponent extends Component {
           />
           <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
           <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
+          <Button value="Refresh" raised={true} onPress={this.onRefresh}/>
           <CreateEventContainer />
           {/* <EventDetails {...this.props}/> */}
         </View>
