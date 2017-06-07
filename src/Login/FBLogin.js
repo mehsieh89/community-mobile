@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AccessToken, GraphRequest, GraphRequestManager, LoginButton, LoginManager } from 'react-native-fbsdk';
+import { AccessToken, GraphRequest, GraphRequestManager, LoginButton } from 'react-native-fbsdk';
 import { Button, StyleSheet, Text, View} from 'react-native';
 import axios from 'axios';
 
@@ -33,7 +33,7 @@ class FBLogin extends Component {
     if (error) { console.log('Error fetching data: ', error);
     } else { console.log('Success fetching data: ', result);
       const context = this;
-      axios.post('https://warriors-community.herokuapp.com/mobileFBLogin', result)
+      axios.post('http://localhost:3000/mobileFBLogin', result)
       .then(function (response) {
         console.log(response.data);
         context.props.handleLoginSuccess(response.data);

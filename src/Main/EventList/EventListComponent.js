@@ -7,6 +7,7 @@ import {
   Image,
   TouchableWithoutFeedback,
   View, Dimensions } from 'react-native';
+import axios from 'axios';
 
 const styles = StyleSheet.create({
   row: {
@@ -39,9 +40,26 @@ class Row extends React.Component {
 
   handleClick() {
     this.props.onEventClick(this.props.index);
-    // console.log('props.currentEventIndex', this.props.currentEventIndex);
-    // this.props.setCurrentEvent(this.props.index)
-    // this.props.toggleEventDetails();
+    this.props.setCurrentEvent(this.props.index);
+
+    axios.post('http://localhost:3000/api/retrieveParticipants', {
+      eventId: this.props.data.id,
+      userId: this.props.userId
+    })
+    .then(res => { this.props.setCurrentEventParticipants(res.data); })
+    .catch(err => { console.log(err); });
+
+    axios.post('http://localhost:3000/api/connectEventToProfile', {
+      eventId: this.props.data.id,
+      userId: this.props.userId
+    })
+    .then(res => {
+      this.props.disableButton({
+        attendDisabled: !!res.data.is_attending,
+        likeDisabled: !!res.data.liked
+      });
+    })
+    .catch(err => { console.log(err); });
   };
 
   render() {
@@ -62,8 +80,6 @@ class Row extends React.Component {
 }
 
 class EventListComponent extends Component {
-  // static title = '<RefreshControl>';
-  // static description = 'Adds pull-to-refresh support to a scrollview.';
   constructor(props) {
     super(props);
     this.state = {
@@ -74,26 +90,12 @@ class EventListComponent extends Component {
     this._onRefresh = this._onRefresh.bind(this);
   }
 
-  //  _onClick(row) {
-  //   row.clicks++;
-  //   this.setState({
-  //     rowData: this.state.rowData,
-  //   });
-  // };
-  // _onClick(row, index) {
-  //   console.log('row', row);
-  //   console.log('index', index);
-  // }
-
-
   render() {
     // console.log('in EL comp', this.props.onEventClick)
 
     return (
       <ScrollView
         style={styles.scrollview}
-        // bounces={false}
-        // alwaysBounceVertical={false}
         removeClippedSubViews={false}
         refreshControl={
           <RefreshControl
@@ -108,8 +110,10 @@ class EventListComponent extends Component {
         }>
         {this.props.allEvents.map((row, index) => {
           return <Row key={index} data={row} index={index}
-                      toggleEventDetails={this.props.toggleEventDetails}
+                      userId={this.props.userId}
                       setCurrentEvent={this.props.setCurrentEvent}
+                      setCurrentEventParticipants={this.props.setCurrentEventParticipants}
+                      disableButton={this.props.disableButton}
                       onEventClick={this.props.onEventClick}
                       />;
         })}
@@ -131,7 +135,5 @@ class EventListComponent extends Component {
     }, 5000);
   };
 }
-
-// var createRow = ()
 
 export default EventListComponent;
