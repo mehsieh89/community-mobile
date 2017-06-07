@@ -4,10 +4,11 @@ import { Button } from 'react-native-material-design';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
-import SearchContainer from './Search/SearchContainer';
+import MapHeader from './MapHeaderComponent';
 import Promise from 'bluebird';
 
 class MapComponent extends Component {
+
   constructor(props) {
     super(props);
     this.map = null;
@@ -20,9 +21,9 @@ class MapComponent extends Component {
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
     };
-    this.handleMarkerPress = this.handleMarkerPress.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
     this.onLocateUser = this.onLocateUser.bind(this);
+    this.onCreateEvent = this.onCreateEvent.bind(this);
   }
 
   componentWillMount() {
@@ -52,10 +53,10 @@ class MapComponent extends Component {
     })
   }
 
-  handleMarkerPress(marker, index) {
-    console.log('marker', marker)
-    console.log('index', index)
+  onCreateEvent() {
+    this.props.screenProps.toggleCreateEvent();
   }
+
 
   onLocationChange(coordsObj) {
     this.map.animateToRegion({
@@ -92,17 +93,16 @@ class MapComponent extends Component {
               }}
               title={marker.event_name}
               description={marker.description}
-              pinColor='green'
-              onPress={() => this.handleMarkerPress(marker, index)}
-            >
+              pinColor='green' >
             </MapView.Marker>
           ))}
           </MapView>
-          <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
-          <SearchContainer
+          <MapHeader
             {...this.props}
             onLocationChange={this.onLocationChange}
           />
+          <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
+          <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
           <CreateEventContainer />
         </View>
       </View>
@@ -113,7 +113,7 @@ class MapComponent extends Component {
 const styles = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    flex: 1,
+    flex: 2,
     justifyContent: 'flex-end',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',

@@ -6,7 +6,7 @@ export const toggleSearchBar = () => {
 
 // export const handleLocationInput = (location) => {
 //   const string = location.split(' ').join('+');
-//   axios.post('http://localhost:3000/api/locationInput', {location: string})
+//   axios.post('https://warriors-community.herokuapp.com/api/locationInput', {location: string})
 //   .then((data) => {
 //
 //   })

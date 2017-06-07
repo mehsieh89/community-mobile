@@ -23,7 +23,7 @@ class CreateEventComponent extends Component {
 
   onDateChange(date) {
     this.setState({dateTime: date});
-  };
+  }
 
   submitEvent() {
     let context = this;
@@ -83,6 +83,7 @@ class CreateEventComponent extends Component {
                 date={this.state.dateTime}
                 mode="datetime"
                 // timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+                minimumDate={new Date()}
                 onDateChange={this.onDateChange}
               />
 
