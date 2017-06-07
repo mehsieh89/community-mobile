@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 import Map from './Map/MapContainer';
 import EventList from './EventList/EventListContainer';
+import EventDetails from './EventDetails/EventDetailsContainer';
 // import axios from 'axios';
 
 class MainComponent extends Component {
@@ -21,7 +22,8 @@ class MainComponent extends Component {
   render() {
     const MainNav = StackNavigator({
       Map: { screen: Map },
-      EventList: { screen: EventList }
+      EventList: { screen: EventList },
+      EventDetails: { screen: EventDetails }
     });
 
     return (
