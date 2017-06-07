@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import Map from './MapComponent';
 import { connect } from 'react-redux';
-import { centerLocation } from './mapActions';
+import { centerLocation, userLocation } from './mapActions';
 import { addEvents } from './../mainActions';
 //import toggleCreateEvent from '../CreateEvent/createEventActions';
 
@@ -42,7 +42,8 @@ class MapContainer extends Component {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     centerLocation: centerLocation,
-    addEvents: addEvents
+    addEvents: addEvents,
+    userLocation: userLocation
   }, dispatch);
 }
 
@@ -51,9 +52,9 @@ const mapStateToProps = (state) => {
 
   return {
     allEvents: mainReducer.allEvents,
-    coords: mapReducer.coords
+    coords: mapReducer.coords,
+    userCoords: mapReducer.userCoords
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
-
