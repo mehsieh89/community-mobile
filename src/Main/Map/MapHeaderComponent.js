@@ -1,6 +1,5 @@
-import { Subheader, Card } from 'react-native-material-design';
-import { Toolbar, COLOR } from 'react-native-material-ui';
-import { StyleSheet, Text, TextInput, View, Image, TouchableHighlight, Modal, Button} from 'react-native';
+import { Toolbar } from 'react-native-material-ui';
+import { View } from 'react-native';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -22,7 +21,7 @@ class MapHeader extends Component {
 
   handleSearch() {
     const string = this.state.searchText.split(' ').join('+');
-    axios.post('http://localhost:3000/api/locationInput', { location: string })
+    axios.post('https://warriors-community.herokuapp.com/api/locationInput', { location: string })
     .then((res) => {
       const lat = res.data[0].geometry.location.lat;
       const lng = res.data[0].geometry.location.lng;

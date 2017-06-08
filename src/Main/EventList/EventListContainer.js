@@ -4,18 +4,11 @@ import { bindActionCreators } from 'redux';
 import { setCurrentEvent, disableButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventListComponent from './EventListComponent';
+import { toggleDrawer } from './Drawer/drawerActions';
 
 class EventListContainer extends Component{
-  static navigationOptions = ({ navigation, screenProps }) => {
-    const onPressMap = () => {
-      const { goBack } = navigation;
-      goBack();
-    }
 
-    return {
-      headerLeft: (<Button title="Map" onPress={onPressMap}></Button>)
-    };
-  }
+  static navigationOptions = { header: null }
 
   onEventClick = (index) => {
     this.props.setCurrentEvent(index);
@@ -35,13 +28,13 @@ class EventListContainer extends Component{
 }
 
 const mapStateToProps = (state) => {
-  const { mainReducer, mapReducer, eventDetailsReducer, loginReducer } = state;
+  const { mainReducer, mapReducer, eventDetailsReducer, loginReducer, drawerReducerEL } = state;
 
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
     eventDetailsReducer: eventDetailsReducer,
-    userId: loginReducer.id
+    userId: loginReducer.id,
   };
 };
 
@@ -49,7 +42,8 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setCurrentEvent: setCurrentEvent,
     disableButton: disableButton,
-    setCurrentEventParticipants: setCurrentEventParticipants
+    setCurrentEventParticipants: setCurrentEventParticipants,
+    toggleDrawer: toggleDrawer
   }, dispatch);
 };
 
