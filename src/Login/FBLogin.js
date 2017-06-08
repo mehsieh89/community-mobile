@@ -15,7 +15,6 @@ class FBLogin extends Component {
     if (error) { console.log("Login failed with error: ", result.error); }
     else if (result.isCancelled) { console.log("Login was cancelled"); }
     else {
-      console.log("Login was successful with permissions: ", result.grantedPermissions);
       AccessToken.getCurrentAccessToken()
       .then((data) => {
         const { accessToken } = data;
@@ -31,9 +30,9 @@ class FBLogin extends Component {
 
   _responseInfoCallback(error: ?Object, result: ?Object) {
     if (error) { console.log('Error fetching data: ', error);
-    } else { console.log('Success fetching data: ', result);
+    } else {
       const context = this;
-      axios.post('http://localhost:3000/mobileFBLogin', result)
+      axios.post('https://warriors-community.herokuapp.com/mobileFBLogin', result)
       .then(function (response) {
         console.log(response.data);
         context.props.handleLoginSuccess(response.data);
