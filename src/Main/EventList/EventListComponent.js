@@ -8,6 +8,8 @@ import {
   TouchableWithoutFeedback,
   View, Dimensions } from 'react-native';
 import axios from 'axios';
+import EventListHeader from './EventListHeaderComponent';
+import Drawer from './Drawer/DrawerContainer';
 
 const styles = StyleSheet.create({
   row: {
@@ -42,14 +44,14 @@ class Row extends React.Component {
     this.props.onEventClick(this.props.index);
     this.props.setCurrentEvent(this.props.index);
 
-    axios.post('http://localhost:3000/api/retrieveParticipants', {
+    axios.post('https://warriors-community.herokuapp.com/api/retrieveParticipants', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
     .then(res => { this.props.setCurrentEventParticipants(res.data); })
     .catch(err => { console.log(err); });
 
-    axios.post('http://localhost:3000/api/connectEventToProfile', {
+    axios.post('https://warriors-community.herokuapp.com/api/connectEventToProfile', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
@@ -80,6 +82,7 @@ class Row extends React.Component {
 }
 
 class EventListComponent extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -91,33 +94,35 @@ class EventListComponent extends Component {
   }
 
   render() {
-    // console.log('in EL comp', this.props.onEventClick)
-
     return (
-      <ScrollView
-        style={styles.scrollview}
-        removeClippedSubViews={false}
-        refreshControl={
-          <RefreshControl
-            refreshing={this.state.isRefreshing}
-            onRefresh={this._onRefresh}
-            tintColor="#ff0000"
-            title="Loading..."
-            titleColor="#00ff00"
-            colors={['#ff0000', '#00ff00', '#0000ff']}
-            progressBackgroundColor="#ffff00"
-          />
-        }>
-        {this.props.allEvents.map((row, index) => {
-          return <Row key={index} data={row} index={index}
-                      userId={this.props.userId}
-                      setCurrentEvent={this.props.setCurrentEvent}
-                      setCurrentEventParticipants={this.props.setCurrentEventParticipants}
-                      disableButton={this.props.disableButton}
-                      onEventClick={this.props.onEventClick}
-                      />;
-        })}
-      </ScrollView>
+      <View>
+        <EventListHeader {...this.props}/>
+        <Drawer navigation={this.props.screenProps.navigation}/>
+        <ScrollView
+          style={styles.scrollview}
+          removeClippedSubViews={false}
+          refreshControl={
+            <RefreshControl
+              refreshing={this.state.isRefreshing}
+              onRefresh={this._onRefresh}
+              tintColor="#ff0000"
+              title="Loading..."
+              titleColor="#00ff00"
+              colors={['#ff0000', '#00ff00', '#0000ff']}
+              progressBackgroundColor="#ffff00"
+            />
+          }>
+          {this.props.allEvents.map((row, index) => {
+            return <Row key={index} data={row} index={index}
+              userId={this.props.userId}
+              setCurrentEvent={this.props.setCurrentEvent}
+              setCurrentEventParticipants={this.props.setCurrentEventParticipants}
+              disableButton={this.props.disableButton}
+              onEventClick={this.props.onEventClick}
+            />;
+          })}
+        </ScrollView>
+      </View>
     );
   }
 

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import store from '../store';
 import Main from './Main/MainContainer';
 import Login from './Login/LoginContainer';
+import Loading from './Loading';
 import { StackNavigator } from 'react-navigation';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
@@ -25,8 +26,9 @@ const uiTheme = {
 class Root extends Component {
   render() {
     const RootNav = StackNavigator({
+      Loading: { screen: Loading },
+      Main: { screen: Main },
       Login: { screen: Login },
-      Main: { screen: Main }
     });
 
     return (
