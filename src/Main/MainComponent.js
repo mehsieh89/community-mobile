@@ -12,13 +12,6 @@ class MainComponent extends Component {
     header: null,
   }
 
-  // componentDidMount() {
-  //   axios.get('SERVER_URL' + '/retrieveEvents')
-  //   .then(({data}) => {
-  //     console.log(data);
-  //   })
-  // }
-
   render() {
     const MainNav = StackNavigator({
       Map: { screen: Map },

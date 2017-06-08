@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentEvent, toggleEventDetails } from './eventDetailsActions';
+import { setCurrentEvent, setCurrentEventParticipants, disableButton } from './eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
-// import EventListComponent from './EventListComponent';
 import EventDetails from './EventDetailsPage';
 
 class EventDetailsContainer extends Component{
@@ -27,23 +26,22 @@ class EventDetailsContainer extends Component{
   }
 }
 
-// TODO: add mapDispatchToProps to export default below
-
 const mapStateToProps = (state) => {
-  const { mainReducer, mapReducer, eventDetailsReducer } = state;
+  const { mainReducer, mapReducer, eventDetailsReducer, loginReducer } = state;
 
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
-    showEventDetails: eventDetailsReducer.showEventDetails,
-    currentEventIndex: eventDetailsReducer.currentEventIndex
+    eventDetailsReducer: eventDetailsReducer,
+    userId: loginReducer.id
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setCurrentEvent: setCurrentEvent,
-    toggleEventDetails: toggleEventDetails
+    setCurrentEventParticipants: setCurrentEventParticipants,
+    disableButton: disableButton
   }, dispatch);
 };
 

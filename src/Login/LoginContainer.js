@@ -11,19 +11,13 @@ class LoginContainer extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSkip = this.handleSkip.bind(this);
     this.handleLoginSuccess = this.handleLoginSuccess.bind(this);
   }
 
-  handleSkip(e) {
-    const { navigate } = this.props.navigation;
-    navigate('Main');
-  }
-
   handleLoginSuccess(data) {
-    this.props.updateCurrentUser(data);
     const { navigate } = this.props.navigation;
     navigate('Main');
+    this.props.updateCurrentUser(data);
   }
 
   render() {
@@ -35,7 +29,6 @@ class LoginContainer extends Component {
          />
         <Text style={styles.welcome}>Welcome to Community</Text>
         <FBLogin handleLoginSuccess={this.handleLoginSuccess}/>
-        <Button title="Skip Login" onPress={this.handleSkip} />
       </View>
     );
   }

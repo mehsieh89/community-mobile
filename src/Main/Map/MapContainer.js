@@ -5,8 +5,8 @@ import Map from './MapComponent';
 import { connect } from 'react-redux';
 import { centerLocation, userLocation } from './mapActions';
 import { addEvents } from './../mainActions';
-import { DrawerNavigator } from 'react-navigation';
 import { setCurrentEvent, toggleEventDetails } from './../EventDetails/eventDetailsActions'
+import { toggleDrawer } from './Drawer/drawerActions';
 
 class MapContainer extends Component {
   static navigationOptions = { header: null };
@@ -24,7 +24,8 @@ const mapDispatchToProps = (dispatch) => {
     addEvents: addEvents,
     userLocation: userLocation,
     setCurrentEvent: setCurrentEvent,
-    toggleEventDetails: toggleEventDetails
+    toggleEventDetails: toggleEventDetails,
+    toggleDrawer: toggleDrawer
   }, dispatch);
 }
 

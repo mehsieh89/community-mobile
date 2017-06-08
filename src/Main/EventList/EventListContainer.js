@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentEvent, toggleEventDetails } from './../EventDetails/eventDetailsActions';
+import { setCurrentEvent, disableButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventListComponent from './EventListComponent';
-// import EventDetails from './EventDetailsComponent';
-
 
 class EventListContainer extends Component{
   static navigationOptions = ({ navigation, screenProps }) => {
@@ -28,38 +26,30 @@ class EventListContainer extends Component{
   render() {
     return (
       <View>
-        <EventListComponent {...this.props}
-        onEventClick={this.onEventClick.bind(this)}/>
-        {/* <EventDetails {...this.props}/> */}
+        <EventListComponent
+          {...this.props}
+          onEventClick={this.onEventClick.bind(this)}/>
       </View>
     );
   }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//   return bindActionCreators({
-//     centerLocation: centerLocation,
-//     addEvents: addEvents
-//   }, dispatch);
-// }
-
-// TODO: add mapDispatchToProps to export default below
-
 const mapStateToProps = (state) => {
-  const { mainReducer, mapReducer, eventDetailsReducer } = state;
+  const { mainReducer, mapReducer, eventDetailsReducer, loginReducer } = state;
 
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
-    showEventDetails: eventDetailsReducer.showEventDetails,
-    currentEventIndex: eventDetailsReducer.currentEventIndex
+    eventDetailsReducer: eventDetailsReducer,
+    userId: loginReducer.id
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setCurrentEvent: setCurrentEvent,
-    toggleEventDetails: toggleEventDetails
+    disableButton: disableButton,
+    setCurrentEventParticipants: setCurrentEventParticipants
   }, dispatch);
 };
 
