@@ -22,7 +22,7 @@ class MapHeader extends Component {
 
   handleSearch() {
     const string = this.state.searchText.split(' ').join('+');
-    axios.post('http://localhost:3000/api/locationInput', { location: string })
+    axios.post('http://warriors-community.herokuapp.com/api/locationInput', { location: string })
     .then((res) => {
       const lat = res.data[0].geometry.location.lat;
       const lng = res.data[0].geometry.location.lng;
@@ -47,7 +47,7 @@ class MapHeader extends Component {
 
   render() {
     return(
-      <View style={{marginBottom: 480, alignItems: 'center'}}>
+      <View style={{marginBottom: 440, alignItems: 'center', positon: 'absolute'}}>
         <Toolbar
           leftElement="menu"
           onLeftElementPress={this.handleMenuClick}
