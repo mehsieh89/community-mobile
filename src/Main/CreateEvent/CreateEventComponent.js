@@ -1,5 +1,17 @@
 import React, { Component } from 'react';
-import { Modal, Text, View, ScrollView, PickerIOS, DatePickerIOS, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Modal,
+  Text,
+  View,
+  ScrollView,
+  PickerIOS,
+  DatePickerIOS,
+  ImagePickerIOS,
+  Image,
+  StyleSheet,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { Button } from 'react-native-material-design';
 import axios from 'axios';
@@ -14,15 +26,29 @@ class CreateEventComponent extends Component {
       location: '',
       description: '',
       category: 'outdoors',
-      dateTime: new Date()
+      dateTime: new Date(),
+      eventImage: null
     };
 
     this.submitEvent = this.submitEvent.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
+    this.pickEventImage = this.pickEventImage.bind(this);
   }
 
   onDateChange(date) {
     this.setState({dateTime: date});
+  }
+
+  pickEventImage() {
+    const context = this;
+    ImagePickerIOS.openSelectDialog({}, (imageUri) => {
+      context.setState({
+        eventImage: imageUri
+      });
+      console.log(this.state.eventImage);
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   submitEvent() {
@@ -46,8 +72,6 @@ class CreateEventComponent extends Component {
         console.log(error);
       });
   }
-
-// TODO: image
 
   render() {
     const PickerItemIOS = PickerIOS.Item;
@@ -105,6 +129,13 @@ class CreateEventComponent extends Component {
                     />
                   ))}
                 </PickerIOS>
+                <Heading label="Event Image" />
+                <Button value="Choose Event Image" raised={true} onPress={this.pickEventImage} />
+                {this.state.eventImage ?
+                  <View style={styles.eventImageView}>
+                    <Image style={styles.eventImage} source={{uri: this.state.eventImage}} />
+                </View> : null}
+                <Text> </Text>
                 <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
                 <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
               </View>
@@ -138,6 +169,18 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
   },
+  eventImageView: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  eventImage: {
+    width: 350,
+    height: 350,
+    justifyContent: 'space-around',
+    resizeMode: 'contain'
+  }
 });
 
 
