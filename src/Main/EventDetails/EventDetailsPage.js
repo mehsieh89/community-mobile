@@ -43,38 +43,40 @@ export default class EventDetails extends Component {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
     let parsedTime = moment(currentEvent.time).format('MMMM Do YYYY, h:mm a') + ' (' + moment(currentEvent.time).fromNow() + ')';
     return (
-      <View>
-        <View style={{alignItems: 'center'}}>
-          <Image
-            style={{width: 350, height: 200}}
-            source={{uri: currentEvent.image}}
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <View style={{alignItems: 'center'}}>
+            <Image
+              style={{width: 350, height: 200}}
+              source={{uri: currentEvent.image}}
+            />
+          </View>
+          <Text>
+            Name: {currentEvent.event_name}
+            {"\n"}
+            Time: {parsedTime}
+            {"\n"}
+            Location: {currentEvent.location}
+            {"\n"}
+            Description: {currentEvent.description}
+            {"\n"}
+            Category: {currentEvent.category}
+            {"\n"}
+            Participants: {participants.join(', ')}
+          </Text>
+          <Button
+            value="LIKE"
+            raised={true}
+            onPress={this.handleLike}
+            disabled={this.props.eventDetailsReducer.likeDisabled}/>
+          <Button
+            value="ATTEND"
+            raised={true}
+            onPress={this.handleAttend}
+            disabled={this.props.eventDetailsReducer.attendDisabled}
           />
         </View>
-        <Text>
-          Name: {currentEvent.event_name}
-          {"\n"}
-          Time: {parsedTime}
-          {"\n"}
-          Location: {currentEvent.location}
-          {"\n"}
-          Description: {currentEvent.description}
-          {"\n"}
-          Category: {currentEvent.category}
-          {"\n"}
-          Participants: {participants.join(', ')}
-        </Text>
-        <Button
-          value="LIKE"
-          raised={true}
-          onPress={this.handleLike}
-          disabled={this.props.eventDetailsReducer.likeDisabled}/>
-        <Button
-          value="ATTEND"
-          raised={true}
-          onPress={this.handleAttend}
-          disabled={this.props.eventDetailsReducer.attendDisabled}
-        />
-      </View>
+      </TouchableWithoutFeedback>
     )
   }
 }

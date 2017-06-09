@@ -1,5 +1,5 @@
 import { Toolbar } from 'react-native-material-ui';
-import { View, TouchableOpacity, Text, TextInput } from 'react-native';
+import { View, TouchableOpacity, Text, TextInput, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import React, { Component } from 'react';
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ class MapHeader extends Component {
 
   handleInput(location) {
     const string = location.split(' ').join('+');
-    axios.post('http://localhost:3000/api/locationInput', { location: string })
+    axios.post('https://warriors-community.herokuapp.com/api/locationInput', { location: string })
     .then((res) => {
       console.log('response from server', res)
       console.log('state array', this.state.autoComplete)
@@ -82,33 +82,35 @@ class MapHeader extends Component {
 
     let marginDiff = 440 - 20 * this.state.autoComplete.length;
     return (
-      <View style={{marginBottom: marginDiff, alignItems: 'center', positon: 'absolute'}}>
-        <Toolbar
-          leftElement="menu"
-          onLeftElementPress={this.handleMenuClick}
-          centerElement={searchInput}
-          rightElement="event"
-          onRightElementPress={this.handleEventListClick}
-          style={{
-            leftElement: { color: '#777'},
-            rightElement: { color: '#777'},
-            titleText: { color: '#777', fontSize: 14 },
-          }}/>
-          {/* <View style={{height: 300}}> */}
-            {this.state.autoComplete.map((str, index) => {
-              return (
-                <TouchableOpacity key={index} onPress={() => {this.handleChange(str)}}
-                  style={{height: 20, width: 350,
-                    backgroundColor: 'white',
-                    borderWidth: 1,
-                    borderColor: '#777'
-                  }}>
-                  <Text style={{textAlign: 'center'}}>{str}</Text>
-                </TouchableOpacity>
-              );
-            })}
-          {/* </View> */}
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{marginBottom: marginDiff, alignItems: 'center', positon: 'absolute'}}>
+          <Toolbar
+            leftElement="menu"
+            onLeftElementPress={this.handleMenuClick}
+            centerElement={searchInput}
+            rightElement="event"
+            onRightElementPress={this.handleEventListClick}
+            style={{
+              leftElement: { color: '#777'},
+              rightElement: { color: '#777'},
+              titleText: { color: '#777', fontSize: 14 },
+            }}/>
+            {/* <View style={{height: 300}}> */}
+              {this.state.autoComplete.map((str, index) => {
+                return (
+                  <TouchableOpacity key={index} onPress={() => {this.handleChange(str)}}
+                    style={{height: 20, width: 350,
+                      backgroundColor: 'white',
+                      borderWidth: 1,
+                      borderColor: '#777'
+                    }}>
+                    <Text style={{textAlign: 'center'}}>{str}</Text>
+                  </TouchableOpacity>
+                );
+              })}
+            {/* </View> */}
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
