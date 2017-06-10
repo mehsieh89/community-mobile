@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button } from 'react-native-material-design';
 import moment from 'moment';
 import axios from 'axios';
