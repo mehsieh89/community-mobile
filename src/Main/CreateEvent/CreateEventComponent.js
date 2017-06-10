@@ -29,9 +29,9 @@ class CreateEventComponent extends Component {
     let context = this;
     const eventInfo = Object.assign({}, this.state, { userId: this.props.userId });
 
-    axios.post('http://warriors-community.herokuapp.com/api/createEvent', eventInfo)
+    axios.post('http://localhost:3000/api/createEvent', eventInfo)
       .then(function (response) {
-        return axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
+        return axios.get('http://localhost:3000/api/retrieveEvents')
         .then(res => {
           context.props.addEvents(res.data);
         })

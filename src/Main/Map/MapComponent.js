@@ -65,7 +65,7 @@ class MapComponent extends Component {
   }
 
   onRefresh() {
-    axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
+    axios.get('http://localhost:3000/api/retrieveEvents')
     .then(res => {
       this.props.addEvents(res.data);
     })
