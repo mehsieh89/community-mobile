@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, TextInput, TouchableWithoutFeedback, Keyb
 import React, { Component } from 'react';
 import axios from 'axios';
 
+const baseUrl = 'http://localhost:3000';
+
 class MapHeader extends Component {
   constructor(props) {
     super(props);
@@ -29,9 +31,9 @@ class MapHeader extends Component {
     });
   }
 
-  handleInput(location) {
-    const string = location.split(' ').join('+');
-    axios.post('https://warriors-community.herokuapp.com/api/locationInput', { location: string })
+  handleSearch() {
+    const string = this.state.searchText.split(' ').join('+');
+    axios.post(baseUrl + '/api/locationInput', { location: string })
     .then((res) => {
       let acArray = [];
       for (let i = 0; i < res.data.length; i++) {

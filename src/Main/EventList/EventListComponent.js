@@ -6,10 +6,13 @@ import {
   Text,
   Image,
   TouchableWithoutFeedback,
-  View, Dimensions } from 'react-native';
+  View,
+  Dimensions } from 'react-native';
 import axios from 'axios';
 import EventListHeader from './EventListHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
+
+const baseUrl = 'http://localhost:3000';
 
 const styles = StyleSheet.create({
   row: {
@@ -44,14 +47,14 @@ class Row extends React.Component {
     this.props.onEventClick(this.props.index);
     this.props.setCurrentEvent(this.props.index);
 
-    axios.post('http://localhost:3000/api/retrieveParticipants', {
+    axios.post(baseUrl + '/api/retrieveParticipants', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
     .then(res => { this.props.setCurrentEventParticipants(res.data); })
     .catch(err => { console.log(err); });
 
-    axios.post('http://localhost:3000/api/connectEventToProfile', {
+    axios.post(baseUrl + '/api/connectEventToProfile', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
