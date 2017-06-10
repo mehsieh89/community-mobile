@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image } from 'react-native';
+import { Text, View, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button } from 'react-native-material-design';
 import moment from 'moment';
 import axios from 'axios';
@@ -13,7 +13,7 @@ export default class EventDetails extends Component {
 
   handleAttend() {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
-    axios.post('http://localhost:3000/api/attendEvent', {
+    axios.post('https://warriors-community.herokuapp.com/api/attendEvent', {
       eventId: currentEvent.id,
       userId: this.props.userId
     })
@@ -27,7 +27,7 @@ export default class EventDetails extends Component {
 
   handleLike() {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
-    axios.post('http://localhost:3000/api/likeEvent', {
+    axios.post('https://warriors-community.herokuapp.com/api/likeEvent', {
       eventId: currentEvent.id,
       userId: this.props.userId
     })

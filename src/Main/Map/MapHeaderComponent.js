@@ -14,6 +14,8 @@ class MapHeader extends Component {
     this.handleSearch = this.handleSearch.bind(this);
     this.handleMenuClick = this.handleMenuClick.bind(this);
     this.handleEventListClick = this.handleEventListClick.bind(this);
+    this.handleSelection = this.handleSelection.bind(this);
+
   }
 
   handleChange(text) {
@@ -31,11 +33,9 @@ class MapHeader extends Component {
     const string = location.split(' ').join('+');
     axios.post('https://warriors-community.herokuapp.com/api/locationInput', { location: string })
     .then((res) => {
-      console.log('response from server', res)
-      console.log('state array', this.state.autoComplete)
       let acArray = [];
       for (let i = 0; i < res.data.length; i++) {
-        acArray.push(res.data[i].formatted_address);
+        acArray.push(res.data[i]);
       }
       return acArray;
     })
@@ -44,21 +44,38 @@ class MapHeader extends Component {
         autoComplete: array
       })
     })
+    .then(() => {
+      console.log(this.state.autoComplete);
+    })
     .catch((err) => {
       console.log(err);
     })
   }
 
   handleSearch() {
-    const lat = res.data[0].geometry.location.lat;
-    const lng = res.data[0].geometry.location.lng;
-    this.props.onLocationChange({
-      latitude: lat,
-      longitude: lng,
+    this.setState({
+      autoComplete: [],
+    });
+    const string = this.state.searchText.split(' ').join('+');
+    axios.post('https://warriors-community.herokuapp.com/api/locationInput', { location: string })
+    .then ((res) => {
+      const lat = res.data[0].geometry.location.lat;
+      const lng = res.data[0].geometry.location.lng;
+      this.props.onLocationChange({
+        latitude: lat,
+        longitude: lng,
+      })
     })
     .catch((err) => {
-      console.log('Error ', err);
-    });
+      console.log(err);
+    })
+  }
+
+  handleSelection(location) {
+    this.setState({
+      searchText: location,
+      autoComplete: [],
+    })
   }
 
   handleMenuClick() {
@@ -75,7 +92,9 @@ class MapHeader extends Component {
       onChangeText={(searchText) => this.handleChange(searchText)}
       editable={true}
       autoCorrect={false}
-      style={{height: 200}}>
+      style={{height: 200}}
+      placeholder='Search Location'
+      onSubmitEditing={this.handleSearch}>
       </TextInput>
     )
 
@@ -98,11 +117,11 @@ class MapHeader extends Component {
                 return (
                   <View style={{borderTopWidth: .5, borderLeftWidth: .5, borderRightWidth: .5,
                   borderTopColor: '#999', borderRightColor: '#999', borderLeftColor: '#999'}}>
-                    <TouchableOpacity key={index} onPress={() => {this.handleChange(str)}}
+                    <TouchableOpacity key={index} onPress={() => {this.handleSelection(str.formatted_address)}}
                       style={{height: 20, width: 350,
                         backgroundColor: 'white',
                       }}>
-                      <Text style={{textAlign: 'center'}}>{str}</Text>
+                      <Text style={{textAlign: 'center'}}>{str.formatted_address}</Text>
                     </TouchableOpacity>
                   </View>
                 );
