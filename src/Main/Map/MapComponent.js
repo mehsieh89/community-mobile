@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, Image } from 'react-native';
+import { StyleSheet, Text, View, Modal, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button } from 'react-native-material-design';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
@@ -95,60 +95,62 @@ class MapComponent extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
-        <View style={styles.container}>
-          <MapView
-            ref={map => { this.map = map }}
-            showsUserLocation={true}
-            provider={PROVIDER_GOOGLE}
-            style={styles.map}
-            initialRegion={{
-              latitude: this.props.coords.lat,
-              longitude: this.props.coords.lng,
-              latitudeDelta: this.state.latitudeDelta,
-              longitudeDelta: this.state.longitudeDelta,
-            }}
-            // onPress={this.handleMapPress}
-          >
-          {this.props.allEvents.map((marker, index) => (
-            <MapView.Marker
-              key={index}
-              coordinate={{
-                latitude: Number(marker.lat),
-                longitude:  Number(marker.lng)
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{ flex: 1 }}>
+          <View style={styles.container}>
+            <MapView
+              ref={map => { this.map = map }}
+              showsUserLocation={true}
+              provider={PROVIDER_GOOGLE}
+              style={styles.map}
+              initialRegion={{
+                latitude: this.props.coords.lat,
+                longitude: this.props.coords.lng,
+                latitudeDelta: this.state.latitudeDelta,
+                longitudeDelta: this.state.longitudeDelta,
               }}
-              pinColor='green'
-              // onPress={() => this.handleMarkerPress(marker, index)}
-              onCalloutPress={this.handleCalloutPress}
-              >
-                <MapView.Callout onPress={() => this.handleCalloutPress(marker, index)}
-                  style={{width: 200, height: 70}}>
-                  <View style={{position: 'relative'}}>
-                    <Image style={{width: 70, height: 70}}
-                      source={{uri: marker.image}}/>
-                  </View>
-                  <View style={{position: 'relative', left: 75, bottom: 65}}>
-                    <Text style={{width: 130}}>
-                      Name: {marker.event_name}
-                      {"\n"}
-                      Likes: {'5'}
-                    </Text>
-                  </View>
-                </MapView.Callout>
-            </MapView.Marker>
-          ))}
-          </MapView>
-          <MapHeader
-            {...this.props}
-            onLocationChange={this.onLocationChange}
-          />
-          <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
-          <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
-          <Button value="Refresh" raised={true} onPress={this.onRefresh}/>
-          <CreateEventContainer />
-          <Drawer navigation={this.props.screenProps.navigation}/>
+              // onPress={this.handleMapPress}
+            >
+            {this.props.allEvents.map((marker, index) => (
+              <MapView.Marker
+                key={index}
+                coordinate={{
+                  latitude: Number(marker.lat),
+                  longitude:  Number(marker.lng)
+                }}
+                pinColor='green'
+                // onPress={() => this.handleMarkerPress(marker, index)}
+                onCalloutPress={this.handleCalloutPress}
+                >
+                  <MapView.Callout onPress={() => this.handleCalloutPress(marker, index)}
+                    style={{width: 200, height: 70}}>
+                    <View style={{position: 'relative'}}>
+                      <Image style={{width: 70, height: 70}}
+                        source={{uri: marker.image}}/>
+                    </View>
+                    <View style={{position: 'relative', left: 75, bottom: 65}}>
+                      <Text style={{width: 130}}>
+                        Name: {marker.event_name}
+                        {"\n"}
+                        Likes: {'5'}
+                      </Text>
+                    </View>
+                  </MapView.Callout>
+              </MapView.Marker>
+            ))}
+            </MapView>
+            <MapHeader
+              {...this.props}
+              onLocationChange={this.onLocationChange}
+            />
+            <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
+            <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
+            <Button value="Refresh" raised={true} onPress={this.onRefresh}/>
+            <CreateEventContainer />
+            <Drawer navigation={this.props.screenProps.navigation}/>
+          </View>
         </View>
-      </View>
+      </TouchableWithoutFeedback>
     );
   }
 };

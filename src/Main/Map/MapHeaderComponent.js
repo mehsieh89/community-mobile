@@ -8,7 +8,6 @@ class MapHeader extends Component {
     super(props);
     this.state = {
       searchText: '',
-      // autoComplete: ['meow', 'Amy', 'Mel', 'Yvonne', 'Ice Cream', 'Hello', 'Things', 'That', 'I', 'Like', '?', 'What'],
       autoComplete: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -95,20 +94,19 @@ class MapHeader extends Component {
               rightElement: { color: '#777'},
               titleText: { color: '#777', fontSize: 14 },
             }}/>
-            {/* <View style={{height: 300}}> */}
               {this.state.autoComplete.map((str, index) => {
                 return (
-                  <TouchableOpacity key={index} onPress={() => {this.handleChange(str)}}
-                    style={{height: 20, width: 350,
-                      backgroundColor: 'white',
-                      borderWidth: 1,
-                      borderColor: '#777'
-                    }}>
-                    <Text style={{textAlign: 'center'}}>{str}</Text>
-                  </TouchableOpacity>
+                  <View style={{borderTopWidth: .5, borderLeftWidth: .5, borderRightWidth: .5,
+                  borderTopColor: '#999', borderRightColor: '#999', borderLeftColor: '#999'}}>
+                    <TouchableOpacity key={index} onPress={() => {this.handleChange(str)}}
+                      style={{height: 20, width: 350,
+                        backgroundColor: 'white',
+                      }}>
+                      <Text style={{textAlign: 'center'}}>{str}</Text>
+                    </TouchableOpacity>
+                  </View>
                 );
               })}
-            {/* </View> */}
         </View>
       </TouchableWithoutFeedback>
     );
