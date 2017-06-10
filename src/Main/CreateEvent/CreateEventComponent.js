@@ -15,6 +15,9 @@ import {
 import { TextField } from 'react-native-material-textfield';
 import { Button } from 'react-native-material-design';
 import axios from 'axios';
+import { RNS3 } from 'react-native-aws3';
+
+const baseUrl = 'http://warriors-community.herokuapp.com';
 
 class CreateEventComponent extends Component {
 
@@ -27,7 +30,7 @@ class CreateEventComponent extends Component {
       description: '',
       category: 'outdoors',
       dateTime: new Date(),
-      eventImage: null
+      eventImageUri: null,
     };
 
     this.submitEvent = this.submitEvent.bind(this);
@@ -43,33 +46,76 @@ class CreateEventComponent extends Component {
     const context = this;
     ImagePickerIOS.openSelectDialog({}, (imageUri) => {
       context.setState({
-        eventImage: imageUri
+        eventImageUri: imageUri
       });
-      console.log(this.state.eventImage);
     }, (error) => {
       console.log(error);
     });
   }
 
   submitEvent() {
-    let context = this;
-    const eventInfo = Object.assign({}, this.state, { userId: this.props.userId });
+    //TODO: handle cases where user doesn't select an image
+    //TODO: add loading indicator
 
-    axios.post('http://warriors-community.herokuapp.com/api/createEvent', eventInfo)
-      .then(function (response) {
-        return axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
-        .then(res => {
-          context.props.addEvents(res.data);
-        })
-        .then(() => {
-          context.props.toggleCreateEvent();
-        })
-        .catch(error => {
-          console.log('Error occurred.', error);
-        });
+    let context = this;
+
+    const imageId = this.state.eventImageUri.split('id=')[1].split('&ext=')[0];
+    const fileExt = this.state.eventImageUri.split('&ext=')[1];
+    const fileName = imageId + '.' + fileExt.toLowerCase();
+    const fileType = fileExt === 'JPG' ? 'image/jpeg' : 'image/png';
+
+    const file = {
+      uri: this.state.eventImageUri,
+      type: fileType,
+      name: fileName
+    }
+
+    axios.get(baseUrl + '/api/retrieveS3Credentials')
+      .then((response) => {
+
+        const options = {
+          bucket: response.data.bucket,
+          region: response.data.region,
+          accessKey: response.data.accessKey,
+          secretKey: response.data.secretKey,
+          successActionStatus: response.data.successStatus
+        }
+
+        RNS3.put(file, options)
+          .then(response => {
+            console.log('Image upload to S3 successful', response);
+
+            const eventInfo = Object.assign(
+              {},
+              this.state,
+              { userId: context.props.userId,
+                imageUrl: response.headers.Location
+              }
+            );
+
+            axios.post(baseUrl + '/api/createEvent', eventInfo)
+              .then(function (response) {
+                return axios.get(baseUrl + '/api/retrieveEvents')
+                .then(res => {
+                  context.props.addEvents(res.data);
+                })
+                .then(() => {
+                  context.props.toggleCreateEvent();
+                })
+                .catch(error => {
+                  console.log('Error while retrieving events:', error);
+                });
+              })
+              .catch(function (error) {
+                console.log('Error while creating event:', error);
+              });
+            })
+          .catch((err) => {
+              console.error("Failed to upload image to S3:", err);
+          });
       })
-      .catch(function (error) {
-        console.log(error);
+      .catch((err) => {
+        console.error('Error retrieving S3 credentials:', err);
       });
   }
 
@@ -131,9 +177,9 @@ class CreateEventComponent extends Component {
                 </PickerIOS>
                 <Heading label="Event Image" />
                 <Button value="Choose Event Image" raised={true} onPress={this.pickEventImage} />
-                {this.state.eventImage ?
+                {this.state.eventImageUri ?
                   <View style={styles.eventImageView}>
-                    <Image style={styles.eventImage} source={{uri: this.state.eventImage}} />
+                    <Image style={styles.eventImage} source={{uri: this.state.eventImageUri}} />
                 </View> : null}
                 <Text> </Text>
                 <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
