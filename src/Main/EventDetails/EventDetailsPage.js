@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { Button } from 'react-native-material-design';
 import moment from 'moment';
 import axios from 'axios';
@@ -43,32 +43,40 @@ export default class EventDetails extends Component {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
     let parsedTime = moment(currentEvent.time).format('MMMM Do YYYY, h:mm a') + ' (' + moment(currentEvent.time).fromNow() + ')';
     return (
-      <View>
-        <Text>
-        Name: {currentEvent.event_name}
-        {"\n"}
-        Time: {parsedTime}
-        {"\n"}
-        Location: {currentEvent.location}
-        {"\n"}
-        Description: {currentEvent.description}
-        {"\n"}
-        Category: {currentEvent.category}
-        {"\n"}
-        Participants: {participants.join(', ')}
-        </Text>
-        <Button
-          value="LIKE"
-          raised={true}
-          onPress={this.handleLike}
-          disabled={this.props.eventDetailsReducer.likeDisabled}/>
-        <Button
-          value="ATTEND"
-          raised={true}
-          onPress={this.handleAttend}
-          disabled={this.props.eventDetailsReducer.attendDisabled}
-        />
-      </View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <View style={{alignItems: 'center'}}>
+            <Image
+              style={{width: 350, height: 200}}
+              source={{uri: currentEvent.image}}
+            />
+          </View>
+          <Text>
+            Name: {currentEvent.event_name}
+            {"\n"}
+            Time: {parsedTime}
+            {"\n"}
+            Location: {currentEvent.location}
+            {"\n"}
+            Description: {currentEvent.description}
+            {"\n"}
+            Category: {currentEvent.category}
+            {"\n"}
+            Participants: {participants.join(', ')}
+          </Text>
+          <Button
+            value="LIKE"
+            raised={true}
+            onPress={this.handleLike}
+            disabled={this.props.eventDetailsReducer.likeDisabled}/>
+          <Button
+            value="ATTEND"
+            raised={true}
+            onPress={this.handleAttend}
+            disabled={this.props.eventDetailsReducer.attendDisabled}
+          />
+        </View>
+      </TouchableWithoutFeedback>
     )
   }
 }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Modal, Text, View, ScrollView, PickerIOS, DatePickerIOS, StyleSheet } from 'react-native';
+import { Modal, Text, View, ScrollView, PickerIOS, DatePickerIOS, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { Button } from 'react-native-material-design';
 import axios from 'axios';
@@ -29,9 +29,9 @@ class CreateEventComponent extends Component {
     let context = this;
     const eventInfo = Object.assign({}, this.state, { userId: this.props.userId });
 
-    axios.post('https://warriors-community.herokuapp.com/api/createEvent', eventInfo)
+    axios.post('http://warriors-community.herokuapp.com/api/createEvent', eventInfo)
       .then(function (response) {
-        return axios.get('https://warriors-community.herokuapp.com/api/retrieveEvents')
+        return axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
         .then(res => {
           context.props.addEvents(res.data);
         })
@@ -54,63 +54,65 @@ class CreateEventComponent extends Component {
     const categories = ['food', 'sports', 'outdoors', 'nightlife', 'games', 'other'];
 
     return (
-      <View style={{marginTop: 22}}>
-        <Modal
-          animationType={"slide"}
-          transparent={false}
-          visible={this.props.visible}
-          onRequestClose={() => {alert("Modal has been closed.")}}
-          >
-         <View style={{marginTop: 22}}>
-           <ScrollView>
-            <View>
-              <TextField
-                label='Event Name'
-                value={this.state.eventName}
-                onChangeText={ (eventName) => this.setState({ eventName }) }
-              />
-              <TextField
-                label='Location'
-                value={this.state.location}
-                onChangeText={ (location) => this.setState({ location }) }
-              />
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View style={{marginTop: 22}}>
+          <Modal
+            animationType={"slide"}
+            transparent={false}
+            visible={this.props.visible}
+            onRequestClose={() => {alert("Modal has been closed.")}}
+            >
+           <View style={{marginTop: 22}}>
+             <ScrollView>
+              <View>
+                <TextField
+                  label='Event Name'
+                  value={this.state.eventName}
+                  onChangeText={ (eventName) => this.setState({ eventName }) }
+                />
+                <TextField
+                  label='Location'
+                  value={this.state.location}
+                  onChangeText={ (location) => this.setState({ location }) }
+                />
 
 
-              <Heading label="Date & Time" />
-              <DatePickerIOS
-                date={this.state.dateTime}
-                mode="datetime"
-                // timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
-                minimumDate={new Date()}
-                onDateChange={this.onDateChange}
-              />
+                <Heading label="Date & Time" />
+                <DatePickerIOS
+                  date={this.state.dateTime}
+                  mode="datetime"
+                  // timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
+                  minimumDate={new Date()}
+                  onDateChange={this.onDateChange}
+                />
 
-              <TextField
-                label='Description'
-                value={this.state.description}
-                onChangeText={ (description) => this.setState({ description }) }
-              />
-              <Heading label="Event Category" />
-              <PickerIOS
-                selectedValue={this.state.category}
-                onValueChange={(category) => {
-                  this.setState({category});
-                }}>
-                {categories.map((cat, index) => (
-                  <PickerItemIOS
-                    key={index}
-                    value={cat}
-                    label={cat}
-                  />
-                ))}
-              </PickerIOS>
-              <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
-              <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
-            </View>
-          </ScrollView>
-         </View>
-        </Modal>
-      </View>
+                <TextField
+                  label='Description'
+                  value={this.state.description}
+                  onChangeText={ (description) => this.setState({ description }) }
+                />
+                <Heading label="Event Category" />
+                <PickerIOS
+                  selectedValue={this.state.category}
+                  onValueChange={(category) => {
+                    this.setState({category});
+                  }}>
+                  {categories.map((cat, index) => (
+                    <PickerItemIOS
+                      key={index}
+                      value={cat}
+                      label={cat}
+                    />
+                  ))}
+                </PickerIOS>
+                <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
+                <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
+              </View>
+            </ScrollView>
+           </View>
+          </Modal>
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }
