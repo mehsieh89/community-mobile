@@ -13,7 +13,7 @@ export default class EventDetails extends Component {
 
   handleAttend() {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
-    axios.post('https://warriors-community.herokuapp.com/api/attendEvent', {
+    axios.post('http://localhost:3000/api/attendEvent', {
       eventId: currentEvent.id,
       userId: this.props.userId
     })
@@ -27,7 +27,7 @@ export default class EventDetails extends Component {
 
   handleLike() {
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
-    axios.post('https://warriors-community.herokuapp.com/api/likeEvent', {
+    axios.post('http://localhost:3000/api/likeEvent', {
       eventId: currentEvent.id,
       userId: this.props.userId
     })
@@ -42,6 +42,8 @@ export default class EventDetails extends Component {
     let participants = this.props.eventDetailsReducer.participants.map(obj => obj.display);
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
     let parsedTime = moment(currentEvent.time).format('MMMM Do YYYY, h:mm a') + ' (' + moment(currentEvent.time).fromNow() + ')';
+
+    console.log(this.props.eventDetailsReducer.likeDisabled);
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>

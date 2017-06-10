@@ -28,7 +28,7 @@ class EventDetailsContainer extends Component{
 
 const mapStateToProps = (state) => {
   const { mainReducer, mapReducer, eventDetailsReducer, loginReducer } = state;
-
+  console.log(loginReducer.id);
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
