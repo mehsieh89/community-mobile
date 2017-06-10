@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import store from '../store';
 import Main from './Main/MainContainer';
 import Login from './Login/LoginContainer';
-import Loading from './Loading';
+import Loading from './Loading/LoadingContainer';
 import { StackNavigator } from 'react-navigation';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 

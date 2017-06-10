@@ -44,14 +44,14 @@ class Row extends React.Component {
     this.props.onEventClick(this.props.index);
     this.props.setCurrentEvent(this.props.index);
 
-    axios.post('https://warriors-community.herokuapp.com/api/retrieveParticipants', {
+    axios.post('http://localhost:3000/api/retrieveParticipants', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
     .then(res => { this.props.setCurrentEventParticipants(res.data); })
     .catch(err => { console.log(err); });
 
-    axios.post('https://warriors-community.herokuapp.com/api/connectEventToProfile', {
+    axios.post('http://localhost:3000/api/connectEventToProfile', {
       eventId: this.props.data.id,
       userId: this.props.userId
     })
