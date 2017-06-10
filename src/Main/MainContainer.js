@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { addEvents } from './mainActions';
 import { toggleCreateEvent } from './CreateEvent/createEventActions';
+const baseUrl = 'http://localhost:3000';
 
 class MainContainer extends Component {
   static navigationOptions = {
@@ -16,7 +17,7 @@ class MainContainer extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:3000/api/retrieveEvents')
+    axios.get(baseUrl + '/api/retrieveEvents')
     .then(res => {
       this.props.addEvents(res.data);
     })

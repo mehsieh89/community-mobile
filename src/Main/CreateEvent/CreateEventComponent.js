@@ -1,8 +1,23 @@
 import React, { Component } from 'react';
-import { Modal, Text, View, ScrollView, PickerIOS, DatePickerIOS, StyleSheet, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import {
+  Modal,
+  Text,
+  View,
+  ScrollView,
+  PickerIOS,
+  DatePickerIOS,
+  ImagePickerIOS,
+  Image,
+  StyleSheet,
+  Keyboard,
+  TouchableWithoutFeedback
+} from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import { Button } from 'react-native-material-design';
 import axios from 'axios';
+import { RNS3 } from 'react-native-aws3';
+
+const baseUrl = 'http://warriors-community.herokuapp.com';
 
 class CreateEventComponent extends Component {
 
@@ -14,40 +29,95 @@ class CreateEventComponent extends Component {
       location: '',
       description: '',
       category: 'outdoors',
-      dateTime: new Date()
+      dateTime: new Date(),
+      eventImageUri: null,
     };
 
     this.submitEvent = this.submitEvent.bind(this);
     this.onDateChange = this.onDateChange.bind(this);
+    this.pickEventImage = this.pickEventImage.bind(this);
   }
 
   onDateChange(date) {
     this.setState({dateTime: date});
   }
 
-  submitEvent() {
-    let context = this;
-    const eventInfo = Object.assign({}, this.state, { userId: this.props.userId });
-
-    axios.post('http://warriors-community.herokuapp.com/api/createEvent', eventInfo)
-      .then(function (response) {
-        return axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
-        .then(res => {
-          context.props.addEvents(res.data);
-        })
-        .then(() => {
-          context.props.toggleCreateEvent();
-        })
-        .catch(error => {
-          console.log('Error occurred.', error);
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+  pickEventImage() {
+    const context = this;
+    ImagePickerIOS.openSelectDialog({}, (imageUri) => {
+      context.setState({
+        eventImageUri: imageUri
       });
+    }, (error) => {
+      console.log(error);
+    });
   }
 
-// TODO: image
+  submitEvent() {
+    //TODO: handle cases where user doesn't select an image
+    //TODO: add loading indicator
+
+    let context = this;
+
+    const imageId = this.state.eventImageUri.split('id=')[1].split('&ext=')[0];
+    const fileExt = this.state.eventImageUri.split('&ext=')[1];
+    const fileName = imageId + '.' + fileExt.toLowerCase();
+    const fileType = fileExt === 'JPG' ? 'image/jpeg' : 'image/png';
+
+    const file = {
+      uri: this.state.eventImageUri,
+      type: fileType,
+      name: fileName
+    }
+
+    axios.get(baseUrl + '/api/retrieveS3Credentials')
+      .then((response) => {
+
+        const options = {
+          bucket: response.data.bucket,
+          region: response.data.region,
+          accessKey: response.data.accessKey,
+          secretKey: response.data.secretKey,
+          successActionStatus: response.data.successStatus
+        }
+
+        RNS3.put(file, options)
+          .then(response => {
+            console.log('Image upload to S3 successful', response);
+
+            const eventInfo = Object.assign(
+              {},
+              this.state,
+              { userId: context.props.userId,
+                imageUrl: response.headers.Location
+              }
+            );
+
+            axios.post(baseUrl + '/api/createEvent', eventInfo)
+              .then(function (response) {
+                return axios.get(baseUrl + '/api/retrieveEvents')
+                .then(res => {
+                  context.props.addEvents(res.data);
+                })
+                .then(() => {
+                  context.props.toggleCreateEvent();
+                })
+                .catch(error => {
+                  console.log('Error while retrieving events:', error);
+                });
+              })
+              .catch(function (error) {
+                console.log('Error while creating event:', error);
+              });
+            })
+          .catch((err) => {
+              console.error("Failed to upload image to S3:", err);
+          });
+      })
+      .catch((err) => {
+        console.error('Error retrieving S3 credentials:', err);
+      });
+  }
 
   render() {
     const PickerItemIOS = PickerIOS.Item;
@@ -105,6 +175,13 @@ class CreateEventComponent extends Component {
                     />
                   ))}
                 </PickerIOS>
+                <Heading label="Event Image" />
+                <Button value="Choose Event Image" raised={true} onPress={this.pickEventImage} />
+                {this.state.eventImageUri ?
+                  <View style={styles.eventImageView}>
+                    <Image style={styles.eventImage} source={{uri: this.state.eventImageUri}} />
+                </View> : null}
+                <Text> </Text>
                 <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
                 <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
               </View>
@@ -138,6 +215,18 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     fontSize: 14,
   },
+  eventImageView: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  eventImage: {
+    width: 350,
+    height: 350,
+    justifyContent: 'space-around',
+    resizeMode: 'contain'
+  }
 });
 
 

@@ -3,6 +3,8 @@ import { AccessToken, GraphRequest, GraphRequestManager, LoginButton } from 'rea
 import { Button, StyleSheet, Text, View} from 'react-native';
 import axios from 'axios';
 
+const baseUrl = 'http://localhost:3000';
+
 class FBLogin extends Component {
 
   constructor(props) {
@@ -32,7 +34,8 @@ class FBLogin extends Component {
     if (error) { console.log('Error fetching data: ', error);
     } else {
       const context = this;
-      axios.post('http://localhost:3000/mobileFBLogin', result)
+
+      axios.post(baseUrl + '/mobileFBLogin', result)
       .then(function (response) {
         console.log(response.data);
         context.props.handleLoginSuccess(response.data);

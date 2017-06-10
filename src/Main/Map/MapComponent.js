@@ -9,6 +9,8 @@ import Drawer from './Drawer/DrawerContainer';
 import Promise from 'bluebird';
 import axios from 'axios';
 
+const baseUrl = 'http://warriors-community.herokuapp.com';
+
 class MapComponent extends Component {
 
   constructor(props) {
@@ -65,7 +67,7 @@ class MapComponent extends Component {
   }
 
   onRefresh() {
-    axios.get('http://warriors-community.herokuapp.com/api/retrieveEvents')
+    axios.get(baseUrl + '/api/retrieveEvents')
     .then(res => {
       this.props.addEvents(res.data);
     })
