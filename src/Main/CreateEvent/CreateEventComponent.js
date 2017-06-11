@@ -182,8 +182,8 @@ class CreateEventComponent extends Component {
                     <Image style={styles.eventImage} source={{uri: this.state.eventImageUri}} />
                 </View> : null}
                 <Text> </Text>
-                <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
-                <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
+                <Button text="" value="SUBMIT" raised={true} onPress={this.submitEvent} />
+                <Button text="" value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
               </View>
             </ScrollView>
            </View>

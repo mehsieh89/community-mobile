@@ -16,7 +16,7 @@ class LoadingComponent extends Component {
       } else {
         const { accessToken } = data;
         const infoRequest = new GraphRequest(
-          '/me?fields=email,name',
+          '/me?fields=email,name,picture.type(large)',
           { accessToken: accessToken },
           this._responseInfoCallback.bind(this),
         );
@@ -38,7 +38,6 @@ class LoadingComponent extends Component {
       const context = this;
       axios.post('http://localhost:3000/mobileFBLogin', result)
       .then(function (response) {
-        console.log(response.data);
         context.handleLoginSuccess = context.handleLoginSuccess.bind(context);
         context.handleLoginSuccess(response.data);
       })

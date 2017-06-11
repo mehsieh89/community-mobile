@@ -26,7 +26,7 @@ class DrawerContainer extends Component {
         onCancel={this.props.toggleDrawer}
         >
         <View style={{ alignItems: 'center' }}>
-          <Button title="User Profile" onPress={() => { console.log('pressed') }}/>
+          <Button title="My Profile" onPress={() => { console.log('pressed'); }}/>
           <LoginButton onLogoutFinished={this.handleLogout}/>
         </View>
       </MaterialDialog>

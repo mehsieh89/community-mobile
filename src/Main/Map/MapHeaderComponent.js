@@ -100,10 +100,10 @@ class MapHeader extends Component {
       </TextInput>
     )
 
-    let marginDiff = 440 - 20 * this.state.autoComplete.length;
+    let marginDiff = 430 - 20 * this.state.autoComplete.length;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{marginBottom: marginDiff, alignItems: 'center', positon: 'absolute'}}>
+        <View style={{marginBottom: marginDiff, alignItems: 'center'}}>
           <Toolbar
             leftElement="menu"
             onLeftElementPress={this.handleMenuClick}
