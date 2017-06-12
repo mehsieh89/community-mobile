@@ -7,6 +7,7 @@ import createEventReducer from './src/Main/CreateEvent/createEventReducer';
 import eventDetailsReducer from './src/Main/EventDetails/eventDetailsReducer';
 import drawerReducer from './src/Main/Map/Drawer/drawerReducer';
 import drawerReducerEL from './src/Main/EventList/Drawer/drawerReducer';
+import drawerReducerUP from './src/UserProfile/Drawer/drawerReducer';
 
 const allReducers = combineReducers({
   mainReducer: mainReducer,
@@ -15,7 +16,8 @@ const allReducers = combineReducers({
   createEventReducer: createEventReducer,
   eventDetailsReducer: eventDetailsReducer,
   drawerReducer: drawerReducer,
-  drawerReducerEL: drawerReducerEL
+  drawerReducerEL: drawerReducerEL,
+  drawerReducerUP: drawerReducerUP
 });
 
 const store = createStore(allReducers);

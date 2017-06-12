@@ -10,12 +10,19 @@ class DrawerContainer extends Component {
   constructor(props) {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleUserProfile = this.handleUserProfile.bind(this);
   }
 
   handleLogout() {
     this.props.toggleDrawer();
     const { navigate } = this.props.navigation;
     navigate('Login');
+  }
+
+  handleUserProfile() {
+    this.props.toggleDrawer();
+    const { navigate } = this.props.navigation;
+    navigate('UserProfile');
   }
 
   render() {
@@ -26,7 +33,7 @@ class DrawerContainer extends Component {
         onCancel={this.props.toggleDrawer}
         >
         <View style={{ alignItems: 'center' }}>
-          <Button title="User Profile" onPress={() => { console.log('pressed'); }}/>
+          <Button title="My Profile" onPress={this.handleUserProfile}/>
           <LoginButton onLogoutFinished={this.handleLogout}/>
         </View>
       </MaterialDialog>

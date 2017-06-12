@@ -5,6 +5,7 @@ import store from '../store';
 import Main from './Main/MainContainer';
 import Login from './Login/LoginContainer';
 import Loading from './Loading/LoadingContainer';
+import UserProfile from './UserProfile/UserProfileContainer';
 import { StackNavigator } from 'react-navigation';
 import { COLOR, ThemeProvider } from 'react-native-material-ui';
 
@@ -29,6 +30,7 @@ class Root extends Component {
       Loading: { screen: Loading },
       Main: { screen: Main },
       Login: { screen: Login },
+      UserProfile: { screen: UserProfile }
     });
 
     return (
