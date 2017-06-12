@@ -10,7 +10,6 @@ import Fade from '../Loading/Fade';
 
 const baseUrl = 'http://localhost:3000';
 
-
 class MainContainer extends Component {
   static navigationOptions = {
     header: null
