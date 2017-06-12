@@ -11,7 +11,7 @@ class EventListHeader extends Component {
   }
 
   handleMenuClick() {
-    this.props.toggleDrawer();
+    this.props.toggleELDrawer();
   }
 
   handleMapClick() {

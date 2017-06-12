@@ -176,14 +176,14 @@ class CreateEventComponent extends Component {
                   ))}
                 </PickerIOS>
                 <Heading label="Event Image" />
-                <Button value="Choose Event Image" raised={true} onPress={this.pickEventImage} />
+                <Button text="" value="Choose Event Image" raised={true} onPress={this.pickEventImage} />
                 {this.state.eventImageUri ?
                   <View style={styles.eventImageView}>
                     <Image style={styles.eventImage} source={{uri: this.state.eventImageUri}} />
                 </View> : null}
                 <Text> </Text>
-                <Button value="SUBMIT" raised={true} onPress={this.submitEvent} />
-                <Button value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
+                <Button text="" value="SUBMIT" raised={true} onPress={this.submitEvent} />
+                <Button text="" value="CANCEL" raised={true} onPress={this.props.toggleCreateEvent} />
               </View>
             </ScrollView>
            </View>

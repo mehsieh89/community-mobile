@@ -145,9 +145,9 @@ class MapComponent extends Component {
               {...this.props}
               onLocationChange={this.onLocationChange}
             />
-            <Button value="Locate User" raised={true} onPress={this.onLocateUser}/>
-            <Button value="Create Event" raised={true} onPress={this.onCreateEvent}/>
-            <Button value="Refresh" raised={true} onPress={this.onRefresh}/>
+            <Button text="" value="Locate User" raised={true} onPress={this.onLocateUser}/>
+            <Button text="" value="Create Event" raised={true} onPress={this.onCreateEvent}/>
+            <Button text="" value="Refresh" raised={true} onPress={this.onRefresh}/>
             <CreateEventContainer />
             <Drawer navigation={this.props.screenProps.navigation}/>
           </View>

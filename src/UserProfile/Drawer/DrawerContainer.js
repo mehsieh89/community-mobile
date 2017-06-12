@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Modal, Button } from 'react-native';
 import { MaterialDialog } from 'react-native-material-dialog';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { toggleELDrawer } from './drawerActions';
+import { toggleUPDrawer } from './drawerActions';
 import { LoginButton } from 'react-native-fbsdk';
 
 class DrawerContainer extends Component {
@@ -11,18 +11,25 @@ class DrawerContainer extends Component {
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleUserProfile = this.handleUserProfile.bind(this);
+    this.handleMain = this.handleMain.bind(this);
   }
 
   handleLogout() {
-    this.props.toggleELDrawer();
+    this.props.toggleUPDrawer();
     const { navigate } = this.props.navigation;
     navigate('Login');
   }
 
   handleUserProfile() {
-    this.props.toggleELDrawer();
+    this.props.toggleUPDrawer();
     const { navigate } = this.props.navigation;
     navigate('UserProfile');
+  }
+
+  handleMain() {
+    this.props.toggleUPDrawer();
+    const { goBack } = this.props.navigation;
+    goBack();
   }
 
   render() {
@@ -30,10 +37,10 @@ class DrawerContainer extends Component {
       <MaterialDialog
         title="Settings"
         visible={this.props.visible}
-        onCancel={this.props.toggleELDrawer}
+        onCancel={this.props.toggleUPDrawer}
         >
         <View style={{ alignItems: 'center' }}>
-          <Button title="My Profile" onPress={this.handleUserProfile}/>
+          <Button title="Main" onPress={this.handleMain}/>
           <LoginButton onLogoutFinished={this.handleLogout}/>
         </View>
       </MaterialDialog>
@@ -43,13 +50,13 @@ class DrawerContainer extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-    toggleELDrawer: toggleELDrawer
+    toggleUPDrawer: toggleUPDrawer
   }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const { drawerReducerEL } = state;
-  return { visible: drawerReducerEL.visible };
+  const { drawerReducerUP } = state;
+  return { visible: drawerReducerUP.visible };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DrawerContainer);

@@ -21,7 +21,7 @@ class FBLogin extends Component {
       .then((data) => {
         const { accessToken } = data;
         const infoRequest = new GraphRequest(
-          '/me?fields=email,name',
+          '/me?fields=email,name,picture.type(large)',
           { accessToken: accessToken },
           this._responseInfoCallback,
         );

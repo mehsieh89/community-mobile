@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { setCurrentEvent, disableButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventListComponent from './EventListComponent';
-import { toggleDrawer } from './Drawer/drawerActions';
+import { toggleELDrawer } from './Drawer/drawerActions';
 
 class EventListContainer extends Component{
 
@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentEvent: setCurrentEvent,
     disableButton: disableButton,
     setCurrentEventParticipants: setCurrentEventParticipants,
-    toggleDrawer: toggleDrawer
+    toggleELDrawer: toggleELDrawer
   }, dispatch);
 };
 

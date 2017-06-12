@@ -12,6 +12,7 @@ class MapHeader extends Component {
       searchText: '',
       autoComplete: [],
     };
+    this.handleInput = this.handleInput.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
     this.handleMenuClick = this.handleMenuClick.bind(this);
@@ -26,12 +27,10 @@ class MapHeader extends Component {
         searchText: text
       }));
     })
-    .then(() => {
-      this.handleInput(this.state.searchText)
-    });
+    .then(() => { this.handleInput(this.state.searchText)`` });
   }
 
-  handleSearch() {
+  handleInput() {
     const string = this.state.searchText.split(' ').join('+');
     axios.post(baseUrl + '/api/locationInput', { location: string })
     .then((res) => {
@@ -42,16 +41,9 @@ class MapHeader extends Component {
       return acArray;
     })
     .then((array) => {
-      this.setState({
-        autoComplete: array
-      })
+      this.setState({ autoComplete: array })
     })
-    .then(() => {
-      console.log(this.state.autoComplete);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch((err) => { console.log(err); })
   }
 
   handleSearch() {
@@ -68,9 +60,7 @@ class MapHeader extends Component {
         longitude: lng,
       })
     })
-    .catch((err) => {
-      console.log(err);
-    })
+    .catch((err) => { console.log(err); })
   }
 
   handleSelection(location) {
@@ -100,10 +90,10 @@ class MapHeader extends Component {
       </TextInput>
     )
 
-    let marginDiff = 440 - 20 * this.state.autoComplete.length;
+    let marginDiff = 430 - 20 * this.state.autoComplete.length;
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <View style={{marginBottom: marginDiff, alignItems: 'center', positon: 'absolute'}}>
+        <View style={{marginBottom: marginDiff, alignItems: 'center'}}>
           <Toolbar
             leftElement="menu"
             onLeftElementPress={this.handleMenuClick}
@@ -117,9 +107,9 @@ class MapHeader extends Component {
             }}/>
               {this.state.autoComplete.map((str, index) => {
                 return (
-                  <View style={{borderTopWidth: .5, borderLeftWidth: .5, borderRightWidth: .5,
+                  <View key={index} style={{borderTopWidth: .5, borderLeftWidth: .5, borderRightWidth: .5,
                   borderTopColor: '#999', borderRightColor: '#999', borderLeftColor: '#999'}}>
-                    <TouchableOpacity key={index} onPress={() => {this.handleSelection(str.formatted_address)}}
+                    <TouchableOpacity onPress={() => {this.handleSelection(str.formatted_address)}}
                       style={{height: 20, width: 350,
                         backgroundColor: 'white',
                       }}>
