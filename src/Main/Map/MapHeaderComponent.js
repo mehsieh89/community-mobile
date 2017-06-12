@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, TouchableWithoutFeedback, Keyb
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class MapHeader extends Component {
   constructor(props) {
