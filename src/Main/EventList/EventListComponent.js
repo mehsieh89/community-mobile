@@ -47,13 +47,6 @@ class Row extends React.Component {
     this.props.onEventClick(this.props.index);
     this.props.setCurrentEvent(this.props.index);
 
-    axios.post(baseUrl + '/api/retrieveParticipants', {
-      eventId: this.props.data.id,
-      userId: this.props.userId
-    })
-    .then(res => { this.props.setCurrentEventParticipants(res.data); })
-    .catch(err => { console.log(err); });
-
     axios.post(baseUrl + '/api/connectEventToProfile', {
       eventId: this.props.data.id,
       userId: this.props.userId
@@ -65,6 +58,14 @@ class Row extends React.Component {
       });
     })
     .catch(err => { console.log(err); });
+
+    axios.post(baseUrl + '/api/retrieveParticipants', {
+      eventId: this.props.data.id,
+      userId: this.props.userId
+    })
+    .then(res => { this.props.setCurrentEventParticipants(res.data); })
+    .catch(err => { console.log(err); });
+
   };
 
   render() {

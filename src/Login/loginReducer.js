@@ -6,7 +6,8 @@ const initialState = {
   email: '',
   phone: null,
   created_at: null,
-  updated_at: null
+  updated_at: null,
+  profile_picture: ''
 };
 
 export default function updateCurrrentUser(state=initialState, action) {

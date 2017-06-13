@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Text, View, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
-import { Button } from 'react-native-material-design';
+import { Button, Avatar } from 'react-native-material-design';
 import moment from 'moment';
 import axios from 'axios';
 
-const baseUrl = 'http://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 export default class EventDetails extends Component {
   constructor(props) {
@@ -35,19 +35,16 @@ export default class EventDetails extends Component {
       eventId: currentEvent.id,
       userId: this.props.userId
     })
-    .then(res => {
-      console.log(res.data);
-      this.props.disableButton({ likeDisabled: true });
-    })
+    .then(res => { this.props.disableButton({ likeDisabled: true }); })
     .catch(err => { console.log(err); });
   }
 
   render () {
-    let participants = this.props.eventDetailsReducer.participants.map(obj => obj.display);
+    let participants = this.props.eventDetailsReducer.participants;
+    console.log(participants);
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
     let parsedTime = moment(currentEvent.time).format('MMMM Do YYYY, h:mm a') + ' (' + moment(currentEvent.time).fromNow() + ')';
 
-    console.log(this.props.eventDetailsReducer.likeDisabled);
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View>
@@ -68,8 +65,16 @@ export default class EventDetails extends Component {
             {"\n"}
             Category: {currentEvent.category}
             {"\n"}
-            Participants: {participants.join(', ')}
           </Text>
+          {participants.map(participant => {
+            return (
+              <View style={{width: 100, height: 100}}>
+                <Text>Participants:</Text>
+                <Avatar image={<Image source={{uri: participant.profile_picture}} width={30} height={30}/>} size={50} />
+                <Text>{participant.display}</Text>
+              </View>
+            );
+          })}
           <Button
             value="LIKE"
             raised={true}

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Modal, Image, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import { Button } from 'react-native-material-design';
+import { ActionButton } from 'react-native-material-ui';
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import centerLocation from './mapActions';
 import CreateEventContainer from '../CreateEvent/CreateEventContainer';
@@ -9,7 +10,7 @@ import Drawer from './Drawer/DrawerContainer';
 import Promise from 'bluebird';
 import axios from 'axios';
 
-const baseUrl = 'http://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 class MapComponent extends Component {
 
@@ -145,9 +146,22 @@ class MapComponent extends Component {
               {...this.props}
               onLocationChange={this.onLocationChange}
             />
-            <Button text="" value="Locate User" raised={true} onPress={this.onLocateUser}/>
-            <Button text="" value="Create Event" raised={true} onPress={this.onCreateEvent}/>
-            <Button text="" value="Refresh" raised={true} onPress={this.onRefresh}/>
+            {/* <Button text="" value="Locate User" raised={true} onPress={this.onLocateUser}/> */}
+            {/* <Button text="" value="Create Event" raised={true} onPress={this.onCreateEvent}/> */}
+            {/* <Card style={{height: 30, width: 30, borderRadius: 15}}>
+              <Button text="" value="Refresh" raised={true} onPress={this.onRefresh}/>
+            </Card> */}
+            <View style={{ marginLeft: 350 }}>
+              <View style={actionButtonStyles.actionButton1}>
+                <ActionButton icon="add" style={actionButtonStyles} onPress={this.onCreateEvent}/>
+              </View>
+              <View style={actionButtonStyles.actionButton2}>
+                <ActionButton icon="location-searching" style={actionButtonStyles} onPress={this.onLocateUser}/>
+              </View>
+              <View style={actionButtonStyles.actionButton3}>
+                <ActionButton icon="refresh" style={actionButtonStyles} onPress={this.onRefresh}/>
+              </View>
+            </View>
             <CreateEventContainer />
             <Drawer navigation={this.props.screenProps.navigation}/>
           </View>
@@ -177,7 +191,21 @@ const styles = StyleSheet.create({
   },
   map: {
     ...StyleSheet.absoluteFillObject,
-  }
+  },
+});
+
+const actionButtonStyles = StyleSheet.create({
+  container: {
+    height: 40,
+    width: 40,
+    backgroundColor: 'white',
+  },
+  icon: {
+    color: '#5E35B1'
+  },
+  actionButton1: { marginBottom: 50, },
+  actionButton2: { marginBottom: 50, },
+  actionButton3: { marginBottom: 20, }
 });
 
 export default MapComponent;

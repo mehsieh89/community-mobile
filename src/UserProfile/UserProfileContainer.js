@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
 	  paddingTop: 0,
-    // backgroundColor:'#bbb'
+    backgroundColor:'#D1C4E9'
   },
   list: {
     flex: 1,
