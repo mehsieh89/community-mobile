@@ -17,7 +17,7 @@ import { Button } from 'react-native-material-design';
 import axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
 
-const baseUrl = 'http://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 class CreateEventComponent extends Component {
 

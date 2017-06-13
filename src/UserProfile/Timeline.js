@@ -11,7 +11,7 @@ class TimelineComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      events: [{time: 'dhwoehd', location: 'diuwdh', description: 'wehfdoeiw', title: 'hdoqiwhd', imageUrl: 'oeidhoidh'}],
+      events: [],
     };
     this.renderDetail = this.renderDetail.bind(this);
   }
