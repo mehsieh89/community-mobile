@@ -12,7 +12,7 @@ import axios from 'axios';
 import EventListHeader from './EventListHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 const styles = StyleSheet.create({
   row: {
@@ -85,18 +85,22 @@ class Row extends React.Component {
 }
 
 class EventListComponent extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isRefreshing: false,
-      loaded: 0
+      loaded: 0,
+      category: '',
     };
     // this._onClick = this._onClick.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
   }
 
+
+
   render() {
+    const categories = ['food', 'sports', 'outdoors', 'nightlife', 'games', 'other'];
+
     return (
       <View>
         <EventListHeader {...this.props}/>

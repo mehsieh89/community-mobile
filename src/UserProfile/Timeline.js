@@ -17,7 +17,7 @@ class TimelineComponent extends Component {
   }
 
   componentWillMount() {
-    axios.post('http://localhost:3000/api/retrieveUserEvents', { profileId: this.props.userId })
+    axios.post('https://warriors-community.herokuapp.com/api/retrieveUserEvents', { profileId: this.props.userId })
     .then((res) => {
       let parsed = res.data.map(entry => {
         let event = {};

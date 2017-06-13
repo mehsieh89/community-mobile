@@ -19,7 +19,7 @@ import axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
 import Spinner from 'react-native-loading-spinner-overlay';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class CreateEventComponent extends Component {
 
