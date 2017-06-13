@@ -6,16 +6,17 @@ import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} f
 import EventDetails from './EventDetailsPage';
 
 class EventDetailsContainer extends Component{
-  static navigationOptions = ({ navigation, screenProps }) => {
-    const onPressEventList = () => {
-      const { goBack } = navigation;
-      goBack();
-    }
-
-    return {
-      headerLeft: (<Button title="Event List" onPress={onPressEventList}></Button>)
-    };
-  }
+  // static navigationOptions = ({ navigation, screenProps }) => {
+  //   const onPressEventList = () => {
+  //     const { goBack } = navigation;
+  //     goBack();
+  //   }
+  //
+  //   return {
+  //     headerLeft: (<Button title="Event List" onPress={onPressEventList}></Button>)
+  //   };
+  // }
+  static navigationOptions = { header: null };
 
   render() {
     return (
