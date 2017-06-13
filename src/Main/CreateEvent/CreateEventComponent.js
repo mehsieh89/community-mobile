@@ -78,7 +78,6 @@ class CreateEventComponent extends Component {
       return;
     }
 
-
     if (this.state.eventImageUri) {
 
       const imageId = this.state.eventImageUri.split('id=')[1].split('&ext=')[0];
