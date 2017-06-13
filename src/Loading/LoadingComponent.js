@@ -6,6 +6,8 @@ import axios from 'axios';
 import updateCurrentUser from '../Login//loginActions';
 import { AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
+const baseUrl = 'http://localhost:3000';
+
 class LoadingComponent extends Component {
 
   componentDidMount() {
@@ -36,7 +38,7 @@ class LoadingComponent extends Component {
     if (error) { console.log('Error fetching data: ', error);
     } else {
       const context = this;
-      axios.post('http://localhost:3000/mobileFBLogin', result)
+      axios.post(baseUrl + '/mobileFBLogin', result)
       .then(function (response) {
         context.handleLoginSuccess = context.handleLoginSuccess.bind(context);
         context.handleLoginSuccess(response.data);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { Text, View, Image, StyleSheet, AlertIOS } from 'react-native';
 import { Avatar, Button, Toolbar } from 'react-native-material-ui';
 import moment from 'moment';
 import axios from 'axios';
@@ -24,7 +24,7 @@ export default class EventDetails extends Component {
     })
     .then(res => {
       console.log(res.data);
-      alert('You are going to ' + currentEvent.event_name + '!');
+      AlertIOS.alert('Attendance Confirmed', 'You are going to ' + currentEvent.event_name + '!');
       this.props.disableButton({ attendDisabled: true });
     })
     .catch(err => { console.log(err); });
