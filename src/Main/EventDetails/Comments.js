@@ -1,7 +1,9 @@
 import axios from 'axios';
-import { Button } from 'react-native-material-design';
+import { Button } from 'react-native-material-ui';
+import moment from 'moment';
 import React, { Component } from 'react';
-import { Text, TextInput, View, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { Text, TextInput, View, TouchableWithoutFeedback, Keyboard, StyleSheet, ScrollView } from 'react-native';
+
 const baseUrl = 'http://localhost:3000';
 
 class Comments extends Component {
@@ -49,14 +51,12 @@ class Comments extends Component {
   }
 
   handleSubmit() {
-    console.log('getting inside handleSubmit')
     axios.post(baseUrl + '/api/comments', {
       text: this.state.text,
       event_id: this.props.eventDetailsReducer.currentEventIndex,
       profile_id: this.props.userId
     })
     .then(() => {
-      console.log('handleSubmit was called - inside then statement')
       this.clearText();
     })
     .then(() => {
@@ -73,77 +73,93 @@ class Comments extends Component {
     });
   }
 
-  render() { // FIX ME
-    console.log('Props inside comments === ', this.props)
+  render() {
     return (
       <View>
-        <Text>
-            Comments go here!
-        </Text>
-          <TextInput
-            editable={true}
-            autoCorrect={false}
-            placeholder='Say something about this event...'
-            style={{height: 40, borderColor: 'gray', borderWidth: 1, backgroundColor: 'white',}}
-            onChangeText={this.handleChange}
-            value={this.state.text}
-          />
+        <TextInput
+          editable={true}
+          autoCorrect={false}
+          placeholder='Say something about this event...'
+          style={styles.textField}
+          onChangeText={this.handleChange}
+          value={this.state.text}
+        />
+        <View style={styles.button}>
+          {this.state.text === '' ?
           <Button
-            value='Comment'
             raised={true}
-            onPress={this.handleSubmit}
-          >
-          </Button>
-          <View>
-
-          </View>
+            disabled={true}
+            text="Comment"
+            style={styles.button}
+            >
+            </Button>
+            :
+            <Button
+              raised={true}
+              onPress={this.handleSubmit}
+              text="Comment"
+              style={styles.button}
+              >
+              </Button>
+            }
+        </View>
+        <View>
+          <ScrollView>
+             <View>
+              {this.state.comments.map(comment => {
+                return (
+                  <View style={styles.container}>
+                    <Text style={styles.username}>{comment.username} • <Text style={styles.time}>{moment(comment.createdAt).fromNow()}</Text></Text>
+                    <Text style={styles.comment}>{comment.comment}</Text>
+                  </View>
+                );
+              })}
+             </View>
+          </ScrollView>
+        </View>
       </View>
 
     );
   }
 }
 
-const styles = {
-  container: {
-    display: 'inline-block',
-    lineHeight: '16px',
-    borderColor: '#eee #ddd #bbb',
-    borderRadius: '5',
-    borderStyle: 'solid',
-    borderWidth: '1',
-    boxShadow: '0 1 3 rgba(0, 0, 0, 0.15)',
-    margin: '5',
-    padding: '20',
-    width: '673'
-  },
+const styles = StyleSheet.create({
   button: {
-    border: '1px solid #5E35B1',
-    borderRadius: '10px',
-    marginLeft: '18px',
-    float: 'right',
-    marginRight: '10',
-    marginTop: '10'
+    marginBottom: 5,
+    padding: 7
   },
-  inputField: {
-    borderColor: '#5E35B1',
-    width: '555',
-    marginTop: '10',
-    marginLeft: '7',
-    marginBottom: '10'
-  },
-  colLeft: {
-    float: 'left',
+  container: {
+    fontFamily: 'Roboto',
+    marginTop: 5,
+    marginBottom: 10,
+    borderColor: 'grey',
+    borderWidth: 0,
+    borderRadius: 3,
+    padding: 5,
+    backgroundColor: 'white'
   },
   comment: {
-    display: 'inline-block',
-    width: '560',
-    marginTop: '10',
-    wordWrap: 'normal',
+    marginTop: 5,
+  },
+  textField: {
+    height: 40,
+    borderColor: 'white',
+    borderWidth: 1,
+    backgroundColor: 'white',
+    padding: 7,
+    marginBottom: 10
   },
   time: {
-    float: 'right',
-    display: 'inline-block',
-  }
-};
+    textAlign: 'right',
+    fontWeight: 'normal'
+  },
+  username: {
+    fontFamily: 'Roboto',
+    fontSize: 15,
+    fontWeight: 'bold',
+  },
+});
+
+
 
 export default Comments;
