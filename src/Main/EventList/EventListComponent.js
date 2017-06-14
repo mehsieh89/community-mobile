@@ -9,6 +9,7 @@ import {
   View,
   Dimensions } from 'react-native';
 import axios from 'axios';
+import EventListOptionsBar from './EventListOptionsBar';
 import EventListHeader from './EventListHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
 
@@ -85,21 +86,26 @@ class Row extends React.Component {
 }
 
 class EventListComponent extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isRefreshing: false,
-      loaded: 0
+      loaded: 0,
+      category: '',
     };
     // this._onClick = this._onClick.bind(this);
     this._onRefresh = this._onRefresh.bind(this);
   }
 
+
+
   render() {
+    const categories = ['food', 'sports', 'outdoors', 'nightlife', 'games', 'other'];
+
     return (
       <View>
         <EventListHeader {...this.props}/>
+        <EventListOptionsBar {...this.props} />
         <Drawer navigation={this.props.screenProps.navigation}/>
         <ScrollView
           style={styles.scrollview}

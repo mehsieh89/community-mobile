@@ -27,11 +27,11 @@ class MapHeader extends Component {
         searchText: text
       }));
     })
-    .then(() => { this.handleInput(this.state.searchText)`` });
+    .then(() => { this.handleInput(this.state.searchText) });
   }
 
-  handleInput() {
-    const string = this.state.searchText.split(' ').join('+');
+  handleInput(location) {
+    const string = location.split(' ').join('+');
     axios.post(baseUrl + '/api/locationInput', { location: string })
     .then((res) => {
       let acArray = [];
