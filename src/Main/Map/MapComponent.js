@@ -19,8 +19,6 @@ class MapComponent extends Component {
     this.map = null;
     this.state = {
       mapRegion: null,
-      // lastLat: null,
-      // lastLong: null,
       initialPosition: null,
       lastPosition: null,
       latitudeDelta: 0.0922,
@@ -112,7 +110,6 @@ class MapComponent extends Component {
                 latitudeDelta: this.state.latitudeDelta,
                 longitudeDelta: this.state.longitudeDelta,
               }}
-              // onPress={this.handleMapPress}
             >
             {this.props.allEvents.map((marker, index) => (
               <MapView.Marker
@@ -122,7 +119,6 @@ class MapComponent extends Component {
                   longitude:  Number(marker.lng)
                 }}
                 pinColor='green'
-                // onPress={() => this.handleMarkerPress(marker, index)}
                 onCalloutPress={this.handleCalloutPress}
                 >
                   <MapView.Callout onPress={() => this.handleCalloutPress(marker, index)}
@@ -146,11 +142,6 @@ class MapComponent extends Component {
               {...this.props}
               onLocationChange={this.onLocationChange}
             />
-            {/* <Button text="" value="Locate User" raised={true} onPress={this.onLocateUser}/> */}
-            {/* <Button text="" value="Create Event" raised={true} onPress={this.onCreateEvent}/> */}
-            {/* <Card style={{height: 30, width: 30, borderRadius: 15}}>
-              <Button text="" value="Refresh" raised={true} onPress={this.onRefresh}/>
-            </Card> */}
             <View style={{ marginLeft: 350 }}>
               <View style={actionButtonStyles.actionButton1}>
                 <ActionButton icon="add" style={actionButtonStyles} onPress={this.onCreateEvent}/>

@@ -24,6 +24,27 @@ const uiTheme = {
   },
 };
 
+const FadeTransition = (index, position) => {
+  const inputRange = [index - 1, index, index + 1];
+  const opacity = position.interpolate({
+    inputRange,
+    outputRange: [0, 1, 1],
+  });
+  return {
+    opacity
+  };
+};
+
+const TransitionConfiguration = () => {
+  return {
+    screenInterpolator: (sceneProps) => {
+      const {position, scene} = sceneProps;
+      const {index, route} = scene;
+      return FadeTransition(index, position);
+    }
+  }
+};
+
 class Root extends Component {
   render() {
     const RootNav = StackNavigator({
@@ -31,7 +52,10 @@ class Root extends Component {
       Main: { screen: Main },
       Login: { screen: Login },
       UserProfile: { screen: UserProfile }
-    });
+    },
+    {
+      transitionConfig: TransitionConfiguration
+  });
 
     return (
       <Provider store={store}>

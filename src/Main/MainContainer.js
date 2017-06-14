@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import Main from './MainComponent';
+import { View, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { addEvents } from './mainActions';
 import { toggleCreateEvent } from './CreateEvent/createEventActions';
+import Fade from '../Loading/Fade';
+
 const baseUrl = 'http://localhost:3000';
 
 class MainContainer extends Component {
@@ -27,8 +30,14 @@ class MainContainer extends Component {
   }
 
   render() {
+    const ScreenHeight = Dimensions.get("window").height;
+    const ScreenWidth = Dimensions.get("window").width;
     return (
-      <Main {...this.props} />
+      <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <Fade style={{width: ScreenWidth, height: ScreenHeight, backgroundColor: 'powderblue'}}>
+          <Main {...this.props} />
+        </Fade>
+      </View>
     );
   }
 }
