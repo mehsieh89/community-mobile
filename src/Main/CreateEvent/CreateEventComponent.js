@@ -178,7 +178,7 @@ class CreateEventComponent extends Component {
     const categories = ['Food', 'Sports', 'Outdoors', 'Nightlife', 'Games', 'Other'];
 
     return (
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} >
         <View style={{marginTop: 22}}>
           <Modal
             animationType={"slide"}
@@ -188,7 +188,7 @@ class CreateEventComponent extends Component {
             >
            <View style={{marginTop: 22}}>
              <Spinner visible={this.state.loading}/>
-             <ScrollView>
+             <ScrollView style={{padding: 20}}>
               <View>
                 <TextField
                   label='Event Name'
@@ -201,12 +201,10 @@ class CreateEventComponent extends Component {
                   onChangeText={ (location) => this.setState({ location }) }
                 />
 
-
                 <Heading label="Date & Time" />
                 <DatePickerIOS
                   date={this.state.dateTime}
                   mode="datetime"
-                  // timeZoneOffsetInMinutes={this.state.timeZoneOffsetInHours * 60}
                   minimumDate={new Date()}
                   onDateChange={this.onDateChange}
                 />

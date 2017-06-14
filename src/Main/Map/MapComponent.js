@@ -10,7 +10,8 @@ import Drawer from './Drawer/DrawerContainer';
 import Promise from 'bluebird';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
+
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class MapComponent extends Component {
 
@@ -81,6 +82,26 @@ class MapComponent extends Component {
 
   handleCalloutPress(marker, index) {
     this.props.setCurrentEvent(index);
+
+    axios.post(baseUrl + '/api/connectEventToProfile', {
+      eventId: this.props.allEvents[index].id,
+      userId: this.props.userId
+    })
+    .then(res => {
+      this.props.disableButton({
+        attendDisabled: !!res.data.is_attending,
+        likeDisabled: !!res.data.liked
+      });
+    })
+    .catch(err => { console.log(err); });
+
+    axios.post(baseUrl + '/api/retrieveParticipants', {
+      eventId: this.props.allEvents[index].id,
+      userId: this.props.userId
+    })
+    .then(res => { this.props.setCurrentEventParticipants(res.data); })
+    .catch(err => { console.log(err); });
+
     const { navigate } = this.props.navigation;
     navigate('EventDetails');
   }
@@ -130,9 +151,9 @@ class MapComponent extends Component {
                     <View style={{position: 'relative', left: 75, bottom: 65}}>
                       <Text style={{width: 130}}>
                         Name: {marker.event_name}
-                        {"\n"}
-                        Likes: {'5'}
                       </Text>
+                      <Image source={{uri: "https://image.flaticon.com/icons/png/128/148/148836.png"}} style={{width: 20, height: 20}}/>
+                      <Text style={{width: 130, position: 'relative', left: 25, bottom: 19}}>{marker.like_count}</Text>
                     </View>
                   </MapView.Callout>
               </MapView.Marker>

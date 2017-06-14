@@ -5,7 +5,7 @@ import Map from './MapComponent';
 import { connect } from 'react-redux';
 import { centerLocation, userLocation } from './mapActions';
 import { addEvents } from './../mainActions';
-import { setCurrentEvent, toggleEventDetails } from './../EventDetails/eventDetailsActions'
+import { setCurrentEvent, toggleEventDetails, disableButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions'
 import { toggleDrawer } from './Drawer/drawerActions';
 
 class MapContainer extends Component {
@@ -25,14 +25,17 @@ const mapDispatchToProps = (dispatch) => {
     userLocation: userLocation,
     setCurrentEvent: setCurrentEvent,
     toggleEventDetails: toggleEventDetails,
-    toggleDrawer: toggleDrawer
+    toggleDrawer: toggleDrawer,
+    disableButton: disableButton,
+    setCurrentEventParticipants: setCurrentEventParticipants,
   }, dispatch);
 }
 
 const mapStateToProps = (state) => {
-  const { mainReducer, mapReducer, eventDetailsReducer } = state;
+  const { mainReducer, mapReducer, eventDetailsReducer, loginReducer } = state;
 
   return {
+    userId: loginReducer.id,
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
     userCoords: mapReducer.userCoords,
