@@ -5,6 +5,7 @@ import { setCurrentEvent, disableButton, setCurrentEventParticipants } from './.
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventListComponent from './EventListComponent';
 import { toggleELDrawer } from './Drawer/drawerActions';
+import { addEvents } from '../mainActions';
 
 class EventListContainer extends Component{
 
@@ -43,7 +44,8 @@ const mapDispatchToProps = (dispatch) => {
     setCurrentEvent: setCurrentEvent,
     disableButton: disableButton,
     setCurrentEventParticipants: setCurrentEventParticipants,
-    toggleELDrawer: toggleELDrawer
+    toggleELDrawer: toggleELDrawer,
+    addEvents: addEvents
   }, dispatch);
 };
 

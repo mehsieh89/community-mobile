@@ -65,7 +65,6 @@ class Row extends React.Component {
     })
     .then(res => { this.props.setCurrentEventParticipants(res.data); })
     .catch(err => { console.log(err); });
-
   };
 
   render() {
@@ -109,11 +108,11 @@ class EventListComponent extends Component {
             <RefreshControl
               refreshing={this.state.isRefreshing}
               onRefresh={this._onRefresh}
-              tintColor="#ff0000"
+              tintColor="#3EB1E0"
               title="Loading..."
-              titleColor="#00ff00"
-              colors={['#ff0000', '#00ff00', '#0000ff']}
-              progressBackgroundColor="#ffff00"
+              titleColor="#3A3F3F"
+              colors={['#3EB1E0', '#3A3F3F', '#C4D4CC']}
+              progressBackgroundColor="#C4D4CC"
             />
           }>
           {this.props.allEvents.map((row, index) => {
@@ -131,17 +130,23 @@ class EventListComponent extends Component {
   }
 
   _onRefresh() {
+    const context = this;
     this.setState({isRefreshing: true});
-    setTimeout(() => {
-      // prepend 10 items
-      const rowData = ['newtest', 'newtest', 'newtest', 'newtest', 'newtest'];
 
-      this.setState({
-        loaded: this.state.loaded + 10,
-        isRefreshing: false,
-        rowData: rowData,
+    axios.get(baseUrl + '/api/retrieveEvents')
+      .then((res) => {
+        this.props.addEvents(res.data);
+      })
+      .then(() => {
+        setTimeout(() => {
+          context.setState({
+            isRefreshing: false
+          });
+        }, 2000);
+      })
+      .catch((err) => {
+        console.log('Error occurred while retrieving events:', err);
       });
-    }, 5000);
   };
 }
 
