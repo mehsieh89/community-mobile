@@ -85,13 +85,13 @@ class EventListOptionsBar extends Component {
       if (this.state.showFilterOptions) { return (
         <View style={{flexDirection: 'row', flex: 1}}>
           <Button raised text="Filter By" onPress={this.handleFilterBy} style={textButton} upperCase={false}/>
-          <Button raised icon='all-inclusive' text="" onPress={() => this.handleCategorySelection('All')} style={iconButton}/>
+          <Button raised icon='public' text="" onPress={() => this.handleCategorySelection('All')} style={iconButton}/>
           <Button raised icon='local-dining' text="" onPress={() => this.handleCategorySelection('Food')} style={iconButton}/>
           <Button raised icon='pool' text="" onPress={() => this.handleCategorySelection('Sports')} style={iconButton}/>
           <Button raised icon='nature-people' text='' onPress={() => this.handleCategorySelection('Outdoors')} style={iconButton}/>
           <Button raised icon='local-bar' text="" onPress={() => this.handleCategorySelection('Nightlife')} style={iconButton}/>
           <Button raised icon='videogame-asset' text="" onPress={() => this.handleCategorySelection('Games')} style={iconButton}/>
-          <Button raised icon='help' text="" onPress={() => this.handleCategorySelection('Other')} style={iconButton}/>
+          <Button raised icon='more-horiz' text="" onPress={() => this.handleCategorySelection('Other')} style={iconButton}/>
         </View>
       )} else { return (
         <View>
