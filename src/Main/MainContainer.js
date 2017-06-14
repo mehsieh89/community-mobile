@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { addEvents } from './mainActions';
 import { toggleCreateEvent } from './CreateEvent/createEventActions';
-const baseUrl = 'https://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 class MainContainer extends Component {
   static navigationOptions = {

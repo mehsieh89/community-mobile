@@ -10,7 +10,7 @@ import Drawer from './Drawer/DrawerContainer';
 import Promise from 'bluebird';
 import axios from 'axios';
 
-const baseUrl = 'https://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 class MapComponent extends Component {
 

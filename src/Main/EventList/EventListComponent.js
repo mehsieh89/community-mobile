@@ -13,7 +13,7 @@ import EventListOptionsBar from './EventListOptionsBar';
 import EventListHeader from './EventListHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
 
-const baseUrl = 'https://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 const styles = StyleSheet.create({
   row: {

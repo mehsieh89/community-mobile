@@ -4,7 +4,7 @@ import { Avatar, Button, Toolbar } from 'react-native-material-ui';
 import moment from 'moment';
 import axios from 'axios';
 
-const baseUrl = 'https://warriors-community.herokuapp.com';
+const baseUrl = 'http://localhost:3000';
 
 export default class EventDetails extends Component {
 
