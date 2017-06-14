@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet, AlertIOS } from 'react-native';
+import { Text, View, Image, StyleSheet, AlertIOS, ScrollView } from 'react-native';
 import { Avatar, Button, Toolbar } from 'react-native-material-ui';
 import moment from 'moment';
 import axios from 'axios';
+import Comments from './Comments';
 
 const baseUrl = 'http://localhost:3000';
 
@@ -53,43 +54,46 @@ export default class EventDetails extends Component {
 
     return (
       <View>
-        <View style={{ marginTop: 30, marginBottom: 20, alignItems: 'center' }}>
-          <Toolbar
-            leftElement="navigate-before"
-            onLeftElementPress={this.handleGoBack}
-            centerElement="Event List"
-            style={{
-              leftElement: { color: '#777'},
-              titleText: { color: '#777', fontSize: 14 },
-            }}
-          />
-        </View>
-        <View style={styles.container}>
-          <View style={{alignItems: 'center'}}>
-            <Image source={{uri: currentEvent.image}} style={{width: 200, height:200, borderRadius: 100}}/>
+        <ScrollView>
+          <View style={{ marginTop: 30, marginBottom: 20, alignItems: 'center' }}>
+            <Toolbar
+              leftElement="navigate-before"
+              onLeftElementPress={this.handleGoBack}
+              centerElement="Event List"
+              style={{
+                leftElement: { color: '#777'},
+                titleText: { color: '#777', fontSize: 14 },
+              }}
+            />
           </View>
-          <View style={{marginTop: 20, marginLeft: 30}}>
-            <Text style={styles.bold}>Name: <Text style={styles.text}>{currentEvent.event_name} {"\n"}</Text></Text>
-            <Text style={styles.bold}>Time: <Text style={styles.text}>{parsedTime} {"\n"}</Text></Text>
-            <Text style={styles.bold}>Location: <Text style={styles.text}>{currentEvent.location} {"\n"}</Text></Text>
-            <Text style={styles.bold}>Description: <Text style={styles.text}>{currentEvent.description} {"\n"}</Text></Text>
-            <Text style={styles.bold}>Category: <Text style={styles.text}>{currentEvent.category}{"\n"}</Text></Text>
+          <View style={styles.container}>
+            <View style={{alignItems: 'center'}}>
+              <Image source={{uri: currentEvent.image}} style={{width: 200, height:200, borderRadius: 100}}/>
+            </View>
+            <View style={{marginTop: 20, marginLeft: 30}}>
+              <Text style={styles.bold}>Name: <Text style={styles.text}>{currentEvent.event_name} {"\n"}</Text></Text>
+              <Text style={styles.bold}>Time: <Text style={styles.text}>{parsedTime} {"\n"}</Text></Text>
+              <Text style={styles.bold}>Location: <Text style={styles.text}>{currentEvent.location} {"\n"}</Text></Text>
+              <Text style={styles.bold}>Description: <Text style={styles.text}>{currentEvent.description} {"\n"}</Text></Text>
+              <Text style={styles.bold}>Category: <Text style={styles.text}>{currentEvent.category}{"\n"}</Text></Text>
+            </View>
+            {participants.map(participant => {
+              return (
+                <View style={{width: 100, height: 100, marginLeft: 30}}>
+                  <Text style={styles.bold}>Participants:</Text>
+                  <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
+                </View>
+              );
+            })}
+            <Button raised text="LIKE" style={{container: {width: 150, position: 'relative', left: 28}}}
+              onPress={this.handleLike}
+              disabled={this.props.eventDetailsReducer.likeDisabled}/>
+            <Button raised text="ATTEND" style={{container: {width: 150, position: 'relative', left: 193, bottom: 36}}}
+              onPress={this.handleAttend}
+              disabled={this.props.eventDetailsReducer.attendDisabled}/>
+            <Comments {...this.props}/>
           </View>
-          {participants.map(participant => {
-            return (
-              <View style={{width: 100, height: 100, marginLeft: 30}}>
-                <Text style={styles.bold}>Participants:</Text>
-                <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
-              </View>
-            );
-          })}
-          <Button raised text="LIKE" style={{container: {width: 150, position: 'relative', left: 15}}}
-            onPress={this.handleLike}
-            disabled={this.props.eventDetailsReducer.likeDisabled}/>
-          <Button raised text="ATTEND" style={{container: {width: 150, position: 'relative', left: 180, bottom: 36}}}
-            onPress={this.handleAttend}
-            disabled={this.props.eventDetailsReducer.attendDisabled}/>
-        </View>
+        </ScrollView>
       </View>
     )
   }
