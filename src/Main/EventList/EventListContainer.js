@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
   return {
     allEvents: mainReducer.allEvents,
     coords: mapReducer.coords,
+    userCoords: mapReducer.userCoords,
     eventDetailsReducer: eventDetailsReducer,
     userId: loginReducer.id,
   };
@@ -41,6 +42,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
+    addEvents: addEvents,
     setCurrentEvent: setCurrentEvent,
     disableButton: disableButton,
     setCurrentEventParticipants: setCurrentEventParticipants,

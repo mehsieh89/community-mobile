@@ -156,7 +156,7 @@ class MapComponent extends Component {
                 <ActionButton icon="add" style={actionButtonStyles} onPress={this.onCreateEvent}/>
               </View>
               <View style={actionButtonStyles.actionButton2}>
-                <ActionButton icon="location-searching" style={actionButtonStyles} onPress={this.onLocateUser}/>
+                <ActionButton icon="gps-fixed" style={actionButtonStyles} onPress={this.onLocateUser}/>
               </View>
               <View style={actionButtonStyles.actionButton3}>
                 <ActionButton icon="refresh" style={actionButtonStyles} onPress={this.onRefresh}/>
@@ -201,7 +201,7 @@ const actionButtonStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    color: '#5E35B1'
+    color: '#3EB1E0'
   },
   actionButton1: { marginBottom: 50, },
   actionButton2: { marginBottom: 50, },

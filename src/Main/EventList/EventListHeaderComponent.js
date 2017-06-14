@@ -21,7 +21,7 @@ class EventListHeader extends Component {
 
   render() {
     return(
-      <View style={{ marginTop: 30, marginBottom: 20, alignItems: 'center' }}>
+      <View style={{ marginTop: 30, marginBottom: 2, alignItems: 'center' }}>
         <Toolbar
           leftElement="menu"
           onLeftElementPress={this.handleMenuClick}

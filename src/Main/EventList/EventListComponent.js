@@ -9,6 +9,7 @@ import {
   View,
   Dimensions } from 'react-native';
 import axios from 'axios';
+import EventListOptionsBar from './EventListOptionsBar';
 import EventListHeader from './EventListHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
 
@@ -104,6 +105,7 @@ class EventListComponent extends Component {
     return (
       <View>
         <EventListHeader {...this.props}/>
+        <EventListOptionsBar {...this.props} />
         <Drawer navigation={this.props.screenProps.navigation}/>
         <ScrollView
           style={styles.scrollview}
