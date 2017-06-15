@@ -61,8 +61,8 @@ export default class EventDetails extends Component {
               onLeftElementPress={this.handleGoBack}
               centerElement="Event List"
               style={{
-                leftElement: { color: '#777'},
-                titleText: { color: '#777', fontSize: 14 },
+                leftElement: { color: '#31575B'},
+                titleText: { color: '#31575B', fontSize: 14 },
               }}
             />
           </View>
@@ -70,27 +70,31 @@ export default class EventDetails extends Component {
             <View style={{alignItems: 'center'}}>
               <Image source={{uri: currentEvent.image}} style={{width: 200, height:200, borderRadius: 100}}/>
             </View>
-            <View style={{marginTop: 20, marginLeft: 30}}>
+            <View style={{marginTop: 20}}>
               <Text style={styles.bold}>Name: <Text style={styles.text}>{currentEvent.event_name} {"\n"}</Text></Text>
               <Text style={styles.bold}>Time: <Text style={styles.text}>{parsedTime} {"\n"}</Text></Text>
               <Text style={styles.bold}>Location: <Text style={styles.text}>{currentEvent.location} {"\n"}</Text></Text>
               <Text style={styles.bold}>Description: <Text style={styles.text}>{currentEvent.description} {"\n"}</Text></Text>
               <Text style={styles.bold}>Category: <Text style={styles.text}>{currentEvent.category}{"\n"}</Text></Text>
+              <Text style={styles.bold}>Participants:</Text>
+              {participants.map(participant => {
+                return (
+                  <View style={{width: 60, height: 60, marginTop: 5, marginHorizontal: 3}}>
+                    <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
+                  </View>
+                );
+              })}
             </View>
-            {participants.map(participant => {
-              return (
-                <View style={{width: 100, height: 100, marginLeft: 30}}>
-                  <Text style={styles.bold}>Participants:</Text>
-                  <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
-                </View>
-              );
-            })}
-            <Button raised text="LIKE" style={{container: {width: 150, position: 'relative', left: 28}}}
-              onPress={this.handleLike}
-              disabled={this.props.eventDetailsReducer.likeDisabled}/>
-            <Button raised text="ATTEND" style={{container: {width: 150, position: 'relative', left: 193, bottom: 36}}}
-              onPress={this.handleAttend}
-              disabled={this.props.eventDetailsReducer.attendDisabled}/>
+            <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20, marginTop: 10 }}>
+              <Button raised text='LIKE'
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                onPress={this.handleLike}
+                disabled={this.props.eventDetailsReducer.likeDisabled}/>
+              <Button raised text='ATTEND'
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                onPress={this.handleAttend}
+                disabled={this.props.eventDetailsReducer.attendDisabled}/>
+            </View>
             <Comments {...this.props} currentEvent={this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex]}/>
           </View>
         </ScrollView>
@@ -101,18 +105,19 @@ export default class EventDetails extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: 20
+    marginHorizontal: 20,
+    alignItems: 'center',
   },
   text: {
     fontFamily: 'Roboto',
     fontSize: 15,
-    color: '#777',
+    color: '#31575B',
     fontWeight: 'normal',
   },
   bold: {
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#777'
+    color: '#C22B33'
   }
 });

@@ -192,7 +192,7 @@ const actionButtonStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    color: '#3EB1E0'
+    color: '#C22B33'
   },
   actionButton1: { marginBottom: 50, },
   actionButton2: { marginBottom: 50, },

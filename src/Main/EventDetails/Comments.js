@@ -91,7 +91,7 @@ class Comments extends Component {
               raised={true}
               disabled={true}
               text="Comment"
-              style={styles.button}
+              style={{container: {width: 180}}}
               >
               </Button>
               :
@@ -99,7 +99,7 @@ class Comments extends Component {
                 raised={true}
                 onPress={this.handleSubmit}
                 text="Comment"
-                style={styles.button}
+                style={{container: {backgroundColor: '#C22B33', width: 180}, text: {color: 'white'}}}
                 >
                 </Button>
               }
@@ -127,7 +127,8 @@ class Comments extends Component {
 const styles = StyleSheet.create({
   button: {
     marginBottom: 5,
-    padding: 7
+    padding: 7,
+    alignItems: 'center',
   },
   container: {
     fontFamily: 'Roboto',
@@ -141,6 +142,7 @@ const styles = StyleSheet.create({
   },
   comment: {
     marginTop: 5,
+    color: '#31575B',
   },
   textField: {
     height: 40,
@@ -148,7 +150,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     backgroundColor: 'white',
     padding: 7,
-    marginBottom: 10
+    marginBottom: 10,
+    width: 345,
+    color: '#31575B'
   },
   time: {
     textAlign: 'right',
@@ -158,6 +162,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 'bold',
+    color: '#C22B33',
   },
 });
 

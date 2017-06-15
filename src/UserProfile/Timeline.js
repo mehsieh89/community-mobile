@@ -73,10 +73,12 @@ class TimelineComponent extends Component {
     return (
       <View style={styles.container}>
         <Timeline
+          lineColor='#C22B33'
+          circleColor='#C22B33'
           data={this.state.events}
           innerCircle={'dot'}
           timeContainerStyle={{width: 77 }}//, marginTop: 40}}
-          timeStyle={{textAlign: 'center'}} //backgroundColor: '#126129', color: 'white', padding: 5, borderRadius: 13}}
+          timeStyle={{textAlign: 'center', color: '#31575B'}} //backgroundColor: '#126129', color: 'white', padding: 5, borderRadius: 13}}
           renderDetail={this.renderDetail}
           // options={{style:{paddingTop:7}}}
         />
@@ -97,7 +99,8 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize:16,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: '#31575B'
   },
   descriptionContainer:{
     flexDirection: 'row',
@@ -114,7 +117,7 @@ const styles = StyleSheet.create({
   },
   textLocation: {
     marginLeft: 10,
-    color: 'gray',
+    color: '#31575B',
     fontWeight: 'bold'
   }
 });
