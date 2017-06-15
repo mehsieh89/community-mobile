@@ -101,9 +101,11 @@ class EventListComponent extends Component {
 
   render() {
     const categories = ['food', 'sports', 'outdoors', 'nightlife', 'games', 'other'];
+    const ScreenHeight = Dimensions.get("window").height;
+    const ScreenWidth = Dimensions.get("window").width;
 
     return (
-      <View>
+      <View style={{width: ScreenWidth, height: ScreenHeight}}>
         <EventListHeader {...this.props}/>
         <EventListOptionsBar {...this.props} />
         <Drawer navigation={this.props.screenProps.navigation}/>
