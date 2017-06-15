@@ -175,7 +175,7 @@ class CreateEventComponent extends Component {
 
   render() {
     const PickerItemIOS = PickerIOS.Item;
-    const categories = ['food', 'sports', 'outdoors', 'nightlife', 'games', 'other'];
+    const categories = ['Food', 'Sports', 'Outdoors', 'Nightlife', 'Games', 'Other'];
 
     return (
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
