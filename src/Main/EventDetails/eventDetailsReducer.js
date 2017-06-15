@@ -1,8 +1,8 @@
 const initialState = {
   currentEventIndex: 0,
   participants: [],
-  attendDisabled: false,
-  likeDisabled: false
+  isAttendingEvent: false,
+  hasLikedEvent: false
 };
 
 export default function(state = initialState, action) {
@@ -13,7 +13,7 @@ export default function(state = initialState, action) {
     return Object.assign({}, state, { participants: action.payload });
   }
 
-  if (action.type === 'DISABLE_BUTTON') {
+  if (action.type === 'UPDATE_BUTTON') {
     return Object.assign({}, state, action.payload);
   }
 

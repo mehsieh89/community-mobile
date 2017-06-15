@@ -135,7 +135,6 @@ const mapStateToProps = (state) => {
 //     toggleEventDetails: toggleEventDetails,
 //     setCurrentEvent: setCurrentEvent,
 //     setCurrentEventParticipants: setCurrentEventParticipants,
-//     disableButton: disableButton
 //   }, dispatch);
 // };
 

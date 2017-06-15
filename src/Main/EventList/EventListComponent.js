@@ -57,9 +57,9 @@ class Row extends React.Component {
       userId: this.props.userId
     })
     .then(res => {
-      this.props.disableButton({
-        attendDisabled: !!res.data.is_attending,
-        likeDisabled: !!res.data.liked
+      this.props.updateButton({
+        isAttendingEvent: !!res.data.is_attending,
+        hasLikedEvent: !!res.data.liked
       });
     })
     .catch(err => { console.log(err); });
@@ -136,7 +136,7 @@ class EventListComponent extends Component {
               userId={this.props.userId}
               setCurrentEvent={this.props.setCurrentEvent}
               setCurrentEventParticipants={this.props.setCurrentEventParticipants}
-              disableButton={this.props.disableButton}
+              updateButton={this.props.updateButton}
               onEventClick={this.props.onEventClick}
             />;
           })}

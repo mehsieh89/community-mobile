@@ -12,7 +12,9 @@ export default class EventDetails extends Component {
   constructor(props) {
     super(props);
     this.handleLike = this.handleLike.bind(this);
+    this.handleUnlike = this.handleUnlike.bind(this);
     this.handleAttend = this.handleAttend.bind(this);
+    this.handleUnattend = this.handleUnattend.bind(this);
     this.handleGoBack = this.handleGoBack.bind(this);
   }
 
@@ -26,7 +28,22 @@ export default class EventDetails extends Component {
     .then(res => {
       console.log(res.data);
       AlertIOS.alert('Attendance Confirmed', 'You are going to ' + currentEvent.event_name + '!');
-      this.props.disableButton({ attendDisabled: true });
+      this.props.updateButton({ isAttendingEvent: true });
+    })
+    .catch(err => { console.log(err); });
+  }
+
+  handleUnattend() {
+    let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
+
+    axios.post(baseUrl + '/api/unattendEvent', {
+      eventId: currentEvent.id,
+      userId: this.props.userId
+    })
+    .then(res => {
+      console.log(res.data);
+      AlertIOS.alert('Attendance Canceled', 'You are no longer going to ' + currentEvent.event_name + '!');
+      this.props.updateButton({ isAttendingEvent: false });
     })
     .catch(err => { console.log(err); });
   }
@@ -38,7 +55,18 @@ export default class EventDetails extends Component {
       eventId: currentEvent.id,
       userId: this.props.userId
     })
-    .then(res => { this.props.disableButton({ likeDisabled: true }); })
+    .then(res => { this.props.updateButton({ hasLikedEvent: true }); })
+    .catch(err => { console.log(err); });
+  }
+
+  handleUnlike() {
+    let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
+
+    axios.post(baseUrl + '/api/unlikeEvent', {
+      eventId: currentEvent.id,
+      userId: this.props.userId
+    })
+    .then(res => { this.props.updateButton({ hasLikedEvent: false }); })
     .catch(err => { console.log(err); });
   }
 
@@ -85,14 +113,16 @@ export default class EventDetails extends Component {
               })}
             </View>
             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20, marginTop: 10 }}>
-              <Button raised text='LIKE'
-                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#31575B'}, text: {color: 'white'}}}
-                onPress={this.handleLike}
-                disabled={this.props.eventDetailsReducer.likeDisabled}/>
-              <Button raised text='ATTEND'
-                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#31575B'}, text: {color: 'white'}}}
-                onPress={this.handleAttend}
-                disabled={this.props.eventDetailsReducer.attendDisabled}/>
+              <Button
+                raised text={this.props.eventDetailsReducer.hasLikedEvent ? 'UNLIKE' : 'LIKE'}
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                onPress={this.props.eventDetailsReducer.hasLikedEvent ? this.handleUnlike : this.handleLike}
+              />
+              <Button
+                raised text={this.props.eventDetailsReducer.isAttendingEvent ? 'UNATTEND' : 'ATTEND'}
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                onPress={this.props.eventDetailsReducer.isAttendingEvent ? this.handleUnattend : this.handleAttend}
+              />
             </View>
             <Comments {...this.props} currentEvent={this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex]}/>
           </View>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentEvent, disableButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions';
+import { setCurrentEvent, updateButton, setCurrentEventParticipants } from './../EventDetails/eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventListComponent from './EventListComponent';
 import { toggleELDrawer } from './Drawer/drawerActions';
@@ -44,7 +44,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     addEvents: addEvents,
     setCurrentEvent: setCurrentEvent,
-    disableButton: disableButton,
+    updateButton: updateButton,
     setCurrentEventParticipants: setCurrentEventParticipants,
     toggleELDrawer: toggleELDrawer,
     addEvents: addEvents
