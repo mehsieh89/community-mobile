@@ -75,50 +75,51 @@ class Comments extends Component {
 
   render() {
     return (
-      <View>
-        <TextInput
-          editable={true}
-          autoCorrect={false}
-          placeholder='Say something about this event...'
-          style={styles.textField}
-          onChangeText={this.handleChange}
-          value={this.state.text}
-        />
-        <View style={styles.button}>
-          {this.state.text === '' ?
-          <Button
-            raised={true}
-            disabled={true}
-            text="Comment"
-            style={styles.button}
-            >
-            </Button>
-            :
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View>
+          <TextInput
+            editable={true}
+            autoCorrect={false}
+            placeholder='Say something about this event...'
+            style={styles.textField}
+            onChangeText={this.handleChange}
+            value={this.state.text}
+          />
+          <View style={styles.button}>
+            {this.state.text === '' ?
             <Button
               raised={true}
-              onPress={this.handleSubmit}
+              disabled={true}
               text="Comment"
               style={styles.button}
               >
               </Button>
-            }
+              :
+              <Button
+                raised={true}
+                onPress={this.handleSubmit}
+                text="Comment"
+                style={styles.button}
+                >
+                </Button>
+              }
+          </View>
+          <View>
+            <ScrollView>
+               <View>
+                {this.state.comments.map(comment => {
+                  return (
+                    <View style={styles.container}>
+                      <Text style={styles.username}>{comment.username} • <Text style={styles.time}>{moment(comment.createdAt).fromNow()}</Text></Text>
+                      <Text style={styles.comment}>{comment.comment}</Text>
+                    </View>
+                  );
+                })}
+               </View>
+            </ScrollView>
+          </View>
         </View>
-        <View>
-          <ScrollView>
-             <View>
-              {this.state.comments.map(comment => {
-                return (
-                  <View style={styles.container}>
-                    <Text style={styles.username}>{comment.username} • <Text style={styles.time}>{moment(comment.createdAt).fromNow()}</Text></Text>
-                    <Text style={styles.comment}>{comment.comment}</Text>
-                  </View>
-                );
-              })}
-             </View>
-          </ScrollView>
-        </View>
-      </View>
-
+      </TouchableWithoutFeedback>
     );
   }
 }
