@@ -101,9 +101,9 @@ class MapHeader extends Component {
             rightElement="event"
             onRightElementPress={this.handleEventListClick}
             style={{
-              leftElement: { color: '#777'},
-              rightElement: { color: '#777'},
-              titleText: { color: '#777', fontSize: 14 },
+              leftElement: { color: '#31575B'},
+              rightElement: { color: '#31575B'},
+              titleText: { color: '#31575B', fontSize: 14 },
             }}/>
               {this.state.autoComplete.map((str, index) => {
                 return (

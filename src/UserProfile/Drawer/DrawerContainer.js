@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, Modal, Button } from 'react-native';
+import { StyleSheet, Text, View, Modal } from 'react-native';
 import { MaterialDialog } from 'react-native-material-dialog';
+import { Button } from 'react-native-material-ui';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { toggleUPDrawer } from './drawerActions';
@@ -40,7 +41,10 @@ class DrawerContainer extends Component {
         onCancel={this.props.toggleUPDrawer}
         >
         <View style={{ alignItems: 'center' }}>
-          <Button title="Main" onPress={this.handleMain}/>
+          <Button raised upperCase={false} text="Main"
+            icon='home'
+            onPress={this.handleMain}
+            style={{container: {backgroundColor: '#C22B33', width: 190, height: 30, marginBottom: 10, justifyContent: 'flex-start'}, text: {color: '#fff', fontSize: 13}, icon: {marginRight: 53, marginLeft: -12}}} />
           <LoginButton onLogoutFinished={this.handleLogout}/>
         </View>
       </MaterialDialog>

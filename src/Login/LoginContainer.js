@@ -24,10 +24,10 @@ class LoginContainer extends Component {
     return (
       <View style={styles.container}>
         <Image
-          source={require('../../assets/community-login.png')}
-          style={{height: 150}}
+          source={require('../../assets/penguin-icon.png')}
+          style={{height: 200}}
          />
-        <Text style={styles.welcome}>Welcome to Community</Text>
+        <Text style={styles.welcome}>Community</Text>
         <FBLogin handleLoginSuccess={this.handleLoginSuccess}/>
       </View>
     );
@@ -42,10 +42,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5FCFF',
   },
   welcome: {
-    fontSize: 20,
+    fontSize: 40,
+    fontFamily: 'Vibur',
     textAlign: 'center',
     margin: 10,
-    marginBottom: 30
+    marginBottom: 10,
+    marginTop: 10
   },
   skip: {
     fontSize: 5,

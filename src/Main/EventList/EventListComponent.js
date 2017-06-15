@@ -8,6 +8,7 @@ import {
   TouchableWithoutFeedback,
   View,
   Dimensions } from 'react-native';
+import { Card } from 'react-native-material-ui';
 import axios from 'axios';
 import EventListOptionsBar from './EventListOptionsBar';
 import EventListHeader from './EventListHeaderComponent';
@@ -24,7 +25,10 @@ const styles = StyleSheet.create({
   },
   text: {
     alignSelf: 'center',
-    color: '#000',
+    marginTop: 5,
+    color: '#31575B',
+    fontSize: 14,
+    fontWeight: 'bold'
   },
   scrollview: {
     height: '100%',
@@ -70,17 +74,21 @@ class Row extends React.Component {
 
   render() {
     return (
-     <TouchableWithoutFeedback onPress={this.handleClick}>
-        <View style={styles.row}>
-          <Image
-            style={styles.image}
-            source={{uri: this.props.data.image}}
-          />
-          <Text style={styles.text} >
-            {this.props.data.event_name}
-          </Text>
+      <TouchableWithoutFeedback onPress={this.handleClick}>
+        <View style={{alignItems: 'center'}}>
+          <Card style={{container: {width: 330, alignItems: 'center'}}}>
+            <View style={styles.row}>
+              <Image
+                style={styles.image}
+                source={{uri: this.props.data.image}}
+              />
+              <Text style={styles.text} >
+                {this.props.data.event_name}
+              </Text>
+            </View>
+          </Card>
         </View>
-      </TouchableWithoutFeedback>
+       </TouchableWithoutFeedback>
     );
   }
 }
@@ -116,10 +124,10 @@ class EventListComponent extends Component {
             <RefreshControl
               refreshing={this.state.isRefreshing}
               onRefresh={this._onRefresh}
-              tintColor="#3EB1E0"
+              tintColor="#C22B33"
               title="Loading..."
               titleColor="#3A3F3F"
-              colors={['#3EB1E0', '#3A3F3F', '#C4D4CC']}
+              colors={['#C22B33', '#3A3F3F', '#C4D4CC']}
               progressBackgroundColor="#C4D4CC"
             />
           }>

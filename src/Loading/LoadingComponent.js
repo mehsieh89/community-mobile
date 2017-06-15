@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View } from 'react-native';
+import { View, Image, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import axios from 'axios';
@@ -51,8 +51,16 @@ class LoadingComponent extends Component {
 
   render() {
     return (
-      <View style={{ marginTop: 300, alignItems: 'center' }}>
-        <Text style={{ fontSize: 25 }}>Loading...</Text>
+      <View style={{ alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+        <Image
+          source={require('../../assets/penguin-icon.png')}
+          style={{height: 200, marginBottom: 20}}
+         />
+        <ActivityIndicator
+          animating={true}
+          color='#C22B33'
+          size="large"
+        />
       </View>
     );
   }
