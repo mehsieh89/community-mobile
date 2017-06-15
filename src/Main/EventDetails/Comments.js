@@ -27,7 +27,7 @@ class Comments extends Component {
   }
 
   getLatestComments() {
-    axios.get(baseUrl + '/api/retrieveComments?event_id=' + this.props.eventDetailsReducer.currentEventIndex)
+    axios.get(baseUrl + '/api/retrieveComments?event_id=' + this.props.currentEvent.id)
     .then(comments => {
       const commentsArray = comments.data.map(comment => {
         return {
@@ -53,7 +53,7 @@ class Comments extends Component {
   handleSubmit() {
     axios.post(baseUrl + '/api/comments', {
       text: this.state.text,
-      event_id: this.props.eventDetailsReducer.currentEventIndex,
+      event_id: this.props.currentEvent.id,
       profile_id: this.props.userId
     })
     .then(() => {

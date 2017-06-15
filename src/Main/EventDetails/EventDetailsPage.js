@@ -91,7 +91,7 @@ export default class EventDetails extends Component {
             <Button raised text="ATTEND" style={{container: {width: 150, position: 'relative', left: 193, bottom: 36}}}
               onPress={this.handleAttend}
               disabled={this.props.eventDetailsReducer.attendDisabled}/>
-            <Comments {...this.props}/>
+            <Comments {...this.props} currentEvent={this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex]}/>
           </View>
         </ScrollView>
       </View>
