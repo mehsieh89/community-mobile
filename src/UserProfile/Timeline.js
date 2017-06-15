@@ -6,6 +6,8 @@ import { Text, View, Image, StyleSheet } from 'react-native';
 import Timeline from 'react-native-timeline-listview';
 import moment from 'moment';
 
+const baseUrl = 'https://warriors-community.herokuapp.com';
+
 class TimelineComponent extends Component {
 
   constructor(props) {
@@ -17,7 +19,7 @@ class TimelineComponent extends Component {
   }
 
   componentWillMount() {
-    axios.post('http://localhost:3000/api/retrieveUserEvents', { profileId: this.props.userId })
+    axios.post(baseUrl + '/api/retrieveUserEvents', { profileId: this.props.userId })
     .then((res) => {
       let parsed = res.data.map(entry => {
         let event = {};

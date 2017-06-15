@@ -4,7 +4,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import { Text, TextInput, View, TouchableWithoutFeedback, Keyboard, StyleSheet, ScrollView } from 'react-native';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class Comments extends Component {
   constructor(props) {

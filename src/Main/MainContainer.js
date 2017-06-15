@@ -8,7 +8,7 @@ import { addEvents } from './mainActions';
 import { toggleCreateEvent } from './CreateEvent/createEventActions';
 import Fade from '../Loading/Fade';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class MainContainer extends Component {
   static navigationOptions = {

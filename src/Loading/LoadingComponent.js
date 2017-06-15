@@ -6,7 +6,7 @@ import axios from 'axios';
 import updateCurrentUser from '../Login//loginActions';
 import { AccessToken, GraphRequest, GraphRequestManager } from 'react-native-fbsdk';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class LoadingComponent extends Component {
 

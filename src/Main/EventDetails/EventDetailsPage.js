@@ -5,7 +5,7 @@ import moment from 'moment';
 import axios from 'axios';
 import Comments from './Comments';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 export default class EventDetails extends Component {
 
