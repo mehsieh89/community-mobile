@@ -48,7 +48,6 @@ export default class EventDetails extends Component {
 
   render () {
     let participants = this.props.eventDetailsReducer.participants;
-    console.log(participants);
     let currentEvent = this.props.allEvents[this.props.eventDetailsReducer.currentEventIndex];
     let parsedTime = moment(currentEvent.time).format('MMMM Do YYYY, h:mm a') + ' (' + moment(currentEvent.time).fromNow() + ')';
 

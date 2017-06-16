@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     borderRadius: 3,
     padding: 5,
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   comment: {
     marginTop: 5,
