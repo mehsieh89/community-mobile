@@ -87,9 +87,9 @@ class MapComponent extends Component {
       userId: this.props.userId
     })
     .then(res => {
-      this.props.disableButton({
-        attendDisabled: !!res.data.is_attending,
-        likeDisabled: !!res.data.liked
+      this.props.updateButton({
+        isAttendingEvent: !!res.data.is_attending,
+        hasLikedEvent: !!res.data.liked
       });
     })
     .catch(err => { console.log(err); });
@@ -98,11 +98,14 @@ class MapComponent extends Component {
       eventId: this.props.allEvents[index].id,
       userId: this.props.userId
     })
-    .then(res => { this.props.setCurrentEventParticipants(res.data); })
+    .then(res => {
+      this.props.setCurrentEventParticipants(res.data);
+    })
+    .then(() => {
+      const { navigate } = this.props.navigation;
+      navigate('EventDetails');
+    })
     .catch(err => { console.log(err); });
-
-    const { navigate } = this.props.navigation;
-    navigate('EventDetails');
   }
 
   onLocationChange(coordsObj) {

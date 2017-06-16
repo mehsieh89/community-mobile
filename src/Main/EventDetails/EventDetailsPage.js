@@ -30,6 +30,14 @@ export default class EventDetails extends Component {
       AlertIOS.alert('Attendance Confirmed', 'You are going to ' + currentEvent.event_name + '!');
       this.props.updateButton({ isAttendingEvent: true });
     })
+    .then(() => {
+      axios.post(baseUrl + '/api/retrieveParticipants', {
+        eventId: currentEvent.id,
+        userId: this.props.userId
+      })
+      .then(res => { this.props.setCurrentEventParticipants(res.data); })
+      .catch(err => { console.log(err); });
+    })
     .catch(err => { console.log(err); });
   }
 
@@ -44,6 +52,14 @@ export default class EventDetails extends Component {
       console.log(res.data);
       AlertIOS.alert('Attendance Canceled', 'You are no longer going to ' + currentEvent.event_name + '!');
       this.props.updateButton({ isAttendingEvent: false });
+    })
+    .then(() => {
+      axios.post(baseUrl + '/api/retrieveParticipants', {
+        eventId: currentEvent.id,
+        userId: this.props.userId
+      })
+      .then(res => { this.props.setCurrentEventParticipants(res.data); })
+      .catch(err => { console.log(err); });
     })
     .catch(err => { console.log(err); });
   }
