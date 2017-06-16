@@ -99,7 +99,7 @@ class Comments extends Component {
                 raised={true}
                 onPress={this.handleSubmit}
                 text="Comment"
-                style={{container: {backgroundColor: '#C22B33', width: 180}, text: {color: 'white'}}}
+                style={{container: {backgroundColor: '#31575B', width: 180}, text: {color: 'white'}}}
                 >
                 </Button>
               }
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#C22B33',
+    color: '#31575B',
   },
 });
 

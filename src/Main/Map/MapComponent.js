@@ -118,7 +118,7 @@ class MapComponent extends Component {
                   latitude: Number(marker.lat),
                   longitude:  Number(marker.lng)
                 }}
-                pinColor='green'
+                pinColor='maroon'
                 onCalloutPress={this.handleCalloutPress}
                 >
                   <MapView.Callout onPress={() => this.handleCalloutPress(marker, index)}
@@ -192,7 +192,7 @@ const actionButtonStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   icon: {
-    color: '#C22B33'
+    color: '#31575B'
   },
   actionButton1: { marginBottom: 50, },
   actionButton2: { marginBottom: 50, },

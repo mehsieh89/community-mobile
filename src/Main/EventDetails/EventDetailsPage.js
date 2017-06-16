@@ -87,11 +87,11 @@ export default class EventDetails extends Component {
             </View>
             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20, marginTop: 10 }}>
               <Button raised text='LIKE'
-                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#31575B'}, text: {color: 'white'}}}
                 onPress={this.handleLike}
                 disabled={this.props.eventDetailsReducer.likeDisabled}/>
               <Button raised text='ATTEND'
-                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#C22B33'}, text: {color: 'white'}}}
+                style={{container: {width: 130, marginHorizontal: 15, backgroundColor: '#31575B'}, text: {color: 'white'}}}
                 onPress={this.handleAttend}
                 disabled={this.props.eventDetailsReducer.attendDisabled}/>
             </View>
@@ -118,6 +118,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#C22B33'
+    color: '#31575B'
   }
 });
