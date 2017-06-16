@@ -4,7 +4,7 @@ import { Button, Icon } from 'react-native-material-ui';
 import axios from 'axios';
 
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class EventListOptionsBar extends Component {
   constructor(props) {

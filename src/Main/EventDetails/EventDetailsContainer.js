@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { setCurrentEvent, setCurrentEventParticipants, disableButton } from './eventDetailsActions';
+import { setCurrentEvent, setCurrentEventParticipants, updateButton } from './eventDetailsActions';
 import { Button, StyleSheet, Text, TextInput, View, Image, TouchableHighlight} from 'react-native';
 import EventDetails from './EventDetailsPage';
 
@@ -41,7 +41,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
     setCurrentEvent: setCurrentEvent,
     setCurrentEventParticipants: setCurrentEventParticipants,
-    disableButton: disableButton
+    updateButton: updateButton
   }, dispatch);
 };
 

@@ -3,7 +3,7 @@ import { AccessToken, GraphRequest, GraphRequestManager, LoginButton } from 'rea
 import { Button, StyleSheet, Text, View} from 'react-native';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class FBLogin extends Component {
 

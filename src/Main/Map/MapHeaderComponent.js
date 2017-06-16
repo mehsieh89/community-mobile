@@ -3,7 +3,7 @@ import { View, TouchableOpacity, Text, TextInput, TouchableWithoutFeedback, Keyb
 import React, { Component } from 'react';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'https://warriors-community.herokuapp.com';
 
 class MapHeader extends Component {
   constructor(props) {
@@ -51,7 +51,7 @@ class MapHeader extends Component {
       autoComplete: [],
     });
     const string = this.state.searchText.split(' ').join('+');
-    axios.post('http://localhost:3000/api/locationInput', { location: string })
+    axios.post(baseUrl + '/api/locationInput', { location: string })
     .then ((res) => {
       const lat = res.data[0].geometry.location.lat;
       const lng = res.data[0].geometry.location.lng;
