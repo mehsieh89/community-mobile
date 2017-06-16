@@ -8,6 +8,7 @@ import CreateEventContainer from '../CreateEvent/CreateEventContainer';
 import MapHeader from './MapHeaderComponent';
 import Drawer from './Drawer/DrawerContainer';
 import Promise from 'bluebird';
+import Spinner from 'react-native-loading-spinner-overlay';
 import axios from 'axios';
 
 const baseUrl = 'https://warriors-community.herokuapp.com';
@@ -23,13 +24,15 @@ class MapComponent extends Component {
       lastPosition: null,
       latitudeDelta: 0.0922,
       longitudeDelta: 0.0421,
+      loading: false,
     };
     this.onCreateEvent = this.onCreateEvent.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
     this.onLocateUser = this.onLocateUser.bind(this);
     this.handleCalloutPress = this.handleCalloutPress.bind(this);
     this.onRefresh = this.onRefresh.bind(this);
-
+    this.showLoadingOverlay = this.showLoadingOverlay.bind(this);
+    this.hideLoadingOverlay = this.hideLoadingOverlay.bind(this);
   }
 
   componentWillMount() {
@@ -65,10 +68,27 @@ class MapComponent extends Component {
     })
   }
 
+  showLoadingOverlay() {
+    this.setState({
+      loading: true
+    });
+  }
+
+  hideLoadingOverlay() {
+    this.setState({
+      loading: false
+    });
+  }
+
   onRefresh() {
+    const context = this;
+    this.showLoadingOverlay();
     axios.get(baseUrl + '/api/retrieveEvents')
     .then(res => {
-      this.props.addEvents(res.data);
+      this.props.addEvents(res.data)
+    })
+    .then(() => {
+      this.hideLoadingOverlay()
     })
     .catch(error => {
       console.log('Error occurred.', error);
@@ -122,6 +142,7 @@ class MapComponent extends Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={{ flex: 1 }}>
           <View style={styles.container}>
+            <Spinner visible={this.state.loading} />
             <MapView
               ref={map => { this.map = map }}
               showsUserLocation={true}

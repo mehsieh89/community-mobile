@@ -27,6 +27,7 @@
 		16052EB6521043B89C0E49C7 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79F484A606EF4291A484CEA8 /* MaterialCommunityIcons.ttf */; };
 		1C98B687935E473C9A05ECC8 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4636AC0223D549A5945C841B /* FBSDKLoginKit.framework */; };
 		20529FF8A92C448A8CB9978F /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 682D6E1D7B3F4C6292E0F9E5 /* FBSDKCoreKit.framework */; };
+		2B2C03711EF339300034BFD4 /* Vibur-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B2C03701EF339300034BFD4 /* Vibur-Regular.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -349,6 +350,7 @@
 		23A6CD2A8FDE437D841A2D37 /* RCTFBSDK.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTFBSDK.xcodeproj; path = "../node_modules/react-native-fbsdk/ios/RCTFBSDK.xcodeproj"; sourceTree = "<group>"; };
 		23F73A6A92394B9782651675 /* libRCTFBSDK.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTFBSDK.a; sourceTree = "<group>"; };
 		25B38576019249E88EA50CBE /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		2B2C03701EF339300034BFD4 /* Vibur-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Vibur-Regular.ttf"; path = "Fonts/Vibur-Regular.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Community-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Community-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Community-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Community-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D07198D3C2A45B1A2406D14 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ./ios/Frameworks/FBSDKShareKit.framework; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				2B2C03701EF339300034BFD4 /* Vibur-Regular.ttf */,
 				44DB2C951EE1282E005B9717 /* Keys.plist */,
 				9FB961BB1EE0D9C900DC5A28 /* AirGoogleMaps */,
 				9FB9620F1EE0D9EB00DC5A28 /* AirMaps */,
@@ -983,12 +986,12 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
-						DevelopmentTeam = 6PE5YH9FHS;
+						DevelopmentTeam = 2P9TV8LFD3;
 						ProvisioningStyle = Automatic;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						DevelopmentTeam = 6PE5YH9FHS;
+						DevelopmentTeam = 2P9TV8LFD3;
 						LastSwiftMigration = 830;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1298,6 +1301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B2C03711EF339300034BFD4 /* Vibur-Regular.ttf in Resources */,
 				9F01CDD31EE9D29500DFFE0D /* Roboto-Black.ttf in Resources */,
 				9F01CDD41EE9D29500DFFE0D /* Roboto-BlackItalic.ttf in Resources */,
 				9F01CDD51EE9D29500DFFE0D /* Roboto-Bold.ttf in Resources */,
@@ -1533,7 +1537,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6PE5YH9FHS;
+				DEVELOPMENT_TEAM = 2P9TV8LFD3;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1573,7 +1577,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = 6PE5YH9FHS;
+				DEVELOPMENT_TEAM = 2P9TV8LFD3;
 				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/Frameworks/";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1612,7 +1616,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
-				DEVELOPMENT_TEAM = 6PE5YH9FHS;
+				DEVELOPMENT_TEAM = 2P9TV8LFD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Frameworks/",
 					"$(inherited)",
@@ -1632,7 +1636,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.Community;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.Community3;
 				PRODUCT_NAME = Community;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Community-Bridging-Header.h";
@@ -1650,7 +1654,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 6PE5YH9FHS;
+				DEVELOPMENT_TEAM = 2P9TV8LFD3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Frameworks/",
 					"$(inherited)",
@@ -1670,7 +1674,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.Community;
+				PRODUCT_BUNDLE_IDENTIFIER = org.reactjs.native.Community3;
 				PRODUCT_NAME = Community;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Community-Bridging-Header.h";
