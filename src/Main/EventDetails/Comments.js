@@ -156,13 +156,14 @@ const styles = StyleSheet.create({
   },
   time: {
     textAlign: 'right',
-    fontWeight: 'normal'
+    fontWeight: 'normal',
+    color: '#31575B'
   },
   username: {
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 'bold',
-    color: '#31575B',
+    color: '#C22B33',
   },
 });
 
