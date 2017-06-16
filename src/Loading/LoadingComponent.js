@@ -58,7 +58,7 @@ class LoadingComponent extends Component {
          />
         <ActivityIndicator
           animating={true}
-          color='#C22B33'
+          color='#31575B'
           size="large"
         />
       </View>

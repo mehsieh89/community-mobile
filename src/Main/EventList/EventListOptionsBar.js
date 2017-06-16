@@ -119,7 +119,7 @@ const textButton = StyleSheet.create({
   },
   text: {
     fontSize: 14,
-    color: '#C22B33'
+    color: '#31575B'
   },
 })
 
@@ -133,7 +133,7 @@ const iconButton = StyleSheet.create({
     fontSize: 24,
     margin: 0,
     padding: 0,
-    color: '#C22B33',
+    color: '#31575B',
     position: 'relative',
     left: 5,
   },

@@ -124,10 +124,10 @@ class EventListComponent extends Component {
             <RefreshControl
               refreshing={this.state.isRefreshing}
               onRefresh={this._onRefresh}
-              tintColor="#C22B33"
+              tintColor="#31575B"
               title="Loading..."
               titleColor="#3A3F3F"
-              colors={['#C22B33', '#3A3F3F', '#C4D4CC']}
+              colors={['#31575B', '#3A3F3F', '#C4D4CC']}
               progressBackgroundColor="#C4D4CC"
             />
           }>

@@ -73,8 +73,8 @@ class TimelineComponent extends Component {
     return (
       <View style={styles.container}>
         <Timeline
-          lineColor='#C22B33'
-          circleColor='#C22B33'
+          lineColor='#31575B'
+          circleColor='#31575B'
           data={this.state.events}
           innerCircle={'dot'}
           timeContainerStyle={{width: 77 }}//, marginTop: 40}}

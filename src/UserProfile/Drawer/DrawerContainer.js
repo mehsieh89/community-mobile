@@ -44,7 +44,7 @@ class DrawerContainer extends Component {
           <Button raised upperCase={false} text="Main"
             icon='home'
             onPress={this.handleMain}
-            style={{container: {backgroundColor: '#C22B33', width: 190, height: 30, marginBottom: 10, justifyContent: 'flex-start'}, text: {color: '#fff', fontSize: 13}, icon: {marginRight: 53, marginLeft: -12}}} />
+            style={{container: {backgroundColor: '#31575B', width: 190, height: 30, marginBottom: 10, justifyContent: 'flex-start'}, text: {color: '#fff', fontSize: 13}, icon: {marginRight: 53, marginLeft: -12}}} />
           <LoginButton onLogoutFinished={this.handleLogout}/>
         </View>
       </MaterialDialog>
