@@ -120,13 +120,15 @@ export default class EventDetails extends Component {
               <Text style={styles.bold}>Description: <Text style={styles.text}>{currentEvent.description} {"\n"}</Text></Text>
               <Text style={styles.bold}>Category: <Text style={styles.text}>{currentEvent.category}{"\n"}</Text></Text>
               <Text style={styles.bold}>Participants:</Text>
-              {participants.map(participant => {
-                return (
-                  <View style={{width: 60, height: 60, marginTop: 5, marginHorizontal: 3}}>
-                    <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
-                  </View>
-                );
-              })}
+              <View style={{flexDirection: 'row'}}>
+                {participants.map(participant => {
+                  return (
+                    <View style={{width: 60, height: 60, marginTop: 5, marginHorizontal: 3}}>
+                      <Image source={{uri: participant.profile_picture}} style={{width: 50, height:50, borderRadius: 25}}/>
+                    </View>
+                  );
+                })}
+              </View>
             </View>
             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 20, marginTop: 10 }}>
               <Button
