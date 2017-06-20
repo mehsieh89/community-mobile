@@ -2,7 +2,7 @@
 
 What if I told you there's an app that scans your surrounding and lets you know all of the events happening around you?
 
-![community-mobile](https://zippy.gfycat.com/FlakyBaggyAmericankestrel.webm)
+![community-mobile](https://gfycat.com/ChillyGrandAfricanparadiseflycatcher)
 
 ## Team
 
