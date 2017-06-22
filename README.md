@@ -4,6 +4,8 @@ What if I told you there's an app that scans your surrounding and lets you know 
 
 ![community-mobile](https://thumbs.gfycat.com/ChillyGrandAfricanparadiseflycatcher-size_restricted.gif)
 
+![community-mobile](http://imgur.com/a/yy7ar)
+
 ## Team
 
 - Ramsha A. Mushtaq
