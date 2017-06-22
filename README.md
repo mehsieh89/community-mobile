@@ -4,7 +4,7 @@ What if I told you there's an app that scans your surrounding and lets you know 
 
 ![community-mobile](https://thumbs.gfycat.com/ChillyGrandAfricanparadiseflycatcher-size_restricted.gif)
 
-![community-mobile](https://imgur.com/nuZb50I)
+![community-mobile](http://i.imgur.com/nuZb50I.jpg)
 
 ## Team
 
